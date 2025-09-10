@@ -5,7 +5,7 @@ class Set:
         self.__set: List[str] = self._convert_to_list(set_string)
     
     def add(self, elem: str) -> None:
-        self.__set.add(elem)
+        self.__set.append(elem)
     
     @staticmethod
     def _convert_to_string(collection: list) -> str:
@@ -15,9 +15,21 @@ class Set:
     def _convert_to_list(string: str) -> List[str]:
         return string[1:-1].replace(" ", "").split(",")
     
-    @staticmethod
-    def _is_valid_elem(elem: str) -> bool:
-        pass
+    def _is_valid_elem(self, elem: str) -> bool:
+        if not elem:
+            return False
+        
+        if elem.isdigit() or (elem[0] == '-' and elem[1:].isdigit()):
+            return True
+        
+        if elem.isalpha():
+            return True
+        
+        if elem[0] == '{' and elem[-1] == '}':
+            return self._breckets_check(elem)
+        
+        return False
+
     
     def is_correct_set(self, string: str) -> bool:
         some_set = self._convert_to_set(string)
@@ -28,7 +40,7 @@ class Set:
         return True
     
     def del_elem(self, elem: str) -> None:
-        self.__set.discard(elem)
+        self.__set.remove(elem)
     
     def is_empty(self) -> bool:
         return len(self.__set) == 0
@@ -49,7 +61,7 @@ class Set:
     
     @set.setter
     def set_string(self, value: str):
-        self.__set = value
+        self.__set = self._convert_to_list(value)
         
     def __add__(self, other):
         pass
