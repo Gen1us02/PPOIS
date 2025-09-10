@@ -15,6 +15,21 @@ class Set:
     def _convert_to_list(string: str) -> List[str]:
         return string[1:-1].replace(" ", "").split(",")
     
+    @staticmethod
+    def _breckets_check(set_elem: str) -> bool:
+        stack = []
+        
+        for char in set_elem:
+            if char == '{':
+                stack.append(char)
+            elif char == '}':
+                if not stack or stack[-1] != '{':
+                    return False
+                
+                stack.pop()
+                
+        return not stack
+            
     def _is_valid_elem(self, elem: str) -> bool:
         if not elem:
             return False
@@ -30,7 +45,6 @@ class Set:
         
         return False
 
-    
     def is_correct_set(self, string: str) -> bool:
         some_set = self._convert_to_set(string)
         for elem in some_set:
