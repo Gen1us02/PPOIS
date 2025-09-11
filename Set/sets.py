@@ -1,10 +1,9 @@
 from typing import List
-from conventor import Conventor
-from validator import Validator
+import utils
 
 
 class Set:
-    def __init__(self, set_string: str, conventor: Conventor, validator: Validator) -> None:
+    def __init__(self, set_string: str) -> None:
         """Конструктор класса Set, инициализирующий объект класса
 
         Аргументы:
@@ -12,17 +11,22 @@ class Set:
             conventor (Conventor): Объект класса Conventor, реализующий перевод строки в список и обратно
             validator (Validator): Объект класса Validator, проверяющий валидность элементов и самого множества
         """
-        self.__set: List[str] = self._convert_to_list(set_string)
-        self.__conventor = conventor
-        self.__validator = validator
+        self.__set: List[str] = utils.convert_to_list(set_string)
     
-    def add(self, elem: str) -> None:
+    def add(self, elem: str) -> bool:
         """Метод служит для добавления элемента в множество
 
         Аргументы:
             elem (str): Входящий элемент, который пользователь хочет добавить
+            
+        Возвращаемое значение:
+            bool: Возвращаемое значение зависит от того добавился ли элемент в множества
         """
-        self.__set.append(elem)
+        if elem not in self.__set and utils.is_valid_elem(elem):
+            self.__set.append(elem)
+            return True
+        
+        return False
     
     def del_elem(self, elem: str) -> bool:
         """Метод для удаления элемента из множества
@@ -33,7 +37,7 @@ class Set:
         Возвращаемое значение:
             bool: Возвращаемое значение зависит от того удалился ли элемент из множества
         """
-        if elem in self.__set and self.__validator.is_valid_elem(elem):
+        if elem in self.__set:
             self.__set.remove(elem)
             return True
         
@@ -63,25 +67,18 @@ class Set:
         """
         result = [[]]
         for elem in self.__set:
-            result = [subset + [elem] for subset in result]
+            result += [subset + [elem] for subset in result]
+            
+        print(result)
         
-        return self.__conventor.convert_to_string(result)
-    
-    @staticmethod
-    def _remove_duplicates(collection: List[str]) -> List[str]:
-        seen = set()
-        for elem in collection:
-            if elem not in seen:
-                seen.add(elem)
-                
-        return list(seen)
+        return "{" + ",".join("{" + ",".join(subset) + "}" for subset in result) + "}"
         
     def _union(self, second_set: List[str]) -> str:
         result = []
         result.extend(self.__set)
-        result.extand(second_set)
-        set_result = self._remove_duplicates()
-        return self.__conventor(set_result)
+        result.extend(second_set)
+        set_result = utils.remove_duplicates(result)
+        return utils.convert_to_string(set_result)
     
     def _intesection(self, second_set: List[str]) -> str:
         result = []
@@ -95,7 +92,7 @@ class Set:
             if found:
                 result.append(elem)
                 
-        return self.__conventor.convert_to_string(result)
+        return utils.convert_to_string(result)
     
     def _difference(self, second_set: List[str]) -> str:
         result = []
@@ -109,15 +106,15 @@ class Set:
             if not found:
                 result.append(elem)
                 
-        return self.__conventor.convert_to_string(result)
+        return utils.convert_to_string(result)
         
     @property
     def set(self) -> str:
-        return self.__conventor.convert_to_string(self.__set)
+        return self.__set
     
     @set.setter
     def set(self, value: str) -> None:
-        self.__set = self.__conventor.convert_to_list(value)
+        self.__set = utils.convert_to_list(value)
         
     def __add__(self, other):
         union_set_string = self._union(other.set)
@@ -144,4 +141,4 @@ class Set:
         return elem in self.__set
     
     def __str__(self):
-        return f"{self.__conventor.convert_to_string(self.__set)}"
+        return f"{utils.convert_to_string(self.__set)}"
