@@ -120,22 +120,25 @@ class Set:
         self.__set = self.__conventor.convert_to_list(value)
         
     def __add__(self, other):
-        pass
+        union_set_string = self._union(other.set)
+        return Set(union_set_string)
     
     def __iadd__(self, other):
-        pass
+        self.__set = self._union(other.set)
     
     def __sub__(self, other):
-        pass
+        differense_set_string = self._difference(other.set)
+        return Set(differense_set_string)
     
     def __isub__(self, other):
-        pass
+        self.__set = self._difference(other.set)
     
     def __mul__(self, other):
-        pass
+        intersection_set_string = self._intesection(other.set)
+        return Set(intersection_set_string)
     
     def __imul__(self, other):
-        pass
+        self.__set = self._intesection(other.set)
     
     def __contains__(self, elem) -> bool:
         return elem in self.__set
