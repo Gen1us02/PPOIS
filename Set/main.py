@@ -1,3 +1,6 @@
+"""
+    Основной модуль, содержащий удобный для работы с множествами пользовательский интерфейс
+"""
 from sets import Set
 from utils import is_correct_set
 
@@ -13,12 +16,11 @@ def main():
             match input_choice:
                 case 1:
                     first_set_string = input("Введите первое множество: ")
+                    while not is_correct_set(first_set_string):
+                        first_set_string = input("1 - е множество введено неверно, повторите попытку: ")
                     second_set_string = input("Введите второе множество: ")
-                    while is_correct_set(first_set_string):
-                        first_set_string = input("1 - е множество введено неверно, повторите попытку")
-                        
-                    while is_correct_set(second_set_string):
-                        second_set_string = input("2 - е множество введено неверно, повторите попытку")
+                    while not is_correct_set(second_set_string):
+                        second_set_string = input("2 - е множество введено неверно, повторите попытку: ")
                 case 2:
                     with open("input/sets.txt", 'r') as f:
                         first_set_string, second_set_string = f.readlines()
