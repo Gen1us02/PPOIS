@@ -163,13 +163,10 @@ def is_correct_set(string: str) -> bool:
     Возвращаемое значение:
         bool: True если множество правильное, иначе False
     """
-    check_set = convert_to_list(string)
-    if not check_set:
-        return True
-    
     if not string.startswith('{') or not string.endswith('}'):
         return False
     
+    check_set = convert_to_list(string)
     for elem in check_set:
         if not is_valid_elem(elem):
             return False

@@ -145,7 +145,7 @@ class Set:
         Возвращаемое значение:
             str: Возвращает строковое представление множества
         """
-        return utils.convert_to_string(self.__set)
+        return self.__set
     
     @set.setter
     def set(self, value: str) -> None:

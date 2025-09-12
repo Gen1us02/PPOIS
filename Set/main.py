@@ -4,7 +4,10 @@
 from sets import Set
 from utils import is_correct_set
 
-def main():
+def main() -> None:
+    """
+    Функция реализующая работу с пользовательским интерфейсом
+    """
     input_choice = 0
     while input_choice != 1 and input_choice != 2:
         print("Выберите способ задания множеств:")
@@ -32,8 +35,8 @@ def main():
             print("Неверный ввод повторите попытку")
                 
     first_set = Set(first_set_string)
-    second_set = Set(second_set_string)    
-      
+    second_set = Set(second_set_string)
+          
     choice = 0
     while choice != 10:
         print("-----Меню-----")
@@ -88,7 +91,7 @@ def main():
                     
                 case 8:
                     difference_set = first_set - second_set
-                    print(f"Пересечение множеств: {difference_set}")
+                    print(f"Разность множеств: {difference_set}")
                     
                 case 9:
                     print(f"Булеан множества: {first_set.boolean()}")
