@@ -1,8 +1,9 @@
 """
     Основной модуль, содержащий удобный для работы с множествами пользовательский интерфейс
 """
-from sets import Set
-from utils import is_correct_set
+from Set.sets import Set
+from Set.utils import is_correct_set
+
 
 def main() -> None:
     """
@@ -38,27 +39,35 @@ def main() -> None:
     second_set = Set(second_set_string)
           
     choice = 0
-    while choice != 10:
+    while choice != 12:
         print("-----Меню-----")
-        print("1 - Проверить множество на пустоту")
-        print("2 - Добавить элемент в множество")
-        print("3 - Удалить элемент из множества")
-        print("4 - Мощность множества")
-        print("5 - Пренадлежит ли элемент множество")
-        print("6 - Объединение двух множеств")
-        print("7 - Пересечение двух множеств")
-        print("8 - Разность двух множеств")
-        print("9 - Построение булеана множества")
-        print("10 - Завершение программы")
+        print("1 - Просмотреть 1-е множество")
+        print("2 - Просмотреть 2-е множество")
+        print("3 - Проверить множество на пустоту")
+        print("4 - Добавить элемент в множество")
+        print("5 - Удалить элемент из множества")
+        print("6 - Мощность множества")
+        print("7 - Пренадлежит ли элемент множество")
+        print("8 - Объединение двух множеств")
+        print("9 - Пересечение двух множеств")
+        print("10 - Разность двух множеств")
+        print("11 - Построение булеана множества")
+        print("12 - Завершение программы")
         
         try:
             choice = int(input("Ваш выбор: "))
             
             match choice:
                 case 1:
-                    print("Множество пустое" if first_set.is_empty() else "В множестве есть элементы")
+                    print(first_set)
                     
                 case 2:
+                    print(second_set)
+                    
+                case 3:
+                    print("Множество пустое" if first_set.is_empty() else "В множестве есть элементы")
+                    
+                case 4:
                     elem = input("Введите элемент, который хотите добавить: ")
                     operation_result = first_set.add(elem)
                     if operation_result:
@@ -66,7 +75,7 @@ def main() -> None:
                     else:
                         print("Не удалось добавить элемент, возможно он введен неправильно")
                         
-                case 3: 
+                case 5: 
                     elem = input("Введите элемент, который хотите удалить: ")
                     operation_result = first_set.del_elem(elem)
                     if operation_result:
@@ -74,29 +83,29 @@ def main() -> None:
                     else:
                         print("Не удалось удалить элемент, возможно его нет в множестве")
                         
-                case 4:
+                case 6:
                     print(f"Мощность множества: {first_set.power()}")
                     
-                case 5:
+                case 7:
                     elem = input("Введите элемент: ")
                     print("Элемент принадлежит множеству" if elem in first_set else "Элемент не содержится в множестве")
                     
-                case 6:
+                case 8:
                     union_set = first_set + second_set
                     print(f"Объединение множеств {union_set}")
                     
-                case 7:
+                case 9:
                     intersection_set = first_set * second_set
                     print(f"Пересечение множеств: {intersection_set}")
                     
-                case 8:
+                case 10:
                     difference_set = first_set - second_set
                     print(f"Разность множеств: {difference_set}")
                     
-                case 9:
+                case 11:
                     print(f"Булеан множества: {first_set.boolean()}")
                     
-                case 10:
+                case 12:
                     print("Завершение программы")
                     
                 case _:

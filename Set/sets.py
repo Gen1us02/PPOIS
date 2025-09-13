@@ -2,7 +2,7 @@
     Модуль представляет собой реализацию класса множество и всех присущих ему свойств
 """
 from typing import List
-import utils
+from Set import utils
 
 
 class Set:
@@ -172,14 +172,16 @@ class Set:
         union_set_string = self._union(other.set)
         return Set(union_set_string)
     
-    def __iadd__(self, other) -> None:
+    def __iadd__(self, other):
         """Магический метод iadd срабатывает при использовании оператора +=, не создает новый объект,
         а изменяет существующий
 
         Аргументы:
             other (Set): Объект класса Set, множество которого используется для объединения
         """
-        self.__set = self._union(other.set)
+        union_set = self._union(other.set)
+        self.__set = utils.convert_to_list(union_set)
+        return self
     
     def __sub__(self, other):
         """Магический метод sub срабатывает при использовании оператора - и
@@ -194,14 +196,16 @@ class Set:
         differense_set_string = self._difference(other.set)
         return Set(differense_set_string)
     
-    def __isub__(self, other) -> None:
+    def __isub__(self, other):
         """Магический метод isub срабатывает при использовании оператора -=, не создает новый объект,
         а изменяет существующий
 
         Аргументы:
             other (Set): Объект класса Set, множество которого используется для разности
         """
-        self.__set = self._difference(other.set)
+        diff_set = self._difference(other.set)
+        self.__set = utils.convert_to_list(diff_set)
+        return self
     
     def __mul__(self, other):
         """Магический метод mul срабатывает при использовании оператора * и
@@ -216,14 +220,16 @@ class Set:
         intersection_set_string = self._intesection(other.set)
         return Set(intersection_set_string)
     
-    def __imul__(self, other) -> None:
+    def __imul__(self, other):
         """Магический метод isub срабатывает при использовании оператора *=, не создает новый объект,
         а изменяет существующий
 
         Аргументы:
             other (Set): Объект класса Set, множество которого используется для пересечения
         """
-        self.__set = self._intesection(other.set)
+        inter_set = self._intesection(other.set)
+        self.__set = utils.convert_to_list(inter_set)
+        return self
     
     def __contains__(self, elem: str) -> bool:
         """Магический метод contains срабатывает при использовании оператора in 

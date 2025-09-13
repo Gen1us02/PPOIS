@@ -1,8 +1,8 @@
 """
     Модуль с реализацией интерфейса пользователя
 """
-from tic_tae_toe import Tic_Tac_Toe
-from utils import clear_console, draw_board
+from Tic_Tac_Toe.tic_tae_toe import Tic_Tac_Toe
+from Tic_Tac_Toe.utils import clear_console, draw_board
 
 
 def main() -> None:

@@ -2,7 +2,7 @@
     Модуль реализующий вспомогательные функции
 """
 import os
-from tic_tae_toe import Tic_Tac_Toe
+from Tic_Tac_Toe.tic_tae_toe import Tic_Tac_Toe
 
 
 def clear_console() -> None:
