@@ -4,3 +4,5 @@ Tic_Tac_Toe/__pycache__
 /tests/__pycache__
 /docs
 /.vscode
+.coverage
+coverage.xml
