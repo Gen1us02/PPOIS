@@ -107,12 +107,12 @@ class Tic_Tac_Toe:
             str: Возвращает отрисовку поля
         """
         lines = []
-        sep = ''.join('---' for _ in range(self.__size))
 
         for row in range(self.__size):
             row_cells = ' | '.join(self.__coords[(row, col)] for col in range(self.__size))
             lines.append(f'{row_cells}')
             if row < self.__size - 1:
+                sep = "-" * len(row_cells)
                 lines.append(sep)
 
         return '\n'.join(lines)
