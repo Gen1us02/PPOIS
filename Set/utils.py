@@ -120,7 +120,7 @@ def breckets_check(set_elem: str) -> bool:
     """
     stack = []
     
-    for char in set_elem:
+    for i, char in enumerate(set_elem):
         if char == '{':
             stack.append(char)
         elif char == '}':
@@ -128,7 +128,9 @@ def breckets_check(set_elem: str) -> bool:
                 return False
             
             stack.pop()
-            
+            if not stack and i != len(set_elem) - 1:
+                return False
+        
     return not stack
         
 def is_valid_elem(elem: str) -> bool:
@@ -163,10 +165,16 @@ def is_correct_set(string: str) -> bool:
     Возвращаемое значение:
         bool: True если множество правильное, иначе False
     """
+    if string == "{}":
+        return True
+    
     if not string.startswith('{') or not string.endswith('}'):
         return False
     
     check_set = convert_to_list(string)
+    if not check_set:
+        return False
+    
     for elem in check_set:
         if not is_valid_elem(elem):
             return False

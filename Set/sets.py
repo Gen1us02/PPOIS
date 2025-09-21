@@ -77,9 +77,7 @@ class Set:
         result = [[]]
         for elem in self.__set:
             result += [subset + [elem] for subset in result]
-            
-        print(result)
-        
+
         return "{" + ",".join("{" + ",".join(subset) + "}" for subset in result) + "}"
         
     def _union(self, second_set: List[str]) -> str:
