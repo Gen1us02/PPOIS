@@ -34,3 +34,7 @@ class TestTic_Tac_Toe(TestCase):
         game = Tic_Tac_Toe(3)
         game[(1, 1)] = "X"
         self.assertTrue(game[(1, 1)] == "X")
+        
+    def test_print_field(self):
+        game = Tic_Tac_Toe(3)
+        self.assertTrue(draw_board(game) == None)
