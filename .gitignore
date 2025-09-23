@@ -6,3 +6,4 @@ Tic_Tac_Toe/__pycache__
 /.vscode
 .coverage
 coverage.xml
+.coveragerc
