@@ -1,9 +1,9 @@
 #ifndef CAMERA
 #define CAMERA
-#include <device.h>
+#include "input_device.h"
 
 
-class Camera: public Device{
+class Camera: public Input_Device{
 private:
     std::string _max_resolution {"1920x1080"};
     double _megapixels {2.0};
@@ -20,7 +20,8 @@ public:
     void Connect() override;
     void Disconnect() override;
     bool IsConnected() const override;
-    void MakeVideo(int seconds);
+    std::string MakeVideo(int seconds);
+    void readInput(const std::string&);
 };
 
 #endif

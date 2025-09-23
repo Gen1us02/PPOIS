@@ -1,5 +1,5 @@
-#include <microphone.h>
-
+#include "microphone.h"
+#include <format>
 
 Microphone::Microphone() = default;
 
@@ -30,40 +30,31 @@ int Microphone::get_signal_noise_ratio() const{
     return this->_signal_noise_ratio;
 }
 
-void Microphone::Connect(){
-    this->_is_connected = true;
-}
-
-void Microphone::Disconnect(){
-    this->_is_connected = false;
-}
-
-bool Microphone::IsConnected() const{
-    return this->_is_connected;
-}
-
-void Microphone::Mute() {
+std::string Microphone::Mute() {
     if (_is_mute) return;
     _is_mute = true;
-    std::cout << "Микрофон заглушен\n";
+    return "Микрофон заглушен\n";
 }
 
-void Microphone::Unmute() {
+std::string Microphone::Unmute() {
     if (!_is_mute) return;
     _is_mute = false;
-    std::cout << "Микрофон работает\n";
+    return "Микрофон работает";
 }
 
 bool Microphone::IsMuted() const {
     return _is_mute;
 }
 
-void Microphone::ReadSound(){
+std::string Microphone::ReadSound(){
     if (!IsConnected()) {
-        std::cout << "Microphone not connected\n";
+        return "Микрофон не подключен";
         return;
     }
-    std::cout << "Microphone read: type=" << _type
-              << ", max_freq=" << _max_frequency
-              << ", snr=" << _signal_noise_ratio << "\n";
+    std::string sound = "Microphone read: " + _type 
+        + "freq=" + std::to_string(_max_frequency) 
+        + "snr=" + std::to_string(_signal_noise_ratio);
+
+    readInput(sound);
+    return sound;
 }

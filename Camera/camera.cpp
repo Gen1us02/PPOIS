@@ -41,23 +41,26 @@ bool Camera::IsConnected() const{
     return this->_is_connected;
 }
 
-void Camera::MakeVideo(int seconds){
+std::string Camera::MakeVideo(int seconds){
     if (!IsConnected()){
         std::cout << "Камера не подключена. Съемка видео невозможна.\n";
         return;
     }
     int frames_count = seconds * _max_fps;
 
-    std::cout << "Съемка началась: " << seconds << "секунды, " << frames_count << " кадров, разрешение: " << _max_resolution << "\n";
-
     for (int i = 0; i < frames_count; i++){
-        std::string frame = "Frame " + std::to_string(i)
+        std::string frames = "Frame " + std::to_string(i)
             + " | resolution=" + _max_resolution
             + " | mp=" + std::to_string(_megapixels)
-            + " | fps=" + std::to_string(_max_fps);
+            + " | fps=" + std::to_string(_max_fps) + "\n";
 
-        std::cout << frame << '\n';
     }
 
-    std::cout << "Съемка завершена: " << frames_count << " кадров.\n";
+    std::string video = "Съемка завершена:" + std::to_string(frames_count) + "кадров.";
+    readInput(video);
+    return video;
+}
+
+void Camera::readInput(const std::string& video){
+    this->_input = video;
 }

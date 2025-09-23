@@ -1,8 +1,8 @@
 #ifndef MICROPHONE
 #define MICROPHONE
-#include <device.h>
+#include "input_device.h"
 
-class Microphone: public Device{
+class Microphone: public Input_Device{
 private:
     std::string _type {"condenser"};
     int _max_frequency {8000};
@@ -17,13 +17,10 @@ public:
     int get_max_frequency() const;
     void set_signal_noise_ratio(int);
     int get_signal_noise_ratio() const;
-    void Connect() override;
-    void Disconnect() override;
-    bool IsConnected() const override;
-    void Mute();
-    void Unmute();
+    std::string Mute();
+    std::string Unmute();
     bool IsMuted() const;
-    void ReadSound();
+    std::string ReadSound();
 };
 
 #endif

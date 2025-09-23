@@ -37,19 +37,9 @@ int Mouse::get_dpi() const{
     return this->_dpi;
 }
 
-void Mouse::Connect(){
-    this->_is_connected = true;
-}
-
-void Mouse::Disconnect(){
-    this->_is_connected = false;
-}
-
-bool Mouse::IsConnected() const{
-    return this->_is_connected;
-}
-
 void Mouse::MoveCursor(int x, int y){
     this->set_cursor_x(x);
     this->set_cursor_y(y);
+    std::string coords = "x: " + std::to_string(this->_cursor_x)+ "y: " + std::to_string(this->_cursor_y);
+    readInput(coords);
 }

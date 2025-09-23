@@ -1,8 +1,8 @@
 #ifndef MOUSE
 #define MOUSE
-#include <device.h>
+#include "input_device.h"
 
-class Mouse:public Device{
+class Mouse:public Input_Device{
 private:
     int _cursor_x {0};
     int _cursor_y {0};
@@ -19,9 +19,6 @@ public:
     std::string get_sensor_type() const;
     void set_dpi(int);
     int get_dpi() const;
-    void Connect() override;
-    void Disconnect() override;
-    bool IsConnected() const override;
     void MoveCursor(int, int);
 };
 
