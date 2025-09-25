@@ -3,15 +3,15 @@
 #include "input_device.h"
 
 
-class KeyBoard : public Input_Device{
-private:
-    std::string _type {"membrane"};
+class KeyBoard : public InputDevice{
 public:
     KeyBoard();
     KeyBoard(const std::string&);
-    void set_type(const std::string&);
-    std::string get_type() const;
-    std::string pressButton(const std::string&);
+    void SetType(const std::string&);
+    std::string GetType() const;
+    std::string PressButton(const std::string&);
+private:
+    std::string type_ {""};
 };
 
 #endif

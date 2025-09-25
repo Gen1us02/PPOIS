@@ -3,47 +3,47 @@
 
 Microphone::Microphone() = default;
 
-Microphone::Microphone(const std::string& type, int max_frequency, int signal_noise_ratio):
-_type(type), _max_frequency(max_frequency), _signal_noise_ratio(signal_noise_ratio) {}
+Microphone::Microphone(const std::string& type, int maxFrequency, int signalNoiseRatio):
+type_(type), maxFrequency_(maxFrequency), signalNoiseRatio_(signalNoiseRatio) {}
 
-void Microphone::set_type(const std::string& type){
-    this->_type = type;
+void Microphone::SetType(const std::string& type){
+    this->type_ = type;
 }
 
-std::string Microphone::get_type() const{
-    return this->_type;
+std::string Microphone::GetType() const{
+    return this->type_;
 }
 
-void Microphone::set_max_frequency(int max_frequency){
-    this->_max_frequency = max_frequency;
+void Microphone::SetMaxFrequency(int maxFrequency){
+    this->maxFrequency_ = maxFrequency;
 }
 
-int Microphone::get_max_frequency() const{
-    return this->_max_frequency;
+int Microphone::GetMaxFrequency() const{
+    return this->maxFrequency_;
 }
 
-void Microphone::set_signal_noise_ratio(int signal_noise_ratio){
-    this->_signal_noise_ratio = signal_noise_ratio;
+void Microphone::SetSignalNoiseRatio(int signalNoiseRatio){
+    this->signalNoiseRatio_ = signalNoiseRatio;
 }
 
-int Microphone::get_signal_noise_ratio() const{
-    return this->_signal_noise_ratio;
+int Microphone::GetSignalNoiseRatio() const{
+    return this->signalNoiseRatio_;
 }
 
 std::string Microphone::Mute() {
-    if (_is_mute) return;
-    _is_mute = true;
+    if (isMute_) return;
+    isMute_ = true;
     return "Микрофон заглушен\n";
 }
 
 std::string Microphone::Unmute() {
-    if (!_is_mute) return;
-    _is_mute = false;
+    if (!isMute_) return;
+    isMute_ = false;
     return "Микрофон работает";
 }
 
 bool Microphone::IsMuted() const {
-    return _is_mute;
+    return isMute_;
 }
 
 std::string Microphone::ReadSound(){
@@ -51,10 +51,10 @@ std::string Microphone::ReadSound(){
         return "Микрофон не подключен";
         return;
     }
-    std::string sound = "Microphone read: " + _type 
-        + "freq=" + std::to_string(_max_frequency) 
-        + "snr=" + std::to_string(_signal_noise_ratio);
+    std::string sound = "Microphone read: " + type_ 
+        + "freq=" + std::to_string(maxFrequency_) 
+        + "snr=" + std::to_string(signalNoiseRatio_);
 
-    readInput(sound);
+    ReadInput(sound);
     return sound;
 }

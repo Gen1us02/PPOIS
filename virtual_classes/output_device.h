@@ -4,8 +4,8 @@
 #include "device.h"
 #include "input_device.h"
 
-class Output_Device : public Device{
-    virtual std::string displayInput(const Input_Device&) const = 0;
+class OutputDevice : public Device{
+    virtual std::string DisplayInput(const InputDevice&) const = 0;
 };
 
 #endif

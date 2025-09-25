@@ -2,44 +2,44 @@
 
 Mouse::Mouse() = default;
 
-Mouse::Mouse(int cursor_x, int cursor_y, const std::string& sensor_type, int dpi):
-_cursor_x(cursor_x), _cursor_y(cursor_y), _sensor_type(sensor_type), _dpi(dpi){};
+Mouse::Mouse(int cursorX, int cursorY, const std::string& sensorType, int dpi):
+cursorX_(cursorX), cursorY_(cursorY), sensorType_(sensorType), dpi_(dpi){};
 
-void Mouse::set_cursor_x(int cursor_x){
-    this->_cursor_x = cursor_x;
+void Mouse::SetCursorX(int cursorX){
+    this->cursorX_ = cursorX;
 }
 
-int Mouse::get_cursor_x() const{
-    return this->_cursor_x;
+int Mouse::GetCursorX() const{
+    return this->cursorX_;
 }
 
-void Mouse::set_cursor_y(int cursor_y){
-    this->_cursor_y = cursor_y;
+void Mouse::SetCursorY(int cursorY){
+    this->cursorY_ = cursorY;
 }
 
-int Mouse::get_cursor_y() const{
-    return this->_cursor_y;
+int Mouse::GetCursorY() const{
+    return this->cursorY_;
 }
 
-void Mouse::set_sensor_type(const std::string& sensor_type){
-    this->_sensor_type = sensor_type;
+void Mouse::SetSensorType(const std::string& sensorType){
+    this->sensorType_ = sensorType;
 }
 
-std::string Mouse::get_sensor_type() const{
-    return this->_sensor_type;
+std::string Mouse::GetSensorType() const{
+    return this->sensorType_;
 }
 
-void Mouse::set_dpi(int dpi){
-    this->_dpi = dpi;
+void Mouse::SetDpi(int dpi){
+    this->dpi_ = dpi;
 }
 
-int Mouse::get_dpi() const{
-    return this->_dpi;
+int Mouse::GetDpi() const{
+    return this->dpi_;
 }
 
 void Mouse::MoveCursor(int x, int y){
-    this->set_cursor_x(x);
-    this->set_cursor_y(y);
-    std::string coords = "x: " + std::to_string(this->_cursor_x)+ "y: " + std::to_string(this->_cursor_y);
-    readInput(coords);
+    this->SetCursorX(x);
+    this->SetCursorY(y);
+    std::string coords = "x: " + std::to_string(this->cursorX_)+ "y: " + std::to_string(this->cursorY_);
+    ReadInput(coords);
 }

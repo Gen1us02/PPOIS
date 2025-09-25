@@ -1,50 +1,38 @@
-#include <camera.h>
+#include "webcamera.h"
 
-Camera::Camera() = default;
+WebCamera::WebCamera() = default;
 
-Camera::Camera(const std::string& max_resolution, double megapixels, int max_fps):
+WebCamera::WebCamera(const std::string& max_resolution, double megapixels, int max_fps):
 _max_resolution(max_resolution), _megapixels(megapixels), _max_fps(max_fps) {}
 
-void Camera::set_max_resolution(const std::string& max_resolution){
+void WebCamera::set_max_resolution(const std::string& max_resolution){
     this->_max_resolution = max_resolution;
 }
 
-std::string Camera::get_max_resolution() const{
+std::string WebCamera::get_max_resolution() const{
     return this->_max_resolution;
 }
 
-void Camera::set_megapixels(double megapixels){
+void WebCamera::set_megapixels(double megapixels){
     this->_megapixels = megapixels;
 }
 
-double Camera::get_megapixels() const{
+double WebCamera::get_megapixels() const{
     return this->_megapixels;
 }
 
-void Camera::set_max_fps(int max_fps){
+void WebCamera::set_max_fps(int max_fps){
     this->_max_fps = max_fps;
 }
 
-int Camera::get_max_fps() const{
+int WebCamera::get_max_fps() const{
     return this->_max_fps;
 }
 
-void Camera::Connect(){
-    this->_is_connected = true;
-}
-
-void Camera::Disconnect(){
-    this->_is_connected = false;
-}
-
-bool Camera::IsConnected() const{
-    return this->_is_connected;
-}
-
-std::string Camera::MakeVideo(int seconds){
+std::string WebCamera::MakeVideo(int seconds){
     if (!IsConnected()){
         std::cout << "Камера не подключена. Съемка видео невозможна.\n";
-        return;
+        return "";
     }
     int frames_count = seconds * _max_fps;
 
@@ -61,6 +49,6 @@ std::string Camera::MakeVideo(int seconds){
     return video;
 }
 
-void Camera::readInput(const std::string& video){
+void WebCamera::readInput(const std::string& video){
     this->_input = video;
 }

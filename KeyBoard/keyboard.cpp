@@ -3,17 +3,17 @@
 KeyBoard::KeyBoard() = default;
 
 KeyBoard::KeyBoard(const std::string& type):
-_type(type) {};
+type_(type) {};
 
-void KeyBoard::set_type(const std::string& type){
-    this->_type = type;
+void KeyBoard::SetType(const std::string& type){
+    this->type_ = type;
 }
 
-std::string KeyBoard::get_type() const{
-    return this->_type;
+std::string KeyBoard::GetType() const{
+    return this->type_;
 }
 
-std::string KeyBoard::pressButton(const std::string& key){
-    readInput(key);
+std::string KeyBoard::PressButton(const std::string& key){
+    ReadInput(key);
     return "Нажата кнопка " + key; 
 }

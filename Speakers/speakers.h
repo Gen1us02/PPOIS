@@ -16,7 +16,7 @@ class Speakers : public Output_Device{
     double getWeight() const;
     void setMaxRate(int);
     int getMaxRate() const;
-    std::string displayInput(const Input_Device&)const override;
+    std::string DisplayInput(const InputDevice&)const override;
     std::string changeVolume(int) const;
 private:
     int _dynamicCount {0};

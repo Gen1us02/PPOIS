@@ -4,16 +4,16 @@
 #include <string>
 #include "device.h"
 
-class Input_Device: public Device{
+class InputDevice: public Device{
 public:
-    void readInput(const std::string& input){
-        this->_input = input;
+    void ReadInput(const std::string& input){
+        this->input_ = input;
     };
-    std::string getInput() const{
-        return this->_input;
+    std::string GetInput() const{
+        return this->input_;
     };
 protected:
-    std::string _input {""};
+    std::string input_ {""};
 };
 
 #endif

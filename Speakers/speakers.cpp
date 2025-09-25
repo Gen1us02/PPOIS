@@ -37,9 +37,9 @@ int Speakers::getMaxRate() const{
     return this->_maxRate;
 }
 
-std::string Speakers::displayInput(const Input_Device& microphone) const{
+std::string Speakers::DisplayInput(const InputDevice& microphone) const{
     // Проверка на микрофон
-    return "Звук от пользователя:\n" + microphone.getInput();
+    return "Звук от пользователя:\n" + microphone.GetInput();
 }
 
 std::string Speakers::changeVolume(int volumeValue) const{

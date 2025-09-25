@@ -6,18 +6,18 @@
 class Device{
 public:
     void Connect(){
-        if(_is_connected) return;
-        this->_is_connected = true;
+        if(isConnected_) return;
+        this->isConnected_ = true;
     };
     void Disconnect(){
-        if(!_is_connected) return;
-        this->_is_connected = false;
+        if(!isConnected_) return;
+        this->isConnected_ = false;
     }
     bool IsConnected() const{
-        return this->_is_connected;
+        return this->isConnected_;
     }
 protected:
-    bool _is_connected {false};
+    bool isConnected_ {false};
 };
 
 #endif
