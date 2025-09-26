@@ -13,10 +13,12 @@ public:
     int GetMaxSpeed() const override;
     void SetSocket(const std::string&);
     std::string GetSocket() const;
+    std::string GetType() const override;
 private:
     int minSpeed_ {0};
     int maxSpeed_ {0};
     std::string socket_ {""};
+    std::string type_ {"cpu"};
 };
 
 #endif

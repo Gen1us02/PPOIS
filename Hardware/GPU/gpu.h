@@ -16,9 +16,9 @@ public:
     int GetVideoMemory() const;
     void SetCoolerCount(int);
     int GetCoolerCount() const;
-    void SetCoolerSpeed(int speed);
-    std::string SetVsync(bool mode) const;
-    std::string SetDlssMode(const std::string& dlssMode) const;
+    void SetCoolerCurrentSpeed(int);
+    std::string SetVsync(bool) const;
+    std::string SetDlssMode(const std::string&) const;
 private:
     bool rtxSupport_ {false};
     int videoMemory_ {0};

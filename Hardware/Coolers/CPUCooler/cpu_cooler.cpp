@@ -28,3 +28,7 @@ void CPUCooler::SetSocket(const std::string& socket){
 std::string CPUCooler::GetSocket() const{
     return this->socket_;
 }
+
+std::string CPUCooler::GetType() const{
+    return this->type_;
+}

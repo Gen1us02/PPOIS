@@ -20,3 +20,7 @@ void GPUCooler::SetMaxSpeed(int maxSpeed){
 int GPUCooler::GetMaxSpeed() const{
     return this->maxSpeed_;
 }
+
+std::string GPUCooler::GetType() const{
+    return this->type_;
+}

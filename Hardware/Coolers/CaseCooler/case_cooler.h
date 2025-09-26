@@ -13,9 +13,11 @@ public:
     int GetMaxSpeed() const override;
     void SetDirection(const std::string&);
     std::string GetDirection() const;
+    std::string GetType() const override;
 private:
     int minSpeed_ {0};
     int maxSpeed_ {0};
+    std::string type_ {"case"};
     std::string direction_ {""};
 };
 

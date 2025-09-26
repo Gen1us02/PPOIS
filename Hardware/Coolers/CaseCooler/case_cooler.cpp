@@ -25,6 +25,10 @@ void CaseCooler::SetDirection(const std::string& direction){
     this->direction_ = direction;
 }
 
+std::string CaseCooler::GetType() const{
+    return this->type_;
+}
+
 std::string CaseCooler::GetDirection() const{
     return this->direction_;
 }
