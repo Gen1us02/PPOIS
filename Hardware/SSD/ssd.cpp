@@ -47,3 +47,7 @@ double SSD::WriteTime(int dataSize){
     double writeTime = static_cast<double>(dataSize) / this->writeSpeed_;
     return std::round(writeTime * 100.0) / 100.0;
 }
+
+bool SSD::SupportsPort(PortType p) const{
+    return this->port_ == p;
+}

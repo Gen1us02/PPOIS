@@ -2,9 +2,12 @@
 #define DEVICE
 #include <iostream>
 #include <string>
+#include "port_type.h"
 
 class Device{
 public:
+    virtual ~Device();
+    virtual bool SupportsPort(PortType) const = 0;
     void Connect(){
         if(isConnected_) return;
         this->isConnected_ = true;

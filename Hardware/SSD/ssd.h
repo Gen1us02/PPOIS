@@ -3,6 +3,7 @@
 #include <string>
 #include "memory_device.h"
 #include "hardware.h"
+#include "port_type.h"
 
 class SSD : public MemoryDevice, public Hardware{
 public:
@@ -13,6 +14,7 @@ public:
     void SetReadSpeed(int);
     int GetReadSpeed() const;
     void SetWriteSpeed(int);
+    bool SupportsPort(PortType) const;
     int GetWriteSpeed() const;
     void SetTimeBeforeBreak(int);
     int GetTimeBeforeBreak() const;
@@ -23,6 +25,7 @@ private:
     int readSpeed_ {0};
     int writeSpeed_ {0};
     int timeBeforeBreak_ {0};
+    PortType port_ {PortType::M2};
 };
 
 

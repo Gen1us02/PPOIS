@@ -4,7 +4,7 @@
 
 class Camera{
 public:
-    virtual ~Camera();
+    virtual ~Camera() = default;
     virtual std::string MakeVideo(int seconds) = 0;
 };
 

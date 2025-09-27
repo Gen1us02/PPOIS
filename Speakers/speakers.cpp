@@ -3,38 +3,38 @@
 Speakers::Speakers() = default;
 
 Speakers::Speakers(int dynamicCount, int power, double weight, int maxRate):
-_dynamicCount(dynamicCount), _power(power), _weight(weight), _maxRate(maxRate){}
+dynamicCount_(dynamicCount), power_(power), weight_(weight), maxRate_(maxRate){}
 
-void Speakers::setDynamicCount(int dynamicCount){
-    this->_dynamicCount = dynamicCount;
+void Speakers::SetDynamicCount(int dynamicCount){
+    this->dynamicCount_ = dynamicCount;
 }
 
-int Speakers::getDynamicCount() const{
-    return this->_dynamicCount;
+int Speakers::GetDynamicCount() const{
+    return this->dynamicCount_;
 }
 
-void Speakers::setPower(int power){
-    this->_power = power;
+void Speakers::SetPower(int power){
+    this->power_ = power;
 }
 
-int Speakers::getPower() const{
-    return this->_power;
+int Speakers::GetPower() const{
+    return this->power_;
 }
 
-void Speakers::setWeight(double weight){
-    this->_weight = weight;
+void Speakers::SetWeight(double weight){
+    this->weight_ = weight;
 }
 
-double Speakers::getWeight() const{
-    return this->_weight;
+double Speakers::GetWeight() const{
+    return this->weight_;
 }
 
-void Speakers::setMaxRate(int maxRate){
-    this->_maxRate = maxRate;
+void Speakers::SetMaxRate(int maxRate){
+    this->maxRate_ = maxRate;
 }
 
-int Speakers::getMaxRate() const{
-    return this->_maxRate;
+int Speakers::GetMaxRate() const{
+    return this->maxRate_;
 }
 
 std::string Speakers::DisplayInput(const InputDevice& microphone) const{
@@ -42,7 +42,11 @@ std::string Speakers::DisplayInput(const InputDevice& microphone) const{
     return "Звук от пользователя:\n" + microphone.GetInput();
 }
 
-std::string Speakers::changeVolume(int volumeValue) const{
+std::string Speakers::ChangeVolume(int volumeValue) const{
     // Проверка на валидность звука
     return "Значение звука изменено на " + std::to_string(volumeValue);
+}
+ 
+bool Speakers::SupportsPort(PortType p) const{
+    return this->port_ == p;
 }

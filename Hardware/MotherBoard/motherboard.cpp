@@ -20,7 +20,7 @@ std::string MotherBoard::GetSocket() const{
 bool MotherBoard::InstallCPU(const CPU& processor){
     if(processor_.has_value()) return false;
     if(!IsCPUCompatibility(processor)) return false;
-    this->processor_ = processor;
+    this->processor_.emplace(processor);
     return true;
 }
 
@@ -33,7 +33,7 @@ bool MotherBoard::UninstallCPU(){
 bool MotherBoard::AddRAM(int slotIndex, const RAM& module){
     if (slotIndex < 0 || slotIndex >= this->ramCount_) return false;
     if (!IsRAMCompatibility(module)) return false;
-    this->ramModules_[slotIndex] = module;
+    this->ramModules_[slotIndex].emplace(module);
     return true;
 }
 
@@ -50,7 +50,7 @@ bool MotherBoard::IsBatteryHealthy() const{
 
 void MotherBoard::SetRamCount(int ramCount){
     this->ramCount_ = ramCount;
-    this->ramModules_.resize(ramCount_);
+    this->ramModules_.resize(ramCount);
 }
 
 int MotherBoard::GetRamCount() const{

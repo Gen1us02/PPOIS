@@ -6,10 +6,10 @@ class MotherBoardBattery : public Battery{
 public:
     MotherBoardBattery();
     MotherBoardBattery(int, const std::string&, int);
-    void SetVoltage(int);
-    int GetVoltage() const;
-    void SetType(const std::string&);
-    std::string GetType() const;
+    void SetVoltage(int) override;
+    int GetVoltage() const override;
+    void SetType(const std::string&) override;
+    std::string GetType() const override;
     void SetCapacity(int);
     int GetCapacity() const;
     bool IsAlive() const;

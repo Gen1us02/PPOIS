@@ -8,20 +8,20 @@ class Display : public OutputDevice{
 public:
     Display();
     Display(const std::string&, int, int, const std::string&, int, int);
-    void setResolution(const std::string&);
-    std::string getResolution() const;
-    void setRefreshRate(int);
-    int getRefreshRate() const;
-    void setDiagonal(int);
-    int getDiagonal() const;
+    void SetResolution(const std::string&);
+    std::string GetResolution() const;
+    void SetRefreshRate(int);
+    int GetRefreshRate() const;
+    void SetDiagonal(int);
+    int GetDiagonal() const;
     std::string DisplayInput(const InputDevice&)const override;
     std::string WebCameraVideo(int);
     std::string DisplaySettings() const;
 private:
     WebCamera webcamera_;
-    std::string _resolution {"1920x1080"};
-    int _refreshRate {60};
-    int _diagonal {22};
+    std::string resolution_ {"1920x1080"};
+    int refreshRate_ {60};
+    int diagonal_ {22};
 };
 
 

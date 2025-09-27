@@ -3,26 +3,29 @@
 #include <iostream>
 #include <string>
 #include "output_device.h"
+#include "port_type.h"
 
-class Speakers : public Output_Device{
+class Speakers : public OutputDevice{
     public:
     Speakers();
     Speakers(int, int, double, int);
-    void setDynamicCount(int);
-    int getDynamicCount() const;
-    void setPower(int);
-    int getPower() const;
-    void setWeight(double);
-    double getWeight() const;
-    void setMaxRate(int);
-    int getMaxRate() const;
+    void SetDynamicCount(int);
+    int GetDynamicCount() const;
+    void SetPower(int);
+    int GetPower() const;
+    void SetWeight(double);
+    double GetWeight() const;
+    void SetMaxRate(int);
+    bool SupportsPort(PortType) const;
+    int GetMaxRate() const;
     std::string DisplayInput(const InputDevice&)const override;
-    std::string changeVolume(int) const;
+    std::string ChangeVolume(int) const;
 private:
-    int _dynamicCount {0};
-    int _power {0};
-    double _weight {0.0};
-    int _maxRate {0};
+    int dynamicCount_ {0};
+    int power_ {0};
+    double weight_ {0.0};
+    int maxRate_ {0};
+    PortType port_ {PortType::LineOut};
 };
 
 #endif

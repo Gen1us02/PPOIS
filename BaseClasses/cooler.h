@@ -5,7 +5,7 @@
 
 class Cooler{
 public:
-    virtual ~Cooler();
+    virtual ~Cooler() = default;
     virtual void SetMinSpeed(int) = 0;
     virtual int GetMinSpeed() const = 0;
     virtual void SetMaxSpeed(int) = 0;
