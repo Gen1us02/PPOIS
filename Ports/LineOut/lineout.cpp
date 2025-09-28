@@ -15,6 +15,10 @@ bool LineOut::DisconnectDevice(){
     return true;
 }
 
+bool LineOut::IsOccupied() const{
+    return this->speakers_.has_value();
+}
+
 bool LineOut::CanAccept(const Speakers& speakers) const{
     return speakers.SupportsPort(this->type_);
 }
@@ -23,6 +27,6 @@ std::string LineOut::GetType() const{
     return ToString(this->type_);
 }
 
-bool LineOut::DetectMicriphone() const{
+bool LineOut::DetectSpeakers() const{
     return this->speakers_.has_value();
 }

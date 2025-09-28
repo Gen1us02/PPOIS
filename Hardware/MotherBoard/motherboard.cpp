@@ -2,15 +2,10 @@
 
 MotherBoard::MotherBoard() = default;
 
-MotherBoard::MotherBoard(const std::string& socket, const SSD& ssd,const MotherBoardBattery& battery,
+MotherBoard::MotherBoard(const std::string& socket, const MotherBoardBattery& battery,
                          int ramCount, const std::string& ramType, const std::string& chipset):
-socket_(socket), ssd_(ssd), battery_(battery), 
-ramCount_(ramCount), ramType_(ramType), chipset_(chipset){
+socket_(socket), battery_(battery), ramCount_(ramCount), ramType_(ramType), chipset_(chipset){
     ramModules_.resize(ramCount);
-}
-
-void MotherBoard::SetSocket(const std::string& socket){
-    this->socket_ = socket;
 }
 
 std::string MotherBoard::GetSocket() const{
@@ -48,25 +43,12 @@ bool MotherBoard::IsBatteryHealthy() const{
     return this->battery_.IsAlive();
 }
 
-void MotherBoard::SetRamCount(int ramCount){
-    this->ramCount_ = ramCount;
-    this->ramModules_.resize(ramCount);
-}
-
 int MotherBoard::GetRamCount() const{
     return this->ramCount_;
 }
 
-void MotherBoard::SetRamType(const std::string& ramType){
-    this->ramType_ = ramType;
-}
-
 std::string MotherBoard::GetRamType() const{
     return this->ramType_;
-}
-
-void MotherBoard::SetChipset(const std::string& chipset){
-    this->chipset_ = chipset;
 }
 
 std::string MotherBoard::GetChipset() const{
@@ -79,4 +61,16 @@ bool MotherBoard::IsCPUCompatibility(const CPU& processor) const{
 
 bool MotherBoard::IsRAMCompatibility(const RAM& module) const{
     return module.GetType() == this->ramType_;
+}
+
+bool MotherBoard::InstallSSD(const SSD& ssd){
+    if (ssdPort_.IsOccupied()) return false;
+    this->ssd_.emplace(ssd);
+    return ssdPort_.ConnectDevice(ssd);
+}
+
+bool MotherBoard::UninstallSSD(){
+    if (!ssdPort_.IsOccupied()) return false;
+    this->ssd_.reset();
+    return ssdPort_.DisconnectDevice();
 }

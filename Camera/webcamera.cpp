@@ -2,31 +2,31 @@
 
 WebCamera::WebCamera() = default;
 
-WebCamera::WebCamera(const std::string& max_resolution, double megapixels, int max_fps):
-_max_resolution(max_resolution), _megapixels(megapixels), _max_fps(max_fps) {}
+WebCamera::WebCamera(const std::string& maxResolution, double megapixels, int maxFps):
+maxResolution_(maxResolution), megapixels_(megapixels), maxFps_(maxFps) {}
 
-void WebCamera::set_max_resolution(const std::string& max_resolution){
-    this->_max_resolution = max_resolution;
+void WebCamera::SetMaxResolution(const std::string& maxResolution){
+    this->maxResolution_ = maxResolution;
 }
 
-std::string WebCamera::get_max_resolution() const{
-    return this->_max_resolution;
+std::string WebCamera::GetMaxResolution() const{
+    return this->maxResolution_;
 }
 
-void WebCamera::set_megapixels(double megapixels){
-    this->_megapixels = megapixels;
+void WebCamera::SetMegapixels(double megapixels){
+    this->megapixels_ = megapixels;
 }
 
-double WebCamera::get_megapixels() const{
-    return this->_megapixels;
+double WebCamera::GetMegapixels() const{
+    return this->megapixels_;
 }
 
-void WebCamera::set_max_fps(int max_fps){
-    this->_max_fps = max_fps;
+void WebCamera::SetMaxFps(int maxFps){
+    this->maxFps_ = maxFps;
 }
 
-int WebCamera::get_max_fps() const{
-    return this->_max_fps;
+int WebCamera::GetMaxFps() const{
+    return this->maxFps_;
 }
 
 std::string WebCamera::MakeVideo(int seconds){
@@ -34,21 +34,17 @@ std::string WebCamera::MakeVideo(int seconds){
         std::cout << "Камера не подключена. Съемка видео невозможна.\n";
         return "";
     }
-    int frames_count = seconds * _max_fps;
+    int frames_count = seconds * maxFps_;
 
     for (int i = 0; i < frames_count; i++){
         std::string frames = "Frame " + std::to_string(i)
-            + " | resolution=" + _max_resolution
-            + " | mp=" + std::to_string(_megapixels)
-            + " | fps=" + std::to_string(_max_fps) + "\n";
+            + " | resolution=" + maxResolution_
+            + " | mp=" + std::to_string(megapixels_)
+            + " | fps=" + std::to_string(maxFps_) + "\n";
 
     }
 
     std::string video = "Съемка завершена:" + std::to_string(frames_count) + "кадров.";
-    readInput(video);
+    ReadInput(video);
     return video;
-}
-
-void WebCamera::readInput(const std::string& video){
-    this->_input = video;
 }

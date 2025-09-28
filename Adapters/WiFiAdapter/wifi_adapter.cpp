@@ -3,7 +3,9 @@
 WiFiAdapter::WiFiAdapter() = default;
 
 WiFiAdapter::WiFiAdapter(const std::string& connectionInterface, int speed, double frequencyRange):
-connectionInterface_(connectionInterface), speed_(speed), frequencyRange_(frequencyRange){}
+connectionInterface_(connectionInterface), speed_(speed), frequencyRange_(frequencyRange){
+    port_  = PortType::USB;
+}
 
 void WiFiAdapter::SetConnectionInterface(const std::string& connectionInterface){
     this->connectionInterface_ = connectionInterface;

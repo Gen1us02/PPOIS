@@ -16,16 +16,14 @@ class Speakers : public OutputDevice{
     void SetWeight(double);
     double GetWeight() const;
     void SetMaxRate(int);
-    bool SupportsPort(PortType) const;
     int GetMaxRate() const;
-    std::string DisplayInput(const InputDevice&)const override;
+    std::string DisplayInput(const InputDevice&) const override;
     std::string ChangeVolume(int) const;
 private:
     int dynamicCount_ {0};
     int power_ {0};
     double weight_ {0.0};
     int maxRate_ {0};
-    PortType port_ {PortType::LineOut};
 };
 
 #endif

@@ -3,6 +3,7 @@
 #include "device.h"
 
 class Port{
+public:
     virtual ~Port() = default;
     virtual bool ConnectDevice(const Device&);
     virtual bool DisconnectDevice();

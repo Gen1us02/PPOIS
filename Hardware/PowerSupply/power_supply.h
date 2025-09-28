@@ -1,5 +1,5 @@
 #ifndef POWERSUPPLY
-#define POWRSUPPLY
+#define POWERSUPPLY
 #include <string>
 #include "hardware.h"
 #include "power_supply_cooler.h"
@@ -17,9 +17,9 @@ public:
     int GetMinVoltage() const;
     void SetMaxVoltage(int);
     int GetMaxVoltage() const;
-    bool VoltageSupply(int) const;
     std::string VoltageSupplyMessage(int) const;
 private:
+    bool VoltageSupply(int) const;
     int power_ {0};
     int efficiency_ {0};
     int minVoltage_ {0};

@@ -14,14 +14,16 @@ public:
     int GetRefreshRate() const;
     void SetDiagonal(int);
     int GetDiagonal() const;
+    bool SupportsPort(PortType) const override;
     std::string DisplayInput(const InputDevice&)const override;
     std::string WebCameraVideo(int);
     std::string DisplaySettings() const;
 private:
     WebCamera webcamera_;
-    std::string resolution_ {"1920x1080"};
-    int refreshRate_ {60};
-    int diagonal_ {22};
+    std::string resolution_ {""};
+    int refreshRate_ {0};
+    int diagonal_ {0};
+    PortType portHDMI_ {PortType::HDMI};
 };
 
 

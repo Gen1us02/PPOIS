@@ -6,8 +6,10 @@
 
 class Device{
 public:
-    virtual ~Device();
-    virtual bool SupportsPort(PortType) const = 0;
+    virtual ~Device() = default;
+    virtual bool SupportsPort(PortType p) const{
+    return this->port_ == p;
+    }
     void Connect(){
         if(isConnected_) return;
         this->isConnected_ = true;
@@ -19,8 +21,16 @@ public:
     bool IsConnected() const{
         return this->isConnected_;
     }
+    void TurnOn(){
+        this->isPowered_ = true;
+    }
+    void TurnOff(){
+        this->isPowered_ = false;
+    }
 protected:
     bool isConnected_ {false};
+    bool isPowered_ {false};
+    PortType port_ {PortType::None};
 };
 
 #endif

@@ -5,7 +5,9 @@ Display::Display() = default;
 Display::Display(const std::string& max_cam_resolution, int megapixels, int max_fps,
     const std::string& resolution, int refreshRate, int diagonal): 
     webcamera_(max_cam_resolution, megapixels, max_fps),
-    resolution_(resolution), refreshRate_(refreshRate), diagonal_(diagonal){}
+    resolution_(resolution), refreshRate_(refreshRate), diagonal_(diagonal){
+        port_ = PortType::DisplayPort;
+    }
 
 void Display::SetResolution(const std::string& resolution){
     this->resolution_ = resolution;
@@ -45,4 +47,8 @@ std::string DisplayInput(const InputDevice& inputDevice){
 
 std::string Display::WebCameraVideo(int seconds){
     return this->webcamera_.MakeVideo(seconds);
+}
+
+bool Display::SupportsPort(PortType p) const{
+    return this->port_ == p || this->portHDMI_ == p;
 }

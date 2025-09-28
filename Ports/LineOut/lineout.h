@@ -11,8 +11,9 @@ public:
     bool ConnectDevice(const Speakers&);
     bool DisconnectDevice() override;
     bool CanAccept(const Speakers&) const;
+    bool IsOccupied() const;
     std::string GetType() const override;
-    bool DetectMicriphone() const;
+    bool DetectSpeakers() const;
 private:
     PortType type_ {PortType::LineOut};
     std::optional<Speakers> speakers_;

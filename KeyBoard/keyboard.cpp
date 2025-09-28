@@ -3,7 +3,9 @@
 KeyBoard::KeyBoard() = default;
 
 KeyBoard::KeyBoard(const std::string& type):
-type_(type) {};
+type_(type) {
+    port_ = PortType::USB;
+};
 
 void KeyBoard::SetType(const std::string& type){
     this->type_ = type;

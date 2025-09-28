@@ -15,6 +15,10 @@ bool HDMI::DisconnectDevice(){
     return true;
 }
 
+bool HDMI::IsOccupied() const{
+    return this->device_.has_value();
+}
+
 bool HDMI::CanAccept(const Device& device) const{
     return device.SupportsPort(this->type_);
 }

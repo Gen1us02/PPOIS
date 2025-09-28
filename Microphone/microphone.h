@@ -18,8 +18,8 @@ public:
     std::string ReadSound();
 private:
     std::string type_ {""};
-    int maxFrequency_ {8000};
-    int signalNoiseRatio_ {50};
+    int maxFrequency_ {0};
+    int signalNoiseRatio_ {0};
     bool isMute_ {false};
 };
 

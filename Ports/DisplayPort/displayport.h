@@ -10,9 +10,9 @@ public:
     DisplayPort();
     bool ConnectDevice(const Display&);
     bool DisconnectDevice() override;
+    bool IsOccupied() const;
     bool CanAccept(const Display&) const;
     std::string GetType() const override;
-    std::string GetMaxResolution() const;
 private:
     PortType type_ {PortType::DisplayPort};
     std::optional<Display> display_;

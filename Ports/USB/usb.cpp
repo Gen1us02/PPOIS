@@ -15,6 +15,10 @@ bool USB::DisconnectDevice(){
     return true;
 }
 
+bool USB::IsOccupied() const{
+    return this->device_.has_value();
+}
+
 bool USB::CanAccept(const Device& device) const{
     return device.SupportsPort(this->type_);
 }

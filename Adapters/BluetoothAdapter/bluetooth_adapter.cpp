@@ -3,7 +3,9 @@
 BluetoothAdapter::BluetoothAdapter() = default;
 
 BluetoothAdapter::BluetoothAdapter(const std::string& connectionInterface, int speed, int coverageRadius):
-connectionInterface_(connectionInterface), speed_(speed), coverageRadius_(coverageRadius){}
+connectionInterface_(connectionInterface), speed_(speed), coverageRadius_(coverageRadius){
+    port_  = PortType::USB;
+}
 
 void BluetoothAdapter::SetConnectionInterface(const std::string& connectionInterface){
     this->connectionInterface_ = connectionInterface;

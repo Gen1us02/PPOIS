@@ -15,6 +15,10 @@ bool MicIn::DisconnectDevice(){
     return true;
 }
 
+bool MicIn::IsOccupied() const{
+    return this->microphone_.has_value();
+}
+
 bool MicIn::CanAccept(const Microphone& microphone) const{
     return microphone.SupportsPort(this->type_);
 }

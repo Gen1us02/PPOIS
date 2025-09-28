@@ -3,7 +3,9 @@
 Speakers::Speakers() = default;
 
 Speakers::Speakers(int dynamicCount, int power, double weight, int maxRate):
-dynamicCount_(dynamicCount), power_(power), weight_(weight), maxRate_(maxRate){}
+dynamicCount_(dynamicCount), power_(power), weight_(weight), maxRate_(maxRate){
+    port_ = PortType::LineOut;
+}
 
 void Speakers::SetDynamicCount(int dynamicCount){
     this->dynamicCount_ = dynamicCount;
@@ -45,8 +47,4 @@ std::string Speakers::DisplayInput(const InputDevice& microphone) const{
 std::string Speakers::ChangeVolume(int volumeValue) const{
     // Проверка на валидность звука
     return "Значение звука изменено на " + std::to_string(volumeValue);
-}
- 
-bool Speakers::SupportsPort(PortType p) const{
-    return this->port_ == p;
 }

@@ -15,6 +15,10 @@ bool PortM2::DisconnectDevice(){
     return true;
 }
 
+bool PortM2::IsOccupied() const{
+    return this->ssd_.has_value();
+}
+
 bool PortM2::CanAccept(const SSD& ssd) const{
     return ssd.SupportsPort(this->type_);
 }

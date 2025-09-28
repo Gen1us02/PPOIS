@@ -10,6 +10,7 @@ public:
     PortM2();
     bool ConnectDevice(const SSD&);
     bool DisconnectDevice() override;
+    bool IsOccupied() const;
     bool CanAccept(const SSD&) const;
     std::string GetType() const override;
     int GetSSDSize() const;

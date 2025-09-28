@@ -8,9 +8,9 @@ public:
     WiFiAdapter();
     WiFiAdapter(const std::string&, int, double);
     void SetConnectionInterface(const std::string&) override;
-    std::string GetConnectionInterface() const;
-    void SetSpeed(int);
-    int GetSpeed() const;
+    std::string GetConnectionInterface() const override;
+    void SetSpeed(int) override;
+    int GetSpeed() const override;
     void SetFrequencyRange(double);
     double GetFrequencyRange() const;
     bool IsConnectWiFi() const;

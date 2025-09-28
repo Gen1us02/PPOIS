@@ -23,7 +23,6 @@ std::string DisplayPort::GetType() const{
     return ToString(this->type_);
 }
 
-std::string DisplayPort::GetMaxResolution() const{
-    if (!this->display_.has_value()) return "";
-    return display_->GetResolution();
+bool DisplayPort::IsOccupied() const{
+    return this->display_.has_value();
 }

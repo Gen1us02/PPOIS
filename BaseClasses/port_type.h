@@ -1,7 +1,7 @@
 #ifndef PORT_TYPE
 #define PORT_TYPE
 
-enum class PortType {HDMI, USB, DisplayPort, M2, MicIn, LineOut};
+enum class PortType {None, HDMI, USB, DisplayPort, M2, MicIn, LineOut};
 
 std::string ToString(PortType port){
     switch (port){

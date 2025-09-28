@@ -10,6 +10,7 @@ public:
     MicIn();
     bool ConnectDevice(const Microphone&);
     bool DisconnectDevice() override;
+    bool IsOccupied() const;
     bool CanAccept(const Microphone&) const;
     std::string GetType() const override;
     bool DetectMicriphone() const;

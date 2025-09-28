@@ -3,7 +3,9 @@
 Mouse::Mouse() = default;
 
 Mouse::Mouse(int cursorX, int cursorY, const std::string& sensorType, int dpi):
-cursorX_(cursorX), cursorY_(cursorY), sensorType_(sensorType), dpi_(dpi){};
+cursorX_(cursorX), cursorY_(cursorY), sensorType_(sensorType), dpi_(dpi){
+    port_ = PortType::USB;
+};
 
 void Mouse::SetCursorX(int cursorX){
     this->cursorX_ = cursorX;

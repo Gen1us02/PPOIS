@@ -8,9 +8,9 @@ public:
     BluetoothAdapter();
     BluetoothAdapter(const std::string&, int, int);
     void SetConnectionInterface(const std::string&) override;
-    std::string GetConnectionInterface() const;
-    void SetSpeed(int);
-    int GetSpeed() const;
+    std::string GetConnectionInterface() const override;
+    void SetSpeed(int) override;
+    int GetSpeed() const override;
     void SetCoverageRadius(int);
     int GetCoverageRadius() const;
     void ConnectBluetooth();

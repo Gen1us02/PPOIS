@@ -4,7 +4,9 @@
 Microphone::Microphone() = default;
 
 Microphone::Microphone(const std::string& type, int maxFrequency, int signalNoiseRatio):
-type_(type), maxFrequency_(maxFrequency), signalNoiseRatio_(signalNoiseRatio) {}
+type_(type), maxFrequency_(maxFrequency), signalNoiseRatio_(signalNoiseRatio) {
+    port_ = PortType::MicIn;
+}
 
 void Microphone::SetType(const std::string& type){
     this->type_ = type;
@@ -31,13 +33,13 @@ int Microphone::GetSignalNoiseRatio() const{
 }
 
 std::string Microphone::Mute() {
-    if (isMute_) return;
+    if (isMute_) return "Микрофон уже заглушен";
     isMute_ = true;
-    return "Микрофон заглушен\n";
+    return "Микрофон заглушен";
 }
 
 std::string Microphone::Unmute() {
-    if (!isMute_) return;
+    if (!isMute_) return "Микрофон уже работает";
     isMute_ = false;
     return "Микрофон работает";
 }
@@ -49,7 +51,6 @@ bool Microphone::IsMuted() const {
 std::string Microphone::ReadSound(){
     if (!IsConnected()) {
         return "Микрофон не подключен";
-        return;
     }
     std::string sound = "Microphone read: " + type_ 
         + "freq=" + std::to_string(maxFrequency_) 
