@@ -1,4 +1,5 @@
 #include "ram.h"
+#include "exceptions.h"
 
 RAM::RAM() = default;
 
@@ -45,7 +46,14 @@ bool RAM::IsEnabled() const{
     return this->enabled_;
 }
 
-std::string RAM::RamStatus(bool on) const{
-    return this->enabled_ ? "Оперативная память работает. Данные о приложениях собираются" :
-                "Компьютер выключается, данные очищаются";
+std::string RAM::RamStatus() const{
+    try{
+        if(!this->enabled_){
+            throw ExceptionRAMStatusError("Компьютер выключается, данные очищаются");
+        }
+        return "Оперативная память работает. Данные о приложениях собираются";
+    }
+    catch (const ExceptionRAMStatusError& ex){
+        return ex.what();
+    }
 }

@@ -1,18 +1,35 @@
 #include "lineout.h"
+#include "exceptions.h"
 
 LineOut::LineOut() = default;
 
 bool LineOut::ConnectDevice(const Speakers& speakers){
-    if (this->speakers_.has_value()) return false;
-    if (!CanAccept(speakers)) return false;
-    this->speakers_.emplace(speakers);
-    return true;
+    try{
+        if (this->speakers_.has_value()){
+            throw ExceptionIsOccupiedError("Порт занят");
+        }
+        if (!CanAccept(speakers)) return false;
+        this->speakers_.emplace(speakers);
+        return true;
+    }
+    catch (const ExceptionIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool LineOut::DisconnectDevice(){
-    if (!this->speakers_.has_value()) return false;
-    this->speakers_.reset();
-    return true;
+    try{
+        if (!this->speakers_.has_value()) {
+            throw ExceptionNotIsOccupiedError("Порт свободен");
+        }
+        this->speakers_.reset();
+        return true;
+    }
+    catch (const ExceptionNotIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool LineOut::IsOccupied() const{

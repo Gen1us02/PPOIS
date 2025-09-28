@@ -17,7 +17,7 @@ public:
     int GetFrequency() const;
     void SetEnabled(bool);
     bool IsEnabled() const;
-    std::string RamStatus(bool) const;
+    std::string RamStatus() const;
 private:
     int moduleCount_ {0};
     int memory_ {0};

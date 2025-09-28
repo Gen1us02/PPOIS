@@ -1,4 +1,5 @@
 #include "motherboard.h"
+#include "exceptions.h"
 
 MotherBoard::MotherBoard() = default;
 
@@ -64,13 +65,29 @@ bool MotherBoard::IsRAMCompatibility(const RAM& module) const{
 }
 
 bool MotherBoard::InstallSSD(const SSD& ssd){
-    if (ssdPort_.IsOccupied()) return false;
-    this->ssd_.emplace(ssd);
-    return ssdPort_.ConnectDevice(ssd);
+    try{
+        if (ssdPort_.IsOccupied()){
+            throw ExceptionIsOccupiedError("Порт занят");
+        }
+        this->ssd_.emplace(ssd);
+        return ssdPort_.ConnectDevice(ssd);
+    }
+    catch (const ExceptionIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool MotherBoard::UninstallSSD(){
-    if (!ssdPort_.IsOccupied()) return false;
-    this->ssd_.reset();
-    return ssdPort_.DisconnectDevice();
+    try{
+        if (!ssdPort_.IsOccupied()){
+            throw ExceptionNotIsOccupiedError("Порт свободен");
+        }
+        this->ssd_.reset();
+        return ssdPort_.DisconnectDevice();
+    }
+    catch (const ExceptionNotIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }

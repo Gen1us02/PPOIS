@@ -1,4 +1,5 @@
 #include "display.h"
+#include "exceptions.h"
 
 Display::Display() = default;
 
@@ -40,11 +41,17 @@ std::string Display::DisplaySettings() const{
             + "Диагональ монитора: " + std::to_string(this->diagonal_);
 }
 
-std::string DisplayInput(const InputDevice& inputDevice){
-    // Проверка на сущность клавиатуры или мыши
-    return "Ввод пользователя:\n" + inputDevice.GetInput();
+std::string DisplayInput(const InputDevice& inputDevice) {
+    try {
+        if (!(typeid(inputDevice) == typeid(KeyBoard) || typeid(inputDevice) == typeid(Mouse))) {
+            throw ExceptionIncorrectInstance("Устройство не является клавиатурой или мышью");
+        }
+        return "Ввод пользователя:\n" + inputDevice.GetInput();
+    }
+    catch (const ExceptionIncorrectInstance& ex) {
+        return ex.what();
+    }
 }
-
 std::string Display::WebCameraVideo(int seconds){
     return this->webcamera_.MakeVideo(seconds);
 }

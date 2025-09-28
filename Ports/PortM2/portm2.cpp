@@ -1,18 +1,35 @@
 #include "portm2.h"
+#include "exceptions.h"
 
 PortM2::PortM2() = default;
 
 bool PortM2::ConnectDevice(const SSD& ssd){
-    if (this->ssd_.has_value()) return false;
-    if (!CanAccept(ssd)) return false;
-    this->ssd_.emplace(ssd);
-    return true;
+    try{
+        if (this->ssd_.has_value()){
+            throw ExceptionIsOccupiedError("Порт занят");
+        }
+        if (!CanAccept(ssd)) return false;
+        this->ssd_.emplace(ssd);
+        return true;
+    }
+    catch (const ExceptionIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool PortM2::DisconnectDevice(){
-    if (!this->ssd_.has_value()) return false;
-    this->ssd_.reset();
-    return true;
+    try{
+        if (!this->ssd_.has_value()) {
+            throw ExceptionNotIsOccupiedError("Порт свободен");
+        }
+        this->ssd_.reset();
+        return true;
+    }
+    catch (const ExceptionNotIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool PortM2::IsOccupied() const{

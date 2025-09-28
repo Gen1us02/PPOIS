@@ -1,6 +1,8 @@
 #ifndef DISPLAY
 #define DISPLAY
 #include "output_device.h"
+#include "mouse.h"
+#include "keyboard.h"
 #include "webcamera.h"
 
 

@@ -1,4 +1,5 @@
 #include "gpu.h"
+#include "exceptions.h"
 
 GPU::GPU() = default;
 
@@ -25,9 +26,22 @@ int GPU::GetVideoMemory() const{
 }
 
 void GPU::SetCoolerCount(int coolerCount){
-    //Валидация количества вентиляторов(не больше 3)
+    try{
+        if (coolerCount > 3 || coolerCount < 0){
+        throw ExceptionIncorrectCoolerCount("Невалидное количечтво вентиляторов");
+    }
+        std::vector<GPUCooler> oldCoolers = coolers_;
+        coolers_.resize(coolerCount);
+        
+        for (int i = 0; i < std::min(coolerCount, static_cast<int>(oldCoolers.size())); i++) {
+            coolers_[i] = oldCoolers[i];
+        }
+        
     this->coolerCount_ = coolerCount;
-    //Обработка уменьшения/увеличения вентиляторов в векторе
+    }
+    catch (const ExceptionIncorrectCoolerCount& ex){
+        std::cout << ex.what();
+    }
 }
 
 int GPU::GetCoolerCount() const{
@@ -44,7 +58,27 @@ std::string GPU::SetVsync(bool mode) const{
     return mode ? "Вертикальная синхронизация включена" : "Вертикальная синхронизация выключена";
 }
 
-std::string GPU::SetDlssMode(const std::string& dlssMode) const{
-    //Валидация DLSS режима
-    return "Dlss режим установлен на " + dlssMode;
+std::string GPU::SetDlssMode(const std::string& dlssMode) const {
+    try {
+        const std::vector<std::string> validModes = {
+            "Ultra Performance",
+            "Performance",
+            "Balanced",
+            "Quality",
+            "Ultra Quality"
+        };
+        
+        if (dlssMode.empty()) {
+            throw ExceptionIncorrectDLLSMode("DLSS режим не может быть пустым");
+        }
+
+        if (std::find(validModes.begin(), validModes.end(), dlssMode) == validModes.end()) {
+            throw ExceptionIncorrectDLLSMode("Недопустимый DLSS режим. Допустимые режимы: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
+        }
+
+        return "DLSS режим установлен на " + dlssMode;
+    }
+    catch (const ExceptionIncorrectDLLSMode& ex) {
+        return ex.what();
+    }
 }

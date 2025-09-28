@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include "output_device.h"
+#include "microphone.h"
 #include "port_type.h"
 
 class Speakers : public OutputDevice{

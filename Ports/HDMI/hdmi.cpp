@@ -1,18 +1,35 @@
 #include "hdmi.h"
+#include "exceptions.h"
 
 HDMI::HDMI() = default;
 
 bool HDMI::ConnectDevice(const Device& device){
-    if (this->device_.has_value()) return false;
-    if (!CanAccept(device)) return false;
-    this->device_.emplace(device);
-    return true;
+    try{
+        if (this->device_.has_value()){
+            throw ExceptionIsOccupiedError("Порт занят");
+        }
+        if (!CanAccept(device)) return false;
+        this->device_.emplace(device);
+        return true;
+    }
+    catch (const ExceptionIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool HDMI::DisconnectDevice(){
-    if (!this->device_.has_value()) return false;
-    this->device_.reset();
-    return true;
+    try{
+        if (!this->device_.has_value()) {
+            throw ExceptionNotIsOccupiedError("Порт свободен");
+        }
+        this->device_.reset();
+        return true;
+    }
+    catch (const ExceptionNotIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool HDMI::IsOccupied() const{

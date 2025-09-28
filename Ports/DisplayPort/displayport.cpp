@@ -1,18 +1,35 @@
 #include "displayport.h"
+#include "exceptions.h"
 
 DisplayPort::DisplayPort() = default;
 
 bool DisplayPort::ConnectDevice(const Display& display){
-    if (this->display_.has_value()) return false;
-    if (!CanAccept(display)) return false;
-    this->display_.emplace(display);
-    return true;
+    try{
+        if (this->display_.has_value()){
+            throw ExceptionIsOccupiedError("Порт занят");
+        }
+        if (!CanAccept(display)) return false;
+        this->display_.emplace(display);
+        return true;
+    }
+    catch (const ExceptionIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool DisplayPort::DisconnectDevice(){
-    if (!this->display_.has_value()) return false;
-    this->display_.reset();
-    return true;
+    try{
+        if (!this->display_.has_value()) {
+            throw ExceptionNotIsOccupiedError("Порт свободен");
+        }
+        this->display_.reset();
+        return true;
+    }
+    catch (const ExceptionNotIsOccupiedError& ex){
+        std::cout << ex.what();
+        return false;
+    }
 }
 
 bool DisplayPort::CanAccept(const Display& display) const{

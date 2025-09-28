@@ -22,7 +22,9 @@ std::string Computer::TurnOn(int coolersSpeed, int powerSupplyVoltage){
     microphone_.TurnOn();
     speakers_.TurnOn();
     wifiAdapter_.TurnOn();
+    wifiAdapter_.ConnectWiFi();
     bluetoothAdapter_.TurnOn();
+    bluetoothAdapter_.ConnectBluetooth();
     keyboard_.TurnOn();
     mouse_.TurnOn();
     case_.SetGpuCoolersSpeed(coolersSpeed);
@@ -34,7 +36,9 @@ std::string Computer::TurnOff(){
     microphone_.TurnOff();
     speakers_.TurnOff();
     wifiAdapter_.TurnOff();
+    wifiAdapter_.DisconnectWiFi();
     bluetoothAdapter_.TurnOff();
+    bluetoothAdapter_.DisconnectBluetooth();
     keyboard_.TurnOff();
     mouse_.TurnOff();
     case_.SetGpuCoolersSpeed(0);

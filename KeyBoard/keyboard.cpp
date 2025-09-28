@@ -1,4 +1,5 @@
 #include <keyboard.h>
+#include "exceptions.h"
 
 KeyBoard::KeyBoard() = default;
 
@@ -16,6 +17,14 @@ std::string KeyBoard::GetType() const{
 }
 
 std::string KeyBoard::PressButton(const std::string& key){
-    ReadInput(key);
-    return "Нажата кнопка " + key; 
+    try{
+        if (key.size() != 1){
+            throw ExceptionManyKeysPressed("Нажато слишком много клавиш");
+        }
+        ReadInput(key);
+        return "Нажата кнопка " + key;
+    }
+    catch(const ExceptionManyKeysPressed& ex) {
+        return ex.what();
+    }
 }

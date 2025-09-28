@@ -6,6 +6,7 @@
 
 class InputDevice: public Device{
 public:
+    virtual ~InputDevice() = default;
     void ReadInput(const std::string& input){
         this->input_ = input;
     };

@@ -1,4 +1,5 @@
 #include "microphone.h"
+#include "exceptions.h"
 #include <format>
 
 Microphone::Microphone() = default;
@@ -49,13 +50,18 @@ bool Microphone::IsMuted() const {
 }
 
 std::string Microphone::ReadSound(){
-    if (!IsConnected()) {
-        return "Микрофон не подключен";
-    }
-    std::string sound = "Microphone read: " + type_ 
-        + "freq=" + std::to_string(maxFrequency_) 
-        + "snr=" + std::to_string(signalNoiseRatio_);
+    try{
+        if (!IsConnected()) {
+            throw ExceptionConnection("Микрофон не подключен");
+        }
+        std::string sound = "Microphone read: " + type_ 
+            + "freq=" + std::to_string(maxFrequency_) 
+            + "snr=" + std::to_string(signalNoiseRatio_);
 
-    ReadInput(sound);
-    return sound;
+        ReadInput(sound);
+        return sound;
+    }
+    catch (const ExceptionConnection& ex){
+        return ex.what();
+    }
 }

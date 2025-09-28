@@ -1,4 +1,5 @@
 #include "power_supply.h"
+#include "exceptions.h"
 
 PowerSupply::PowerSupply() = default;
 
@@ -38,7 +39,13 @@ bool PowerSupply::VoltageSupply(int voltage) const{
 }
 
 std::string PowerSupply::VoltageSupplyMessage(int voltage) const{
-    return VoltageSupply(voltage) ?
-    "Блок питания включен в сеть с напряжением " + std::to_string(voltage) 
-    : "Блок питания сломался.";
+    try{
+        if (!VoltageSupply(voltage)){
+            throw ExceptionIncorrectVoltage("Блок питания сломался.");
+        }
+        return "Блок питания включен в сеть с напряжением " + std::to_string(voltage);
+    }
+    catch (const ExceptionIncorrectVoltage& ex){
+        return ex.what();
+    }
 }
