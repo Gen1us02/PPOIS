@@ -1,4 +1,5 @@
 #include "power_supply_cooler.h"
+#include "exceptions.h"
 
 PowerSupplyCooler::PowerSupplyCooler() = default;
 
@@ -23,4 +24,18 @@ int PowerSupplyCooler::GetMaxSpeed() const{
 
 std::string PowerSupplyCooler::GetType() const{
     return this->type_;
+}
+
+std::string PowerSupplyCooler::SetCurrentSpeed(int speed) const {
+    try{
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
+        {
+            throw ExceptionIncorrectSpeed("Невалидная скорость вентилятора");
+        }
+        return "Скорость работы вентиляторов" + std::to_string(speed) + "об/мин"; 
+    }
+    catch(const ExceptionIncorrectSpeed& ex){
+        return ex.what();
+    }
+        
 }

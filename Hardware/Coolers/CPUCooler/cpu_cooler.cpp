@@ -1,4 +1,5 @@
 #include "cpu_cooler.h"
+#include "exceptions.h"
 
 CPUCooler::CPUCooler() = default;
 
@@ -31,4 +32,18 @@ std::string CPUCooler::GetSocket() const{
 
 std::string CPUCooler::GetType() const{
     return this->type_;
+}
+
+std::string CPUCooler::SetCurrentSpeed(int speed) const {
+    try{
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
+        {
+            throw ExceptionIncorrectSpeed("Невалидная скорость вентилятора");
+        }
+        return "Скорость работы вентиляторов" + std::to_string(speed) + "об/мин"; 
+    }
+    catch(const ExceptionIncorrectSpeed& ex){
+        return ex.what();
+    }
+        
 }

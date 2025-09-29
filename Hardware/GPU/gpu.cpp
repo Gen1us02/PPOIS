@@ -25,25 +25,6 @@ int GPU::GetVideoMemory() const{
     return this->videoMemory_;
 }
 
-void GPU::SetCoolerCount(int coolerCount){
-    try{
-        if (coolerCount > 3 || coolerCount < 0){
-        throw ExceptionIncorrectCoolerCount("Невалидное количечтво вентиляторов");
-    }
-        std::vector<GPUCooler> oldCoolers = coolers_;
-        coolers_.resize(coolerCount);
-        
-        for (int i = 0; i < std::min(coolerCount, static_cast<int>(oldCoolers.size())); i++) {
-            coolers_[i] = oldCoolers[i];
-        }
-        
-    this->coolerCount_ = coolerCount;
-    }
-    catch (const ExceptionIncorrectCoolerCount& ex){
-        std::cout << ex.what();
-    }
-}
-
 int GPU::GetCoolerCount() const{
     return this->coolerCount_;
 }

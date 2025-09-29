@@ -3,8 +3,8 @@
 
 PowerSupply::PowerSupply() = default;
 
-PowerSupply::PowerSupply(int minSpeed, int maxSpeed, int power, int efficiency, int maxVoltage):
-power_(power), efficiency_(efficiency), maxVoltage_(maxVoltage), cooler_(minSpeed, maxSpeed){}
+PowerSupply::PowerSupply(int minSpeed, int maxSpeed, int power, int efficiency, int minVoltage, int maxVoltage):
+power_(power), efficiency_(efficiency), minVoltage_(minVoltage), maxVoltage_(maxVoltage), cooler_(minSpeed, maxSpeed){}
 
 void PowerSupply::SetPower(int power){
     this->power_ = power;
@@ -22,6 +22,14 @@ int PowerSupply::GetEfficiency() const{
     return this->efficiency_;
 }
 
+void PowerSupply::SetMinVoltage(int minVoltage){
+    this->minVoltage_ = minVoltage;
+}
+
+int PowerSupply::GetMinVoltage() const{
+    return this->minVoltage_;
+}
+
 void PowerSupply::SetMaxVoltage(int maxVoltage){
     this->maxVoltage_ = maxVoltage;
 }
@@ -30,8 +38,8 @@ int PowerSupply::GetMaxVoltage() const{
     return this->maxVoltage_;
 }
 
-void PowerSupply::SetCoolerCurrentSpeed(int speed){
-    this->cooler_.SetCurrentSpeed(speed);
+std::string PowerSupply::SetCoolerCurrentSpeed(int speed){
+    return this->cooler_.SetCurrentSpeed(speed);
 }
 
 bool PowerSupply::VoltageSupply(int voltage) const{

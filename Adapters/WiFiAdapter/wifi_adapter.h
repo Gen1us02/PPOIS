@@ -1,26 +1,97 @@
+/*! \file wifi_adapter.h
+ *  \brief Заголовочный файл с описанием класса WiFiAdapter
+ *  \details Содержит объявление класса WiFiAdapter, моделирующего беспроводной сетевой адаптер.
+ *           Класс наследует Adapter и предоставляет настройку интерфейса подключения, скорости,
+ *           диапазона частот и методы управления состоянием соединения. Предназначен для
+ *           тестирования сетевых сценариев и симуляции подключения к Wi‑Fi сетям.
+ */
 #ifndef WIFIADAPTER
 #define WIFIADAPTER
+
 #include <iostream>
 #include "adapter.h"
 
+/*! \class WiFiAdapter
+ *  \brief Модель WiFi адаптера
+ *  \details WiFiAdapter реализует контракт Adapter, добавляя параметры частотного диапазона
+ *           и управления состоянием беспроводного соединения. Класс хранит строковое имя
+ *           интерфейса, значение скорости и диапазон частот в ГГц,
+ *           а также флаг текущего подключения к сети. Предназначен для симуляций и тестов.
+ */
 class WiFiAdapter : public Adapter{
 public:
+    /*! \brief Конструктор по умолчанию
+     *  \details Инициализирует адаптер значениями по умолчанию.
+     */
     WiFiAdapter();
-    WiFiAdapter(const std::string&, int, double);
-    void SetConnectionInterface(const std::string&) override;
+
+    /*! \brief Конструктор с инициализацией параметров адаптера
+     *  \param connectionInterface Строка интерфейса подключения
+     *  \param speed Рабочая скорость адаптера
+     *  \param frequencyRange Частотный диапазон в ГГц
+     *  \details Конструктор позволяет задать ключевые характеристики адаптера для моделирования
+     *           конкретных сетевых возможностей и поведения при подключении.
+     */
+    WiFiAdapter(const std::string& connectionInterface, int speed, double frequencyRange);
+
+    /*! \brief Установить строковое обозначение интерфейса подключения
+     *  \param connectionInterface Строка с названием интерфейса подключения
+     *  \details Сохраняет описание интерфейса, используемого адаптером.
+     */
+    void SetConnectionInterface(const std::string& connectionInterface) override;
+
+    /*! \brief Получить строковое обозначение интерфейса подключения
+     *  \return Строка с интерфейсом подключения
+     *  \details Возвращает ранее установленное значение интерфейса подключения.
+     */
     std::string GetConnectionInterface() const override;
-    void SetSpeed(int) override;
+
+    /*! \brief Установить рабочую скорость адаптера
+     *  \param speed Скорость в Мбит/с
+     *  \details Сохраняет целевую пропускную способность адаптера.
+     */
+    void SetSpeed(int speed) override;
+
+    /*! \brief Получить текущую рабочую скорость адаптера
+     *  \return Значение скорости в Мбит/с
+     *  \details Возвращает конфигурированную или текущею скорость адаптера.
+     */
     int GetSpeed() const override;
-    void SetFrequencyRange(double);
+
+    /*! \brief Установить частотный диапазон адаптера
+     *  \param frequencyRange Частотный диапазон в ГГц
+     *  \details Используется для моделирования поддержки диапазонов.
+     */
+    void SetFrequencyRange(double frequencyRange);
+
+    /*! \brief Получить частотный диапазон адаптера
+     *  \return Частотный диапазон в ГГц
+     */
     double GetFrequencyRange() const;
+
+    /*! \brief Проверить, подключён ли адаптер к Wi‑Fi сети
+     *  \return true если адаптер подключён, false если нет
+     *  \details Метод возвращает флаг текущего состояния беспроводного соединения.
+     */
     bool IsConnectWiFi() const;
+
+    /*! \brief Установить соединение с Wi‑Fi сетью
+     *  \details Меняет внутренний флаг подключения на true и может инициировать процессы
+     *           аутентификации и получения IP в реальных реализациях.
+     */
     void ConnectWiFi();
+
+    /*! \brief Отключить соединение с Wi‑Fi сетью
+     *  \details Меняет внутренний флаг подключения на false и выполняет необходимые шаги
+     *           для корректного завершения беспроводной сессии в реальных реализациях.
+     */
     void DisconnectWiFi();
+
 private:
-    std::string connectionInterface_ {""};
-    int speed_ {0};
-    double frequencyRange_ {0};
-    bool isConnectWiFi_ {false};
+    std::string connectionInterface_ {""}; /*!< Описание интерфейса подключения */
+    int speed_ {0}; /*!< Рабочая скорость адаптера */
+    double frequencyRange_ {0}; /*!< Частотный диапазон в ГГц */
+    bool isConnectWiFi_ {false}; /*!< Флаг состояния подключения к сети */
 };
 
 #endif

@@ -3,9 +3,9 @@
 
 Display::Display() = default;
 
-Display::Display(const std::string& max_cam_resolution, int megapixels, int max_fps,
+Display::Display(const std::string& maxCamResolution, int megapixels, int max_fps,
     const std::string& resolution, int refreshRate, int diagonal): 
-    webcamera_(max_cam_resolution, megapixels, max_fps),
+    webcamera_(maxCamResolution, megapixels, max_fps),
     resolution_(resolution), refreshRate_(refreshRate), diagonal_(diagonal){
         port_ = PortType::DisplayPort;
     }
@@ -41,7 +41,7 @@ std::string Display::DisplaySettings() const{
             + "Диагональ монитора: " + std::to_string(this->diagonal_);
 }
 
-std::string DisplayInput(const InputDevice& inputDevice) {
+std::string Display::DisplayInput(const InputDevice& inputDevice) const {
     try {
         if (!(typeid(inputDevice) == typeid(KeyBoard) || typeid(inputDevice) == typeid(Mouse))) {
             throw ExceptionIncorrectInstance("Устройство не является клавиатурой или мышью");
@@ -52,6 +52,7 @@ std::string DisplayInput(const InputDevice& inputDevice) {
         return ex.what();
     }
 }
+
 std::string Display::WebCameraVideo(int seconds){
     return this->webcamera_.MakeVideo(seconds);
 }

@@ -1,4 +1,5 @@
 #include "gpu_cooler.h"
+#include "exceptions.h"
 
 GPUCooler::GPUCooler() = default;
 
@@ -23,4 +24,18 @@ int GPUCooler::GetMaxSpeed() const{
 
 std::string GPUCooler::GetType() const{
     return this->type_;
+}
+
+std::string GPUCooler::SetCurrentSpeed(int speed) const {
+    try{
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
+        {
+            throw ExceptionIncorrectSpeed("Невалидная скорость вентилятора");
+        }
+        return "Скорость работы вентиляторов" + std::to_string(speed) + "об/мин"; 
+    }
+    catch(const ExceptionIncorrectSpeed& ex){
+        return ex.what();
+    }
+        
 }

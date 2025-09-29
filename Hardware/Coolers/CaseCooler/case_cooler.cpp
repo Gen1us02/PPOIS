@@ -1,4 +1,5 @@
 #include "case_cooler.h"
+#include "exceptions.h"
 
 CaseCooler::CaseCooler() = default;
 
@@ -31,4 +32,18 @@ std::string CaseCooler::GetType() const{
 
 std::string CaseCooler::GetDirection() const{
     return this->direction_;
+}
+
+std::string CaseCooler::SetCurrentSpeed(int speed) const {
+    try{
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
+        {
+            throw ExceptionIncorrectSpeed("Невалидная скорость вентилятора");
+        }
+        return "Скорость работы вентиляторов" + std::to_string(speed) + "об/мин"; 
+    }
+    catch(const ExceptionIncorrectSpeed& ex){
+        return ex.what();
+    }
+        
 }
