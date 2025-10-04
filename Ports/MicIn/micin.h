@@ -8,7 +8,7 @@
 #define MICIN_PORT
 #include "optional"
 #include "port.h"
-#include "microphone.h"
+#include "../Microphone/microphone.h"
 #include "port_type.h"
 
 /*! \class MicIn
@@ -54,7 +54,7 @@ public:
     /*! \brief Проверить наличие подключенного микрофона
      *  \return true, если микрофон обнаружен в порту, false в противном случае
      */
-    bool DetectMicriphone() const;
+    std::string DetectMicriphone() const;
 
 private:
     PortType type_ {PortType::MicIn};       /*!< Тип порта*/

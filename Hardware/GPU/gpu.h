@@ -8,11 +8,11 @@
 
 #ifndef GPUDEVICE
 #define GPUDEVICE
-#include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "hardware.h"
-#include "gpu_cooler.h"
+#include "../Coolers/GPUCooler/gpu_cooler.h"
 
 /*! \class GPU
  *  \brief Класс, моделирующий видеокарту
@@ -63,7 +63,7 @@ public:
     /*! \brief Установить текущую скорость всех кулеров
      *  \param speed Новая скорость кулеров
      */
-    void SetCoolerCurrentSpeed(int speed);
+    std::string SetCoolerCurrentSpeed(int speed);
 
     /*! \brief Включить или отключить Vsync
      *  \param mode true для включения Vsync, false для отключения
@@ -80,7 +80,7 @@ public:
 private:
     bool rtxSupport_ {false};           /*!< Флаг поддержки RTX */
     int videoMemory_ {0};               /*!< Объём видеопамяти */
-    const int coolerCount_ {0};         /*!< Количество кулеров */
+    int coolerCount_ {0};         /*!< Количество кулеров */
     std::vector<GPUCooler> coolers_;    /*!< Список объектов кулеров видеокарты */
 };
 

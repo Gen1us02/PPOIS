@@ -1,5 +1,5 @@
 #include "lineout.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 LineOut::LineOut() = default;
 
@@ -44,6 +44,6 @@ std::string LineOut::GetType() const{
     return ToString(this->type_);
 }
 
-bool LineOut::DetectSpeakers() const{
-    return this->speakers_.has_value();
+std::string LineOut::DetectSpeakers() const{
+    return this->speakers_.has_value() ? "Speakers detected" : "No speakers";
 }

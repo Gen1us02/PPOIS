@@ -36,9 +36,9 @@ public:
     std::string GetType() const;
 
     /*! \brief Установить максимальную частоту записи
-     *  \param signalNoiseRatio Частота в герцах
+     *  \param maxFrequency Частота в герцах
      */
-    void SetMaxFrequency(int signalNoiseRatio);
+    void SetMaxFrequency(int maxFrequency);
 
     /*! \brief Получить максимальную частоту записи
      *  \return Максимальная частота в герцах

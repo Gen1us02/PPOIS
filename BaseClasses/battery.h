@@ -28,25 +28,25 @@ public:
      *  \details Метод должен быть реализован в производных классах для сохранения и
      *           проверки допустимых значений напряжения.
      */
-    virtual void SetVoltage(int voltage);
+    virtual void SetVoltage(int voltage) = 0;
 
     /*! \brief Получить текущее выходное напряжение батареи
      *  \return Значение напряжения в вольтах
      *  \details Метод должен быть реализован в производных классах для возврата текущего значения.
      */
-    virtual int GetVoltage() const;
+    virtual int GetVoltage() const = 0;
 
     /*! \brief Установить строковое обозначение типа батареи
      *  \param type Строка с типом
      *  \details Позволяет классифицировать источник питания по технологии или назначению.
      */
-    virtual void SetType(const std::string& type);
+    virtual void SetType(const std::string& type) = 0;
 
     /*! \brief Получить строковое обозначение типа батареи
      *  \return Строка с типом батареи
      *  \details Должно возвращать ранее установленную строку типа или значение по умолчанию.
      */
-    virtual std::string GetType() const;
+    virtual std::string GetType() const = 0;
 };
 
 #endif

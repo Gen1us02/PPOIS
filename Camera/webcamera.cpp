@@ -1,4 +1,5 @@
 #include "webcamera.h"
+#include <format>
 
 WebCamera::WebCamera() = default;
 
@@ -31,20 +32,14 @@ int WebCamera::GetMaxFps() const{
 
 std::string WebCamera::MakeVideo(int seconds){
     if (!IsConnected()){
-        std::cout << "Камера не подключена. Съемка видео невозможна.\n";
+        std::cout << "Camera isn't connected";
         return "";
     }
     int frames_count = seconds * maxFps_;
 
-    for (int i = 0; i < frames_count; i++){
-        std::string frames = "Frame " + std::to_string(i)
-            + " | resolution=" + maxResolution_
-            + " | mp=" + std::to_string(megapixels_)
-            + " | fps=" + std::to_string(maxFps_) + "\n";
-
-    }
-
-    std::string video = "Съемка завершена:" + std::to_string(frames_count) + "кадров.";
+    std::string video = "Record stopped: " + std::to_string(frames_count) + " frames.\nresolution=" + maxResolution_
+            + " | mp=" + std::format("{:.1f}", megapixels_)
+            + " | fps=" + std::to_string(maxFps_);
     ReadInput(video);
     return video;
 }

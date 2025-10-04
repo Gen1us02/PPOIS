@@ -8,9 +8,9 @@
 #ifndef DISPLAY
 #define DISPLAY
 #include "output_device.h"
-#include "mouse.h"
-#include "keyboard.h"
-#include "webcamera.h"
+#include "../Mouse/mouse.h"
+#include "../KeyBoard/keyboard.h"
+#include "../Camera/webcamera.h"
 #include "port_type.h"
 #include <string>
 
@@ -37,7 +37,7 @@ public:
      *  \details Конструктор позволяет задать ключевые характеристики дисплея.
      *           Реализация должна проверять корректность значений
      */
-    Display(const std::string& maxCamResolution, int megapixels, int max_fps, const std::string& resolution, 
+    Display(const std::string& maxCamResolution, double megapixels, int max_fps, const std::string& resolution,
         int refreshRate, int diagonal);
 
     /*! \brief Установить строковое разрешение экрана
@@ -73,10 +73,10 @@ public:
     int GetDiagonal() const;
 
     /*! \brief Проверить, поддерживает ли дисплей данный тип порта
-     *  \param port Тип порта для проверки (PortType)
+     *  \param p Тип порта для проверки
      *  \return true если порт поддерживается, false в противном случае
      */
-    bool SupportsPort(PortType) const override;
+    bool SupportsPort(PortType p) const override;
 
     /*! \brief Обработать ввод от устройства ввода и вернуть текстовое представление события
      *  \param inputDevice Ссылка на устройство ввода
@@ -95,8 +95,19 @@ public:
      */
     std::string DisplaySettings() const;
 
+    /*! \brief Подключить камеру */
+    void ConnectCamera();
+
+    /*! \brief Отключить камеру*/
+    void DisconnectCamera();
+
+    /*! \brief Подключить камеру
+     * return true если камера подключена, false иначе
+     */
+    bool IsCameraConnected() const;
+
 private:
-    WebCamera webcamera_; /*!< Встроенная веб-каммера */
+    WebCamera webcamera_; /*!< Встроенная веб-камера */
     std::string resolution_ {""}; /*!< Разрешение монитора */
     int refreshRate_ {0}; /*!< Частота обновления экрана */
     int diagonal_ {0}; /*!< Диагональ экрана */

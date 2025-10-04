@@ -10,16 +10,16 @@
 #define CASE
 
 #include <vector>
-#include "case_cooler.h"
-#include "displayport.h"
-#include "hdmi.h"
-#include "lineout.h"
-#include "micin.h"
-#include "usb.h"
-#include "motherboard.h"
-#include "power_supply.h"
-#include "cpu_cooler.h"
-#include "gpu.h"
+#include "../Hardware/Coolers/CaseCooler/case_cooler.h"
+#include "../Ports/DisplayPort/displayport.h"
+#include "../Ports/HDMI/hdmi.h"
+#include "../Ports/LineOut/lineout.h"
+#include "../Ports/MicIn/micin.h"
+#include "../Ports/USB/usb.h"
+#include "../Hardware/MotherBoard/motherboard.h"
+#include "../Hardware/PowerSupply/power_supply.h"
+#include "../Hardware/Coolers/CPUCooler/cpu_cooler.h"
+#include "../Hardware/GPU/gpu.h"
 
 /*! \class Case
  *  \brief Модель корпуса системного блока
@@ -50,7 +50,7 @@ public:
      *           вентиляторов, портов и ключевых компонентов для моделирования
      *           реальной конфигурации системы.
      */
-    Case(int coolersCount, int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers, 
+    Case(int coolersCount, int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
         const MotherBoard& motherBoard, const GPU& gpu, const PowerSupply&powerSupply, const CPUCooler& cpuCooler);
 
     /*! \brief Получить количество корпусных вентиляторов
@@ -95,7 +95,7 @@ public:
      *  \param speed Новый уровень скорости (условная шкала)
      *  \details Метод распространяет заданную скорость на все вентиляторы, связанные с GPU.
      */
-    void SetGpuCoolersSpeed(int speed);
+    std::string SetGpuCoolersSpeed(int speed);
 
     /*! \brief Получить строковое представление выходного напряжения блока питания
      *  \param voltage Напряжение сети

@@ -39,6 +39,6 @@ void BluetoothAdapter::DisconnectBluetooth(){
     this->isConnectBluetooth_ = false;
 }
 
-bool BluetoothAdapter::isConnectBluetooth() const{
+bool BluetoothAdapter::IsConnectBluetooth() const{
     return this->isConnectBluetooth_;
 }

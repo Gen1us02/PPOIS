@@ -8,7 +8,7 @@
 #define DISPLAY_PORT
 #include "optional"
 #include "port.h"
-#include "display.h"
+#include "../Display/display.h"
 #include "port_type.h"
 
 /*! \class DisplayPort

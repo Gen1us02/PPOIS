@@ -3,14 +3,14 @@
 Case::Case() = default;
 Case::Case(int coolersCount, int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
             const MotherBoard& motherBoard, const GPU& gpu, const PowerSupply& powerSupply, const CPUCooler& cpuCooler):
-coolersCount_(coolersCount), usbPortsCount_(usbPortsCount), usbPorts_(usbPortsCount, usbPort), 
+coolersCount_(coolersCount), usbPortsCount_(usbPortsCount), usbPorts_(usbPortsCount, usbPort),
 motherBoard_(motherBoard), gpu_(gpu), powerSupply_(powerSupply), cpuCooler_(cpuCooler){
     coolers_.resize(coolersCount);
     for (int i = 0; i < coolersCount; i++){
         coolers_[i] = coolers[i];
         coolers_[i].Install();
     }
-}   
+}
 
 int Case::GetCoolerCount() const{
     return this->coolersCount_;
@@ -75,7 +75,7 @@ bool Case::UninstallMicrophone(){
     return micinPort_.DisconnectDevice();
 }
 
-void Case::SetGpuCoolersSpeed(int speed){
+std::string Case::SetGpuCoolersSpeed(int speed){
     return gpu_.SetCoolerCurrentSpeed(speed);
 }
 

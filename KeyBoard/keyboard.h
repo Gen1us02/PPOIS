@@ -31,7 +31,7 @@ public:
     /*! \brief Получить тип клавиатуры
      *  \return Строка с текущим типом клавиатуры
      */
-    std::string GetType() const;
+  std::string GetType() const;
 
     /*! \brief Обработать нажатие кнопки
      *  \param key Строка с именем или кодом нажатой кнопки

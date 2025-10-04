@@ -27,17 +27,7 @@ public:
      *  \param type Строка, описывающая тип памяти (например, "DDR4")
      *  \param frequency Рабочая частота памяти (в МГц)
      */
-    RAM(int moduleCount, int memory, const std::string& type, int frequency);
-
-    /*! \brief Установить количество модулей памяти
-     *  \param moduleCount Новое количество модулей
-     */
-    void SetModuleCount(int moduleCount);
-
-    /*! \brief Получить текущее количество модулей памяти
-     *  \return Количество модулей
-     */
-    int GetModuleCount() const;
+    RAM(int memory, const std::string& type, int frequency);
 
     /*! \brief Установить объём памяти
      *  \param memory Новый объём памяти
@@ -72,7 +62,7 @@ public:
     /*! \brief Включить или выключить модули памяти
      *  \param enabled true для включения, false для выключения
      */
-    void SetEnabled(bool);
+    void SetEnabled(bool enabled);
 
     /*! \brief Проверить, включена ли память
      *  \return true если память включена, false в противном случае
@@ -84,7 +74,6 @@ public:
      */
     std::string RamStatus() const;
 private:
-    int moduleCount_ {0};   /*!< Количество модулей памяти */
     int memory_ {0};        /*!< Общий объём памяти */
     std::string type_ {0};  /*!< Тип памяти */
     int frequency_ {0};     /*!< Частота памяти в МГц */

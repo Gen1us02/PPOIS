@@ -1,7 +1,9 @@
-#include <keyboard.h>
-#include "exceptions.h"
+#include "keyboard.h"
+#include "../Exceptions/exceptions.h"
 
-KeyBoard::KeyBoard() = default;
+KeyBoard::KeyBoard(): InputDevice() {
+    port_ = PortType::USB;
+};
 
 KeyBoard::KeyBoard(const std::string& type):
 type_(type) {
@@ -19,10 +21,10 @@ std::string KeyBoard::GetType() const{
 std::string KeyBoard::PressButton(const std::string& key){
     try{
         if (key.size() != 1){
-            throw ExceptionManyKeysPressed("Нажато слишком много клавиш");
+            throw ExceptionManyKeysPressed("Pressed a lot of buttons");
         }
         ReadInput(key);
-        return "Нажата кнопка " + key;
+        return "Button pressed " + key;
     }
     catch(const ExceptionManyKeysPressed& ex) {
         return ex.what();

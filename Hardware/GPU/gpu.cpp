@@ -1,12 +1,12 @@
 #include "gpu.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 GPU::GPU() = default;
 
 GPU::GPU(int minSpeed, int maxSpeed, bool rtxSupport, int videoMemory, int coolerCount):
-rtxSupport_(rtxSupport), 
-videoMemory_(videoMemory), 
-coolerCount_(coolerCount), 
+rtxSupport_(rtxSupport),
+videoMemory_(videoMemory),
+coolerCount_(coolerCount),
 coolers_(coolerCount, GPUCooler(minSpeed, maxSpeed)){}
 
 void GPU::SetRtxSupport(bool rtxSupport){
@@ -29,14 +29,16 @@ int GPU::GetCoolerCount() const{
     return this->coolerCount_;
 }
 
-void GPU::SetCoolerCurrentSpeed(int speed){
+std::string GPU::SetCoolerCurrentSpeed(int speed){
+    std::string result;
     for (GPUCooler& cooler : this->coolers_){
-        cooler.SetCurrentSpeed(speed);
+        result = cooler.SetCurrentSpeed(speed);
     }
+    return result;
 }
 
 std::string GPU::SetVsync(bool mode) const{
-    return mode ? "Вертикальная синхронизация включена" : "Вертикальная синхронизация выключена";
+    return mode ? "Vsync enabled" : "Vsync disabled";
 }
 
 std::string GPU::SetDlssMode(const std::string& dlssMode) const {
@@ -50,14 +52,14 @@ std::string GPU::SetDlssMode(const std::string& dlssMode) const {
         };
         
         if (dlssMode.empty()) {
-            throw ExceptionIncorrectDLLSMode("DLSS режим не может быть пустым");
+            throw ExceptionIncorrectDLLSMode("DLSS mode cannot be empty");
         }
 
         if (std::find(validModes.begin(), validModes.end(), dlssMode) == validModes.end()) {
-            throw ExceptionIncorrectDLLSMode("Недопустимый DLSS режим. Допустимые режимы: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
+            throw ExceptionIncorrectDLLSMode("Invalid DLSS mode. Valid modes: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
         }
 
-        return "DLSS режим установлен на " + dlssMode;
+        return "DLSS mode is set to " + dlssMode;
     }
     catch (const ExceptionIncorrectDLLSMode& ex) {
         return ex.what();

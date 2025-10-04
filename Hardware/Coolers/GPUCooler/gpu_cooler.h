@@ -58,7 +58,7 @@ public:
 private:
     int minSpeed_ {0};       /*!< Минимальная скорость кулера */
     int maxSpeed_ {0};       /*!< Максимальная скорость кулера */
-    const std::string type_ {"gpu"};  /*!< Тип кулера */
+    std::string type_ {"gpu"};  /*!< Тип кулера */
 };
 
 #endif

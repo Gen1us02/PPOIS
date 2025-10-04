@@ -7,7 +7,6 @@
  */
 #ifndef CPUDEVICE
 #define CPUDEVICE
-#include <iostream>
 #include <string>
 #include "hardware.h"
 

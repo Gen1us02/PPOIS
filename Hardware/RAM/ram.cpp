@@ -1,18 +1,10 @@
 #include "ram.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 RAM::RAM() = default;
 
-RAM::RAM(int moduleCount, int memory, const std::string& type, int frequency):
-moduleCount_(moduleCount), memory_(memory), type_(type), frequency_(frequency){}
-
-void RAM::SetModuleCount(int moduleCount){
-    this->moduleCount_ = moduleCount;
-}
-
-int RAM::GetModuleCount() const{
-    return this->moduleCount_;
-}
+RAM::RAM(int memory, const std::string& type, int frequency):
+ memory_(memory), type_(type), frequency_(frequency){}
 
 void RAM::SetMemory(int memory){
     this->memory_ = memory;
@@ -49,9 +41,9 @@ bool RAM::IsEnabled() const{
 std::string RAM::RamStatus() const{
     try{
         if(!this->enabled_){
-            throw ExceptionRAMStatusError("Компьютер выключается, данные очищаются");
+            throw ExceptionRAMStatusError("The computer turns off, the data is cleared");
         }
-        return "Оперативная память работает. Данные о приложениях собираются";
+        return "RAM is working. Application data is collecting";
     }
     catch (const ExceptionRAMStatusError& ex){
         return ex.what();

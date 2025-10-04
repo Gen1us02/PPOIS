@@ -1,5 +1,5 @@
 #include "micin.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 MicIn::MicIn() = default;
 
@@ -44,6 +44,6 @@ std::string MicIn::GetType() const{
     return ToString(this->type_);
 }
 
-bool MicIn::DetectMicriphone() const{
-    return this->microphone_.has_value();
+std::string MicIn::DetectMicriphone() const{
+    return this->microphone_.has_value() ? "Microphone detected" : "No microphone";
 }

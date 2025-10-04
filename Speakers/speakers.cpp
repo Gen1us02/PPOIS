@@ -1,5 +1,5 @@
 #include "speakers.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 Speakers::Speakers() = default;
 
@@ -43,9 +43,9 @@ int Speakers::GetMaxRate() const{
 std::string Speakers::DisplayInput(const InputDevice& microphone) const{
     try{
         if (!(typeid(microphone) == typeid(Microphone))){
-            throw ExceptionIncorrectInstance("Устройство не является микрофоном");
+            throw ExceptionIncorrectInstance("Device isn't microphone");
         }
-        return "Звук от пользователя:\n" + microphone.GetInput();
+        return "User volume:\n" + microphone.GetInput();
     }
     catch (const ExceptionIncorrectInstance& ex){
         return ex.what();
@@ -55,9 +55,9 @@ std::string Speakers::DisplayInput(const InputDevice& microphone) const{
 std::string Speakers::ChangeVolume(int volumeValue) const{
     try{
         if (volumeValue > 100 || volumeValue < 0){
-            throw ExceptionIncorrectVolume("Невалидное значение звука");
+            throw ExceptionIncorrectVolume("Incorrect volume value");
         }
-        return "Значение звука изменено на " + std::to_string(volumeValue);
+        return "Volume change on " + std::to_string(volumeValue);
     }
     catch (const ExceptionIncorrectVolume& ex){
         return ex.what();

@@ -6,8 +6,6 @@
  */
 #ifndef BLUETOOTH_ADAPTER
 #define BLUETOOTH_ADAPTER
-
-#include <iostream>
 #include "adapter.h"
 
 /*! \class BluetoothAdapter
@@ -81,7 +79,7 @@ public:
     /*! \brief Проверить состояние подключения Bluetooth
      *  \return true если адаптер подключён, false в противном случае
      */
-    bool isConnectBluetooth() const;
+    bool IsConnectBluetooth() const;
 
 private:
     std::string connectionInterface_ {""}; /*!< Описание интерфейса подключения */

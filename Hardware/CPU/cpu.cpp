@@ -1,4 +1,5 @@
 #include "cpu.h"
+#include <format>
 
 CPU::CPU() = default;
 
@@ -50,6 +51,6 @@ double CPU::GetMaxFrequency() const{
 }
 
 std::string CPU::SetTurboMode(bool mode) const{
-    return mode ? "Процессор ускорен до максимальной частоты " + std::to_string(this->maxFrequency_) :
-    "Процессор работает на базовой частоте " + std::to_string(this->baseFrequency_);
+    return mode ? "The processor is accelerated to the maximum frequency " + std::format("{:.1f}",this->maxFrequency_) :
+    "The processor is running at the base frequency " + std::format("{:.1f}",this->baseFrequency_);
 }

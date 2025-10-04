@@ -24,7 +24,7 @@ public:
      *  \param device Ссылка на устройство для подключения
      *  \return true, если подключение успешно, false в противном случае
      */
-    bool ConnectDevice(const Device& device) override;
+    bool ConnectDevice(const Device& device);
 
     /*! \brief Отключить устройство от порта
      *  \return true, если отключение успешно,
@@ -35,13 +35,13 @@ public:
     /*! \brief Проверить, занят ли порт
      *  \return true, если порт занят устройством, false если свободен
      */
-    bool IsOccupied() const;
+    bool IsOccupied() const override;
 
     /*! \brief Проверить, может ли порт принять устройство
      *  \param device Ссылка на проверяемое устройство
      *  \return true, если устройство совместимо с портом и может быть подключено
      */
-    bool CanAccept(const Device& device) const override;
+    bool CanAccept(const Device& device) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта
@@ -49,6 +49,7 @@ public:
     std::string GetType() const override;
 
 private:
+
     PortType type_ {PortType::USB};        /*!< Тип порта*/
     std::optional<Device> device_;         /*!< Подключённое устройство, если есть */
 };

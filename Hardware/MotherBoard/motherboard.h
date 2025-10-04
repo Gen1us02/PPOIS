@@ -11,10 +11,10 @@
 #include <optional>
 #include "vector"
 #include "hardware.h"
-#include "cpu.h"
-#include "ssd.h"
-#include "ram.h"
-#include "portm2.h"
+#include "../CPU/cpu.h"
+#include "../SSD/ssd.h"
+#include "../RAM/ram.h"
+#include "../Ports/PortM2/portm2.h"
 #include "motherboard_battery.h"
 
 /*! \class MotherBoard
@@ -112,15 +112,15 @@ private:
      */
     bool IsRAMCompatibility(const RAM& module) const;
 
-    const std::string socket_ {""};                           /*!< Название сокета процессора */
+    std::string socket_ {""};                           /*!< Название сокета процессора */
     std::optional<CPU> processor_;                            /*!< Установленный процессор, если есть */
     std::vector<std::optional<RAM>> ramModules_;              /*!< Слоты RAM */
     std::optional<SSD> ssd_;                                  /*!< Установленный SSD, если есть */
     MotherBoardBattery battery_;                              /*!< Батарея платы */
     PortM2 ssdPort_;                                          /*!< Порт M.2 для SSD */
-    const int ramCount_ {0};                                  /*!< Максимальное количество слотов RAM */
-    const std::string ramType_ {""};                          /*!< Поддерживаемый тип RAM */
-    const std::string chipset_ {""};                          /*!< Название чипсета платы */
+    int ramCount_ {0};                                  /*!< Максимальное количество слотов RAM */
+    std::string ramType_ {""};                          /*!< Поддерживаемый тип RAM */
+    std::string chipset_ {""};                          /*!< Название чипсета платы */
 };
 
 #endif

@@ -24,23 +24,15 @@ public:
      */
     virtual ~Port() = default;
 
-    /*! \brief Подключить устройство к порту
-     *  \param device Ссылка на подключаемое устройство
-     *  \return true при успешном подключении, false при ошибке или несовместимости
-     */
-    virtual bool ConnectDevice(const Device& device);
-
     /*! \brief Отключить устройство от порта
      *  \return true если устройство успешно отключено, false если порт был пуст
      */
-    virtual bool DisconnectDevice();
+    virtual bool DisconnectDevice() = 0;
 
-    /*! \brief Проверить, может ли порт принять устройство
-     *  \param device Ссылка на проверяемое устройство
-     *  \return true если устройство совместимо с данным портом, false иначе
-     *  \details Метод используется для предварительной валидации перед попыткой подключения.
-     */
-    virtual bool CanAccept(const Device& device) const;
+    /*! \brief Проверить, занят ли порт
+     *  \return true, если порт занят устройством, false если свободен
+    */
+    virtual bool IsOccupied() const = 0;
 
     /*! \brief Получить текстовое представление типа порта
      *  \return Строка с типом порта

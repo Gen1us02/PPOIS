@@ -1,5 +1,5 @@
 #include "usb.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 USB::USB() = default;
 

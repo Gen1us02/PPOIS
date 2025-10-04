@@ -10,7 +10,7 @@
 #include "optional"
 #include "port.h"
 #include "port_type.h"
-#include "ssd.h"
+#include "../Hardware/SSD/ssd.h"
 
 /*! \class PortM2
  *  \brief Класс, моделирующий разъем M.2 для SSD

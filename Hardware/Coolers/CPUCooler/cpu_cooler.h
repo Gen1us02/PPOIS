@@ -72,7 +72,7 @@ private:
     int minSpeed_ {0};       /*!< Минимальная скорость кулера */
     int maxSpeed_ {0};       /*!< Максимальная скорость кулера */
     std::string socket_ {""};/*!< Совместимый тип сокета */
-    const std::string type_ {"cpu"}; /*!< Тип кулера */
+    std::string type_ {"cpu"}; /*!< Тип кулера */
 };
 
 #endif

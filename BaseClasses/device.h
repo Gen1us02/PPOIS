@@ -28,6 +28,22 @@ public:
      */
     virtual ~Device() = default;
 
+    Device() = default;
+
+    Device(const Device& other)
+        : isConnected_(other.isConnected_),
+          isPowered_(other.isPowered_),
+          port_(other.port_) {}
+
+    Device& operator=(const Device& other) {
+        if (this != &other) {
+            isConnected_ = other.isConnected_;
+            isPowered_ = other.isPowered_;
+            port_ = other.port_;
+        }
+        return *this;
+    }
+
     /*! \brief Проверить поддержку типа порта
      *  \param p Проверяемый тип порта
      *  \return true если устройство поддерживает указанный порт, false иначе
@@ -81,7 +97,7 @@ public:
 protected:
     bool isConnected_ {false}; /*!< Флаг состояния подключения устройства */
     bool isPowered_ {false}; /*!< Флаг состояния питания устройства */
-    PortType port_ {PortType::None}; /*!< Ассоциированный тип порта устройства */
+    PortType port_ {PortType::None}; /*!< Тип порта устройства */
 };
 
 #endif

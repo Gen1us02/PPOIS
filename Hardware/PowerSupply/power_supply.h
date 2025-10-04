@@ -9,7 +9,7 @@
 #define POWERSUPPLY
 #include <string>
 #include "hardware.h"
-#include "power_supply_cooler.h"
+#include "../Hardware/Coolers/PowerSupplyCooler/power_supply_cooler.h"
 
 /*! \class PowerSupply
  *  \brief Класс, моделирующий блок питания

@@ -1,6 +1,8 @@
-#include <mouse.h>
+#include "mouse.h"
 
-Mouse::Mouse() = default;
+Mouse::Mouse(): InputDevice(){
+    port_ = PortType::USB;
+}
 
 Mouse::Mouse(int cursorX, int cursorY, const std::string& sensorType, int dpi):
 cursorX_(cursorX), cursorY_(cursorY), sensorType_(sensorType), dpi_(dpi){
@@ -42,6 +44,6 @@ int Mouse::GetDpi() const{
 void Mouse::MoveCursor(int x, int y){
     this->SetCursorX(x);
     this->SetCursorY(y);
-    std::string coords = "x: " + std::to_string(this->cursorX_)+ "y: " + std::to_string(this->cursorY_);
+    std::string coords = "x: " + std::to_string(this->cursorX_) + " y: " + std::to_string(this->cursorY_);
     ReadInput(coords);
 }

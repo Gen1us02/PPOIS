@@ -8,14 +8,14 @@
 #ifndef COMPUTER
 #define COMPUTER
 
-#include "case.h"
-#include "display.h"
-#include "microphone.h"
-#include "speakers.h"
-#include "wifi_adapter.h"
-#include "bluetooth_adapter.h"
-#include "keyboard.h"
-#include "mouse.h"
+#include "../Case/case.h"
+#include "../Display/display.h"
+#include "../Microphone/microphone.h"
+#include "../Speakers/speakers.h"
+#include "../Adapters/WiFiAdapter/wifi_adapter.h"
+#include "../Adapters/BluetoothAdapter/bluetooth_adapter.h"
+#include "../KeyBoard/keyboard.h"
+#include "../Mouse/mouse.h"
 
 /*! \class Computer
  *  \brief Модель персонального компьютера
@@ -42,7 +42,7 @@ public:
      *  \details Конструктор позволяет собрать экземпляр Computer из готовых компонентов,
      *           что удобно для моделирования разных конфигураций и подмены зависимостей в тестах.
      */
-    Computer(const Case& computerCase, const Display& display, const Microphone& microphone, const Speakers& speakers, 
+    Computer(const Case& computerCase, const Display& display, const Microphone& microphone, const Speakers& speakers,
             const WiFiAdapter& wifiAdapter, const BluetoothAdapter& bluetoothAdapter, const KeyBoard& keyboard, const Mouse& mouse);
 
     /*! \brief Попытаться собрать компьютер из компонентов
@@ -70,11 +70,11 @@ public:
 
 private:
     Case case_; /*!< Корпус компьютера */
-    Display display_; /*!< Внешний дисплей */
-    Microphone microphone_; /*!< Встроенный или подключённый микрофон */
-    Speakers speakers_; /*!< Колонки или наушники */
+    Display display_; /*!< Монитор */
+    Microphone microphone_; /*!< Подключённый микрофон */
+    Speakers speakers_; /*!< Колонки */
     WiFiAdapter wifiAdapter_; /*!< WiFi адаптер для беспроводной сети */
-    BluetoothAdapter bluetoothAdapter_; /*!< Bluetooth адаптер для периферии */
+    BluetoothAdapter bluetoothAdapter_; /*!< Bluetooth адаптер */
     KeyBoard keyboard_; /*!< Клавиатура */
     Mouse mouse_; /*!< Мышь */
 };

@@ -27,14 +27,19 @@ public:
      */
     virtual ~InputDevice() = default;
 
-    /*! \brief Обработать и сохранить входную строку
-     *  \param input Входная строка данных
-     *  \details Метод сохраняет переданную строку во внутреннее поле для последующего
-     *           использования или получения внешними компонентами системы.
-     */
-    void ReadInput(const std::string& input){
-        this->input_ = input;
-    };
+    InputDevice() = default;
+
+    InputDevice(const InputDevice& other)
+        : Device(other),
+          input_(other.input_) {}
+
+    InputDevice& operator=(const InputDevice& other) {
+        if (this != &other) {
+            Device::operator=(other);
+            input_ = other.input_;
+        }
+        return *this;
+    }
 
     /*! \brief Получить последнее сохранённое входное значение
      *  \return Строка с последним вводом
@@ -45,6 +50,15 @@ public:
     };
 
 protected:
+    /*! \brief Обработать и сохранить входную строку
+     *  \param input Входная строка данных
+     *  \details Метод сохраняет переданную строку во внутреннее поле для последующего
+     *           использования или получения внешними компонентами системы.
+     */
+    void ReadInput(const std::string& input){
+        this->input_ = input;
+    };
+
     std::string input_ {""}; /*!< Внутренний буфер для ввода */
 };
 

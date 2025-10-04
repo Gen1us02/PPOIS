@@ -1,5 +1,5 @@
 #include "hdmi.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 HDMI::HDMI() = default;
 

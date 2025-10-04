@@ -1,5 +1,5 @@
 #include "displayport.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 DisplayPort::DisplayPort() = default;
 

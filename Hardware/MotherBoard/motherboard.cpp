@@ -1,5 +1,5 @@
 #include "motherboard.h"
-#include "exceptions.h"
+#include "../Exceptions/exceptions.h"
 
 MotherBoard::MotherBoard() = default;
 
@@ -17,11 +17,13 @@ bool MotherBoard::InstallCPU(const CPU& processor){
     if(processor_.has_value()) return false;
     if(!IsCPUCompatibility(processor)) return false;
     this->processor_.emplace(processor);
+    processor_->Install();
     return true;
 }
 
 bool MotherBoard::UninstallCPU(){
     if(!processor_.has_value()) return false;
+    processor_->Uninstall();
     processor_.reset();
     return true;
 }
@@ -29,6 +31,7 @@ bool MotherBoard::UninstallCPU(){
 bool MotherBoard::AddRAM(int slotIndex, const RAM& module){
     if (slotIndex < 0 || slotIndex >= this->ramCount_) return false;
     if (!IsRAMCompatibility(module)) return false;
+    if (ramModules_[slotIndex].has_value()) return false;
     this->ramModules_[slotIndex].emplace(module);
     return true;
 }
@@ -36,6 +39,7 @@ bool MotherBoard::AddRAM(int slotIndex, const RAM& module){
 bool MotherBoard::RemoveRAMByIndex(int slotIndex){
     if (slotIndex < 0 || slotIndex >= this->ramCount_) return false;
     if (this->ramModules_.size() <= slotIndex) return false;
+    if (!ramModules_[slotIndex].has_value()) return false;
     this->ramModules_[slotIndex].reset();
     return true;
 }
@@ -70,6 +74,7 @@ bool MotherBoard::InstallSSD(const SSD& ssd){
             throw ExceptionIsOccupiedError("Порт занят");
         }
         this->ssd_.emplace(ssd);
+        ssd_->Install();
         return ssdPort_.ConnectDevice(ssd);
     }
     catch (const ExceptionIsOccupiedError& ex){
@@ -83,6 +88,7 @@ bool MotherBoard::UninstallSSD(){
         if (!ssdPort_.IsOccupied()){
             throw ExceptionNotIsOccupiedError("Порт свободен");
         }
+        ssd_->Uninstall();
         this->ssd_.reset();
         return ssdPort_.DisconnectDevice();
     }

@@ -27,7 +27,7 @@ public:
      *  \param device Ссылка на устройство для подключения
      *  \return true если подключение успешно, false в противном случае
      */
-    bool ConnectDevice(const Device& device) override;
+    bool ConnectDevice(const Device& device);
 
     /*! \brief Отключить устройство от порта
      *  \return true если отключение успешно,
@@ -44,7 +44,7 @@ public:
      *  \param device Ссылка на проверяемое устройство
      *  \return true если устройство совместимо с HDMI-портом и может быть подключено
      */
-    bool CanAccept(const Device& device) const override;
+    bool CanAccept(const Device& device) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта

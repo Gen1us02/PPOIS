@@ -9,7 +9,7 @@
 #define LINEOUT_PORT
 #include "optional"
 #include "port.h"
-#include "speakers.h"
+#include "../Speakers/speakers.h"
 #include "port_type.h"
 
 /*! \class LineOut
@@ -54,7 +54,7 @@ public:
     /*! \brief Проверить наличие подключённых колонок
      *  \return true, если колонки обнаружены в порту, false в противном случае
      */
-    bool DetectSpeakers() const;
+    std::string DetectSpeakers() const;
 
 private:
     PortType type_ {PortType::LineOut};   /*!< Тип порта*/
