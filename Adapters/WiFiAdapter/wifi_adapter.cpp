@@ -1,6 +1,8 @@
 #include "wifi_adapter.h"
 
-WiFiAdapter::WiFiAdapter() = default;
+WiFiAdapter::WiFiAdapter() {
+    port_ = PortType::USB;
+};
 
 WiFiAdapter::WiFiAdapter(const std::string& connectionInterface, int speed, double frequencyRange):
 connectionInterface_(connectionInterface), speed_(speed), frequencyRange_(frequencyRange){

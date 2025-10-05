@@ -6,7 +6,7 @@ DisplayPort::DisplayPort() = default;
 bool DisplayPort::ConnectDevice(const Display& display){
     try{
         if (this->display_.has_value()){
-            throw ExceptionIsOccupiedError("Порт занят");
+            throw ExceptionIsOccupiedError("The port is busy");
         }
         if (!CanAccept(display)) return false;
         this->display_.emplace(display);
@@ -21,7 +21,7 @@ bool DisplayPort::ConnectDevice(const Display& display){
 bool DisplayPort::DisconnectDevice(){
     try{
         if (!this->display_.has_value()) {
-            throw ExceptionNotIsOccupiedError("Порт свободен");
+            throw ExceptionNotIsOccupiedError("The port is free");
         }
         this->display_.reset();
         return true;

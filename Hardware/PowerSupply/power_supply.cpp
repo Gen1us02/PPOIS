@@ -38,7 +38,7 @@ int PowerSupply::GetMaxVoltage() const{
     return this->maxVoltage_;
 }
 
-std::string PowerSupply::SetCoolerCurrentSpeed(int speed){
+std::string PowerSupply::SetCoolerCurrentSpeed(int speed) const{
     return this->cooler_.SetCurrentSpeed(speed);
 }
 

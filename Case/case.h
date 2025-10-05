@@ -50,7 +50,7 @@ public:
      *           вентиляторов, портов и ключевых компонентов для моделирования
      *           реальной конфигурации системы.
      */
-    Case(int coolersCount, int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
+    Case(int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
         const MotherBoard& motherBoard, const GPU& gpu, const PowerSupply&powerSupply, const CPUCooler& cpuCooler);
 
     /*! \brief Получить количество корпусных вентиляторов
@@ -69,6 +69,8 @@ public:
      *  \details Метод пытается подключить переданное устройство к свободному USB-порту.
      */
     bool InstallUSBDevice(const Device& device);
+
+    bool UninstallUSBDeviceByIndex(int portIndex);
 
     /*! \brief Подключить внешний дисплей к указанному типу порта
      *  \param display Ссылка на объект дисплея
@@ -95,7 +97,42 @@ public:
      *  \param speed Новый уровень скорости (условная шкала)
      *  \details Метод распространяет заданную скорость на все вентиляторы, связанные с GPU.
      */
-    std::string SetGpuCoolersSpeed(int speed);
+
+    /*! \brief Установить скорость всех кулеров видеокарты
+    *  \param speed Новая скорость
+    *  \return Строка с результатом операции
+    *  \details Метод распространяет заданную скорость на все вентиляторы, связанные с GPU.
+    *           Возвращаемая строка содержит информацию о проделанных изменениях
+    *           и может содержать предупреждения при недопустимых значениях speed.
+    */
+    std::string SetGpuCoolersSpeed(int speed) const;
+
+    /*! \brief Установить скорость всех кулеров корпуса
+    *  \param speed Новая скорость
+    *  \return Строка с результатом операции
+    *  \details Метод распространяет заданную скорость на все вентиляторы, связанные с корпусом.
+    *           Возвращаемая строка содержит информацию о проделанных изменениях
+    *           и может содержать предупреждения при недопустимых значениях speed.
+    */
+    std::string SetCaseCoolersSpeed(int speed) const;
+
+    /*! \brief Установить скорость кулера блока питания
+    *  \param speed Новая скорость
+    *  \return Строка с результатом операции
+    *  \details Метод распространяет заданную скорость на вентилятор блока питания.
+    *           Возвращаемая строка содержит информацию о проделанных изменениях
+    *           и может содержать предупреждения при недопустимых значениях speed.
+    */
+    std::string SetPowerSupplyCoolerSpeed(int speed) const;
+
+    /*! \brief Установить скорость кулера процессора
+    *  \param speed Новая скорость
+    *  \return Строка с результатом операции
+    *  \details Метод распространяет заданную скорость на кулер процессора.
+    *           Возвращаемая строка содержит информацию о проделанных изменениях
+    *           и может содержать предупреждения при недопустимых значениях speed.
+    */
+    std::string SetCpuCoolerSpeed(int speed) const;
 
     /*! \brief Получить строковое представление выходного напряжения блока питания
      *  \param voltage Напряжение сети
@@ -124,7 +161,7 @@ public:
 
 private:
     std::vector<CaseCooler> coolers_; /*!< Вектор корпусных вентиляторов */
-    const int coolersCount_ {0}; /*!< Фиксированное число вентиляторов */
+    int coolersCount_ {0}; /*!< Фиксированное число вентиляторов */
     CPUCooler cpuCooler_; /*!< Охладитель процессора */
     DisplayPort displayPort_; /*!< Встроенный DisplayPort разъём */
     HDMI hdmiPort_; /*!< Встроенный HDMI разъём */
@@ -134,7 +171,7 @@ private:
     MotherBoard motherBoard_; /*!< Материнская плата, установленная в корпусе */
     GPU gpu_; /*!< Видеокарта, установленная в корпусе */
     PowerSupply powerSupply_; /*!< Блок питания корпуса */
-    const int usbPortsCount_ {0}; /*!< Фиксированное число USB портов */
+    int usbPortsCount_ {0}; /*!< Фиксированное число USB портов */
 };
 
 #endif

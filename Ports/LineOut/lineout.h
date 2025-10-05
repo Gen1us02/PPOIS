@@ -44,7 +44,7 @@ public:
     /*! \brief Проверить, занят ли порт
      *  \return true, если порт занят колонками, false если свободен
      */
-    bool IsOccupied() const;
+    bool IsOccupied() const override;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта

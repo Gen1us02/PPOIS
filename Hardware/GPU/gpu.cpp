@@ -29,9 +29,9 @@ int GPU::GetCoolerCount() const{
     return this->coolerCount_;
 }
 
-std::string GPU::SetCoolerCurrentSpeed(int speed){
+std::string GPU::SetCoolerCurrentSpeed(int speed) const{
     std::string result;
-    for (GPUCooler& cooler : this->coolers_){
+    for (const GPUCooler& cooler : this->coolers_){
         result = cooler.SetCurrentSpeed(speed);
     }
     return result;

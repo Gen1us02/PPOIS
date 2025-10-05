@@ -6,7 +6,7 @@ PortM2::PortM2() = default;
 bool PortM2::ConnectDevice(const SSD& ssd){
     try{
         if (this->ssd_.has_value()){
-            throw ExceptionIsOccupiedError("Порт занят");
+            throw ExceptionIsOccupiedError("The port is busy");
         }
         if (!CanAccept(ssd)) return false;
         this->ssd_.emplace(ssd);
@@ -21,7 +21,7 @@ bool PortM2::ConnectDevice(const SSD& ssd){
 bool PortM2::DisconnectDevice(){
     try{
         if (!this->ssd_.has_value()) {
-            throw ExceptionNotIsOccupiedError("Порт свободен");
+            throw ExceptionNotIsOccupiedError("The port is free");
         }
         this->ssd_.reset();
         return true;

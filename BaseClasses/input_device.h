@@ -27,12 +27,28 @@ public:
      */
     virtual ~InputDevice() = default;
 
+    /*! \brief Конструктор по умолчанию
+     *  \details Инициализирует объект InputDevice в пустом состоянии.
+     *           Поле input_ инициализируется пустой строкой.
+     */
     InputDevice() = default;
 
+    /*! \brief Конструктор копирования
+    *  \param other Объект для копирования
+    *  \details Выполняет поэлементное копирование состояния базового класса Device и
+    *           внутреннего буфера input_. Используется при необходимости создать независимую
+    *           копию устройства.
+    */
     InputDevice(const InputDevice& other)
         : Device(other),
           input_(other.input_) {}
 
+    /*! \brief Оператор присваивания
+     *  \param other Объект-источник для присваивания
+     *  \return Ссылка на текущий объект
+     *  \details Выполняет безопасное присваивание с проверкой на самоприсваивание.
+     *           Сохраняет семантику присваивания базового класса Device и копирует поле input_.
+     */
     InputDevice& operator=(const InputDevice& other) {
         if (this != &other) {
             Device::operator=(other);

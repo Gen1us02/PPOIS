@@ -1,7 +1,9 @@
 #include "ssd.h"
 #include <cmath>
 
-SSD::SSD() = default;
+SSD::SSD() {
+    port_ = PortType::M2;
+};
 
 SSD::SSD(int memorySize, int readSpeed, int writeSpeed, int timeBeforeBreak):
 memorySize_(memorySize), readSpeed_(readSpeed), writeSpeed_(writeSpeed), timeBeforeBreak_(timeBeforeBreak){}

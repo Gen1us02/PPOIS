@@ -58,7 +58,7 @@ public:
      *  \param speed Новая скорость кулера
      *  \return Сообщение об установке скорости или об ошибке
      */
-    std::string SetCoolerCurrentSpeed(int speed);
+    std::string SetCoolerCurrentSpeed(int speed) const;
 
     /*! \brief Установить минимальное допустимое входное напряжение
      *  \param minVoltage Минимальное напряжение в вольтах

@@ -1,7 +1,9 @@
 #include "display.h"
 #include "../Exceptions/exceptions.h"
 
-Display::Display() = default;
+Display::Display() {
+    port_ = PortType::DisplayPort;
+};
 
 Display::Display(const std::string& maxCamResolution, double megapixels, int max_fps,
     const std::string& resolution, int refreshRate, int diagonal): 

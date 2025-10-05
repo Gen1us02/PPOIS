@@ -38,7 +38,7 @@ public:
     /*! \brief Проверить, занят ли порт
      *  \return true если порт занят устройством, false если свободен
      */
-    bool IsOccupied() const;
+    bool IsOccupied() const override;
 
     /*! \brief Проверить, может ли порт принять устройство
      *  \param device Ссылка на проверяемое устройство

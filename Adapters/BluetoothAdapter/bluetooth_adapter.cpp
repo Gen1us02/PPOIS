@@ -1,6 +1,8 @@
 #include "bluetooth_adapter.h"
 
-BluetoothAdapter::BluetoothAdapter() = default;
+BluetoothAdapter::BluetoothAdapter() {
+    port_ = PortType::USB;
+};
 
 BluetoothAdapter::BluetoothAdapter(const std::string& connectionInterface, int speed, int coverageRadius):
 connectionInterface_(connectionInterface), speed_(speed), coverageRadius_(coverageRadius){

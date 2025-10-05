@@ -37,7 +37,7 @@ public:
     /*! \brief Проверить, занят ли порт
      *  \return true, если порт занят дисплеем, false если свободен
      */
-    bool IsOccupied() const;
+    bool IsOccupied() const override;
 
     /*! \brief Проверить, может ли порт принять данный дисплей
      *  \param display Ссылка на проверяемый Display

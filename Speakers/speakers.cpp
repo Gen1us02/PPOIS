@@ -1,7 +1,9 @@
 #include "speakers.h"
 #include "../Exceptions/exceptions.h"
 
-Speakers::Speakers() = default;
+Speakers::Speakers() {
+    port_ = PortType::LineOut;
+};
 
 Speakers::Speakers(int dynamicCount, int power, double weight, int maxRate):
 dynamicCount_(dynamicCount), power_(power), weight_(weight), maxRate_(maxRate){

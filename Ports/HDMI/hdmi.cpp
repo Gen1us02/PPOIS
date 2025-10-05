@@ -6,7 +6,7 @@ HDMI::HDMI() = default;
 bool HDMI::ConnectDevice(const Device& device){
     try{
         if (this->device_.has_value()){
-            throw ExceptionIsOccupiedError("Порт занят");
+            throw ExceptionIsOccupiedError("The port is busy");
         }
         if (!CanAccept(device)) return false;
         this->device_.emplace(device);
@@ -21,7 +21,7 @@ bool HDMI::ConnectDevice(const Device& device){
 bool HDMI::DisconnectDevice(){
     try{
         if (!this->device_.has_value()) {
-            throw ExceptionNotIsOccupiedError("Порт свободен");
+            throw ExceptionNotIsOccupiedError("The port is free");
         }
         this->device_.reset();
         return true;

@@ -27,8 +27,7 @@ std::string Computer::TurnOn(int coolersSpeed, int powerSupplyVoltage){
     bluetoothAdapter_.ConnectBluetooth();
     keyboard_.TurnOn();
     mouse_.TurnOn();
-    case_.SetGpuCoolersSpeed(coolersSpeed);
-    return "Компьютер включен\n" + case_.GetPowerSupplyVoltage(powerSupplyVoltage);
+    return "Computer turn on\n" + case_.GetPowerSupplyVoltage(powerSupplyVoltage) + "\n" + case_.SetGpuCoolersSpeed(coolersSpeed);
 }
 
 std::string Computer::TurnOff(){
@@ -42,5 +41,5 @@ std::string Computer::TurnOff(){
     keyboard_.TurnOff();
     mouse_.TurnOff();
     case_.SetGpuCoolersSpeed(0);
-    return "Компьютер выключен";
+    return "Computer turn off";
 }

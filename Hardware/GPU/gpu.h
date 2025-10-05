@@ -63,7 +63,7 @@ public:
     /*! \brief Установить текущую скорость всех кулеров
      *  \param speed Новая скорость кулеров
      */
-    std::string SetCoolerCurrentSpeed(int speed);
+    std::string SetCoolerCurrentSpeed(int speed) const;
 
     /*! \brief Включить или отключить Vsync
      *  \param mode true для включения Vsync, false для отключения

@@ -1,12 +1,13 @@
 #include "case.h"
 
 Case::Case() = default;
-Case::Case(int coolersCount, int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
+Case::Case(int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
             const MotherBoard& motherBoard, const GPU& gpu, const PowerSupply& powerSupply, const CPUCooler& cpuCooler):
-coolersCount_(coolersCount), usbPortsCount_(usbPortsCount), usbPorts_(usbPortsCount, usbPort),
+usbPortsCount_(usbPortsCount), usbPorts_(usbPortsCount, usbPort),
 motherBoard_(motherBoard), gpu_(gpu), powerSupply_(powerSupply), cpuCooler_(cpuCooler){
-    coolers_.resize(coolersCount);
-    for (int i = 0; i < coolersCount; i++){
+    coolersCount_ = coolers.size();
+    coolers_.resize(coolersCount_);
+    for (int i = 0; i < coolersCount_; i++){
         coolers_[i] = coolers[i];
         coolers_[i].Install();
     }
@@ -25,12 +26,16 @@ bool Case::InstallUSBDevice(const Device& device){
     for(int i = 0; i < this->usbPortsCount_; i++){
         if (!usbPorts_[i].IsOccupied())
         {
-            usbPorts_[i].ConnectDevice(device);
-            return true;
+            return usbPorts_[i].ConnectDevice(device);
         }
     }
     
     return false;
+}
+
+bool Case::UninstallUSBDeviceByIndex(int portIndex) {
+    if (portIndex < 0 || portIndex >= this->usbPortsCount_) return false;
+    return usbPorts_[portIndex].DisconnectDevice();
 }
 
 bool Case::InstallDisplay(const Display& display, PortType port){
@@ -47,12 +52,10 @@ bool Case::InstallDisplay(const Display& display, PortType port){
 
 bool Case::UninstallDisplay(){
     if (displayPort_.IsOccupied()) {
-        displayPort_.DisconnectDevice();
         return displayPort_.DisconnectDevice();
     }
 
     if (hdmiPort_.IsOccupied()){
-        hdmiPort_.DisconnectDevice();
         return hdmiPort_.DisconnectDevice();;
     }
 
@@ -75,7 +78,24 @@ bool Case::UninstallMicrophone(){
     return micinPort_.DisconnectDevice();
 }
 
-std::string Case::SetGpuCoolersSpeed(int speed){
+std::string Case::SetCaseCoolersSpeed(int speed) const{
+    std::string result;
+    for (const CaseCooler& cooler : coolers_) {
+        result = cooler.SetCurrentSpeed(speed);
+    }
+
+    return result;
+}
+
+std::string Case::SetPowerSupplyCoolerSpeed(int speed) const{
+    return powerSupply_.SetCoolerCurrentSpeed(speed);
+}
+
+std::string Case::SetCpuCoolerSpeed(int speed) const{
+    return cpuCooler_.SetCurrentSpeed(speed);
+}
+
+std::string Case::SetGpuCoolersSpeed(int speed) const{
     return gpu_.SetCoolerCurrentSpeed(speed);
 }
 
