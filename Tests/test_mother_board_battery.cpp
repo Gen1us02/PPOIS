@@ -16,7 +16,7 @@ TEST_F(TestingMotherBoardBattery, TestSetVoltage) {
     ASSERT_EQ(motherboard_battery.GetVoltage(), 4);
 }
 
-TEST_F(TestingMotherBoardBattery, TestGetVoltage){
+TEST_F(TestingMotherBoardBattery, TestGetVoltage) {
     ASSERT_EQ(motherboard_battery.GetVoltage(), 3);
 }
 
@@ -45,6 +45,7 @@ TEST_F(TestingMotherBoardBattery, TestIsAlive) {
     motherboard_battery.SetCapacity(0);
     ASSERT_FALSE(motherboard_battery.IsAlive());
 }
+
 TEST(TestMotherBoardBattery, TestConstructor) {
     auto motherboard_battery = MotherBoardBattery(4, "alkaline", 200);
     ASSERT_EQ(motherboard_battery.GetVoltage(), 4);

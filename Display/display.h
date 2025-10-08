@@ -21,7 +21,7 @@
  *           и информацию о поддерживаемом порте. Предназначен для использования в
  *           симуляциях и тестах взаимодействия устройств вывода и ввода.
  */
-class Display : public OutputDevice{
+class Display : public OutputDevice {
 public:
     /*! \brief Конструктор по умолчанию
      */
@@ -37,14 +37,14 @@ public:
      *  \details Конструктор позволяет задать ключевые характеристики дисплея.
      *           Реализация должна проверять корректность значений
      */
-    Display(const std::string& maxCamResolution, double megapixels, int max_fps, const std::string& resolution,
-        int refreshRate, int diagonal);
+    Display(const std::string &maxCamResolution, double megapixels, int max_fps, const std::string &resolution,
+            int refreshRate, int diagonal);
 
     /*! \brief Установить строковое разрешение экрана
      *  \param resolution Строка вида "widthxheight"
      *  \details Метод обновляет internal resolution_. Реализация может валидировать формат строки.
      */
-    void SetResolution(const std::string& resolution);
+    void SetResolution(const std::string &resolution);
 
     /*! \brief Получить строковое представление разрешения экрана
      *  \return Строка разрешения
@@ -82,7 +82,7 @@ public:
      *  \param inputDevice Ссылка на устройство ввода
      *  \return Текстовое описание получённого ввода
     */
-    std::string DisplayInput(const InputDevice& inputDevice) const override;
+    std::string DisplayInput(const InputDevice &inputDevice) const override;
 
     /*! \brief Получить текстовое представление видеопотока от встроенной веб-камеры
      *  \param seconds Продолжительность захвата в секундах
@@ -108,10 +108,10 @@ public:
 
 private:
     WebCamera webcamera_; /*!< Встроенная веб-камера */
-    std::string resolution_ {""}; /*!< Разрешение монитора */
-    int refreshRate_ {0}; /*!< Частота обновления экрана */
-    int diagonal_ {0}; /*!< Диагональ экрана */
-    PortType portHDMI_ {PortType::HDMI}; /*!< Дополнительный порт поддержки */
+    std::string resolution_{""}; /*!< Разрешение монитора */
+    int refreshRate_{0}; /*!< Частота обновления экрана */
+    int diagonal_{0}; /*!< Диагональ экрана */
+    PortType portHDMI_{PortType::HDMI}; /*!< Дополнительный порт поддержки */
 };
 
 #endif

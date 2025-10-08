@@ -16,7 +16,7 @@ TEST_F(TestingBluetoothAdapter, TestConnectionInterface) {
     ASSERT_EQ(bluetooth_adapter.GetConnectionInterface(), "USB");
 }
 
-TEST_F(TestingBluetoothAdapter, TestGetConnectionInterface){
+TEST_F(TestingBluetoothAdapter, TestGetConnectionInterface) {
     ASSERT_EQ(bluetooth_adapter.GetConnectionInterface(), "USB2.0");
 }
 

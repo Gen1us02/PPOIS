@@ -24,7 +24,7 @@
  *           интерфейс для сборки системы, включения и выключения, позволяя проводить
  *           интеграционные тесты взаимодействия компонентов в составе одного устройства.
  */
-class Computer{
+class Computer {
 public:
     /*! \brief Конструктор по умолчанию
      */
@@ -42,8 +42,9 @@ public:
      *  \details Конструктор позволяет собрать экземпляр Computer из готовых компонентов,
      *           что удобно для моделирования разных конфигураций и подмены зависимостей в тестах.
      */
-    Computer(const Case& computerCase, const Display& display, const Microphone& microphone, const Speakers& speakers,
-            const WiFiAdapter& wifiAdapter, const BluetoothAdapter& bluetoothAdapter, const KeyBoard& keyboard, const Mouse& mouse);
+    Computer(const Case &computerCase, const Display &display, const Microphone &microphone, const Speakers &speakers,
+             const WiFiAdapter &wifiAdapter, const BluetoothAdapter &bluetoothAdapter, const KeyBoard &keyboard,
+             const Mouse &mouse);
 
     /*! \brief Попытаться собрать компьютер из компонентов
      *  \return true если сборка прошла успешно, false при ошибках конфигурации

@@ -21,7 +21,7 @@
  *           Предоставляет методы для настройки этих параметров и управления
  *           режимами отображения и апскейлинга.
  */
-class GPU: public Hardware{
+class GPU : public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     GPU();
@@ -75,13 +75,13 @@ public:
      *  \param dlssMode Строка с названием режима DLSS
      *  \return Текстовое сообщение о результате операции или описание ошибки
      */
-    std::string SetDlssMode(const std::string& dlssMode) const;
+    std::string SetDlssMode(const std::string &dlssMode) const;
 
 private:
-    bool rtxSupport_ {false};           /*!< Флаг поддержки RTX */
-    int videoMemory_ {0};               /*!< Объём видеопамяти */
-    int coolerCount_ {0};         /*!< Количество кулеров */
-    std::vector<GPUCooler> coolers_;    /*!< Список объектов кулеров видеокарты */
+    bool rtxSupport_{false}; /*!< Флаг поддержки RTX */
+    int videoMemory_{0}; /*!< Объём видеопамяти */
+    int coolerCount_{0}; /*!< Количество кулеров */
+    std::vector<GPUCooler> coolers_; /*!< Список объектов кулеров видеокарты */
 };
 
 #endif

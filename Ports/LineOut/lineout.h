@@ -18,7 +18,7 @@
  *           подключение и отключение колонок, проверка совместимости,
  *           состояния занятости и обнаружение подключенных колонок.
  */
-class LineOut : public Port{
+class LineOut : public Port {
 public:
     /*! \brief Конструктор по умолчанию */
     LineOut();
@@ -27,7 +27,7 @@ public:
      *  \param speakers Ссылка на объект Speakers для подключения
      *  \return true, если подключение выполнено успешно, false в противном случае
      */
-    bool ConnectDevice(const Speakers& speakers);
+    bool ConnectDevice(const Speakers &speakers);
 
     /*! \brief Отключить устройство от порта
      *  \return true, если отключение выполнено успешно,
@@ -39,7 +39,7 @@ public:
      *  \param speakers Ссылка на проверяемый объект Speakers
      *  \return true, если колонки совместимы и могут быть подключены
      */
-    bool CanAccept(const Speakers& speakers) const;
+    bool CanAccept(const Speakers &speakers) const;
 
     /*! \brief Проверить, занят ли порт
      *  \return true, если порт занят колонками, false если свободен
@@ -57,8 +57,8 @@ public:
     std::string DetectSpeakers() const;
 
 private:
-    PortType type_ {PortType::LineOut};   /*!< Тип порта*/
-    std::optional<Speakers> speakers_;    /*!< Подключённые колонки, если есть */
+    PortType type_{PortType::LineOut}; /*!< Тип порта*/
+    std::optional<Speakers> speakers_; /*!< Подключённые колонки, если есть */
 };
 
 #endif

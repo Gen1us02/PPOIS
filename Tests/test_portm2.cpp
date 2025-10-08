@@ -7,7 +7,6 @@ protected:
     void SetUp() override {
         m2_port = PortM2();
         ssd = SSD();
-
     }
 
     PortM2 m2_port;
@@ -18,7 +17,7 @@ TEST_F(TestingM2, TestConnectDeviceTrue) {
     ASSERT_TRUE(m2_port.ConnectDevice(ssd));
 }
 
-TEST_F(TestingM2, TestConnectDeviceFalse){
+TEST_F(TestingM2, TestConnectDeviceFalse) {
     m2_port.ConnectDevice(ssd);
     ASSERT_FALSE(m2_port.ConnectDevice(ssd));
     m2_port.DisconnectDevice();

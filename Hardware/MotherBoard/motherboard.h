@@ -24,7 +24,7 @@
  *           проверки совместимости CPU и RAM с текущими параметрами платы,
  *           получения характеристик платы и проверки состояния батареи.
  */
-class MotherBoard: public Hardware{
+class MotherBoard : public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     MotherBoard();
@@ -36,8 +36,8 @@ public:
      *  \param ramType Тип поддерживаемой оперативной памяти
      *  \param chipset Название чипсета платы
      */
-    MotherBoard(const std::string& socket, const MotherBoardBattery& battery, 
-                int ramCount, const std::string& ramType, const std::string& chipset);
+    MotherBoard(const std::string &socket, const MotherBoardBattery &battery,
+                int ramCount, const std::string &ramType, const std::string &chipset);
 
     /*! \brief Получить название сокета платы
      *  \return Строка с именем сокета
@@ -48,7 +48,7 @@ public:
      *  \param processor Объект CPU для установки
      *  \return true если установка прошла успешно, false если несовместимо или уже установлен CPU
      */
-    bool InstallCPU(const CPU& processor);
+    bool InstallCPU(const CPU &processor);
 
     /*! \brief Удалить установленный процессор
      *  \return true если процессор был установлен и успешно удалён, false если процессора не было
@@ -60,7 +60,7 @@ public:
      *  \param module Объект RAM для добавления
      *  \return true если модуль успешно добавлен, false если нет свободных слотов или несовместим
      */
-    bool AddRAM(int slotIndex, const RAM& module);
+    bool AddRAM(int slotIndex, const RAM &module);
 
     /*! \brief Удалить модуль RAM по индексу слота
      *  \param slotIndex Индекс слота для удаления
@@ -72,7 +72,7 @@ public:
      *  \param ssd Объект SSD для установки
      *  \return true если SSD успешно установлен, false если порт занят или SSD несовместим
      */
-    bool InstallSSD(const SSD& ssd);
+    bool InstallSSD(const SSD &ssd);
 
     /*! \brief Удалить установленный SSD
      *  \return true если SSD был установлен и успешно удалён, false если SSD отсутствует
@@ -104,23 +104,23 @@ private:
      *  \param processor Проверяемый процессор
      *  \return true если CPU совместим с платой, false иначе
      */
-    bool IsCPUCompatibility(const CPU& processor) const;
+    bool IsCPUCompatibility(const CPU &processor) const;
 
     /*! \brief Проверить совместимость RAM модуля с платой
      *  \param module Проверяемый модуль RAM
      *  \return true если RAM совместима с платой, false иначе
      */
-    bool IsRAMCompatibility(const RAM& module) const;
+    bool IsRAMCompatibility(const RAM &module) const;
 
-    std::string socket_ {""};                           /*!< Название сокета процессора */
-    std::optional<CPU> processor_;                            /*!< Установленный процессор, если есть */
-    std::vector<std::optional<RAM>> ramModules_;              /*!< Слоты RAM */
-    std::optional<SSD> ssd_;                                  /*!< Установленный SSD, если есть */
-    MotherBoardBattery battery_;                              /*!< Батарея платы */
-    PortM2 ssdPort_;                                          /*!< Порт M.2 для SSD */
-    int ramCount_ {0};                                  /*!< Максимальное количество слотов RAM */
-    std::string ramType_ {""};                          /*!< Поддерживаемый тип RAM */
-    std::string chipset_ {""};                          /*!< Название чипсета платы */
+    std::string socket_{""}; /*!< Название сокета процессора */
+    std::optional<CPU> processor_; /*!< Установленный процессор, если есть */
+    std::vector<std::optional<RAM> > ramModules_; /*!< Слоты RAM */
+    std::optional<SSD> ssd_; /*!< Установленный SSD, если есть */
+    MotherBoardBattery battery_; /*!< Батарея платы */
+    PortM2 ssdPort_; /*!< Порт M.2 для SSD */
+    int ramCount_{0}; /*!< Максимальное количество слотов RAM */
+    std::string ramType_{""}; /*!< Поддерживаемый тип RAM */
+    std::string chipset_{""}; /*!< Название чипсета платы */
 };
 
 #endif

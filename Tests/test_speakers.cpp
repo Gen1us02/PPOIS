@@ -24,7 +24,7 @@ TEST_F(TestingSpeakers, TestSetDynamicCount) {
     ASSERT_EQ(5, speakers.GetDynamicCount());
 }
 
-TEST_F(TestingSpeakers, TestGetDynamicCount){
+TEST_F(TestingSpeakers, TestGetDynamicCount) {
     ASSERT_EQ(2, speakers.GetDynamicCount());
 }
 

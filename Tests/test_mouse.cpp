@@ -15,7 +15,7 @@ TEST_F(TestingMouse, TestSetCursorX) {
     ASSERT_EQ(mouse.GetCursorX(), 200);
 }
 
-TEST_F(TestingMouse, TestGetDynamicCount){
+TEST_F(TestingMouse, TestGetDynamicCount) {
     ASSERT_EQ(mouse.GetCursorX(), 100);
 }
 

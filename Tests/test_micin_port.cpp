@@ -7,7 +7,6 @@ protected:
     void SetUp() override {
         micin_port = MicIn();
         microphone = Microphone("dynamic", 14000, 95);
-
     }
 
     MicIn micin_port;
@@ -18,7 +17,7 @@ TEST_F(TestingMicIn, TestConnectDeviceTrue) {
     ASSERT_TRUE(micin_port.ConnectDevice(microphone));
 }
 
-TEST_F(TestingMicIn, TestConnectDeviceFalse){
+TEST_F(TestingMicIn, TestConnectDeviceFalse) {
     micin_port.ConnectDevice(microphone);
     ASSERT_FALSE(micin_port.ConnectDevice(microphone));
     micin_port.DisconnectDevice();

@@ -16,7 +16,7 @@ TEST_F(TestingCPUCooler, TestSetMinSpeed) {
     ASSERT_EQ(cpu_cooler.GetMinSpeed(), 30);
 }
 
-TEST_F(TestingCPUCooler, TestGetMinSpeed){
+TEST_F(TestingCPUCooler, TestGetMinSpeed) {
     ASSERT_EQ(cpu_cooler.GetMinSpeed(), 15);
 }
 

@@ -30,7 +30,7 @@
  *           и удалением устройств, регулировкой скоростей вентиляторов и проверки
  *           параметров питания.
  */
-class Case{
+class Case {
 public:
     /*! \brief Конструктор по умолчанию
      *  \details Инициализирует корпус со значениями по умолчанию для всех компонентов.
@@ -50,8 +50,8 @@ public:
      *           вентиляторов, портов и ключевых компонентов для моделирования
      *           реальной конфигурации системы.
      */
-    Case(int usbPortsCount, const USB& usbPort, const std::vector<CaseCooler>& coolers,
-        const MotherBoard& motherBoard, const GPU& gpu, const PowerSupply&powerSupply, const CPUCooler& cpuCooler);
+    Case(int usbPortsCount, const USB &usbPort, const std::vector<CaseCooler> &coolers,
+         const MotherBoard &motherBoard, const GPU &gpu, const PowerSupply &powerSupply, const CPUCooler &cpuCooler);
 
     /*! \brief Получить количество корпусных вентиляторов
      *  \return Число вентиляторов в корпусе
@@ -68,7 +68,7 @@ public:
      *  \return true если установка успешна, false если нет доступных портов
      *  \details Метод пытается подключить переданное устройство к свободному USB-порту.
      */
-    bool InstallUSBDevice(const Device& device);
+    bool InstallUSBDevice(const Device &device);
 
     bool UninstallUSBDeviceByIndex(int portIndex);
 
@@ -78,7 +78,7 @@ public:
      *  \return true при успешном подключении, false иначе
      *  \details Метод проверяет совместимость порта и при возможности устанавливает дисплей.
      */
-    bool InstallDisplay(const Display& display, PortType port);
+    bool InstallDisplay(const Display &display, PortType port);
 
     /*! \brief Отключить внешний дисплей
      *  \return true если дисплей был успешно удалён, false если дисплея нет
@@ -91,7 +91,7 @@ public:
      *  \return true при успешной установке, false иначе
      *  \details Метод подключает аудиоустройство к разъёму LineOut и проверяет работоспособность.
      */
-    bool InstallSpeakers(const Speakers& speakers);
+    bool InstallSpeakers(const Speakers &speakers);
 
     /*! \brief Установить скорость всех кулеров видеокарты
      *  \param speed Новый уровень скорости (условная шкала)
@@ -152,7 +152,7 @@ public:
      *  \return true при успешной установке, false иначе
      *  \details Метод подключает микрофон к входу MicIn и проверяет наличие сигнала.
      */
-    bool InstallMicrophone(const Microphone& microphohne);
+    bool InstallMicrophone(const Microphone &microphohne);
 
     /*! \brief Отключить микрофон от корпуса
      *  \return true если микрофон успешно удалён, false если его не было
@@ -161,7 +161,7 @@ public:
 
 private:
     std::vector<CaseCooler> coolers_; /*!< Вектор корпусных вентиляторов */
-    int coolersCount_ {0}; /*!< Фиксированное число вентиляторов */
+    int coolersCount_{0}; /*!< Фиксированное число вентиляторов */
     CPUCooler cpuCooler_; /*!< Охладитель процессора */
     DisplayPort displayPort_; /*!< Встроенный DisplayPort разъём */
     HDMI hdmiPort_; /*!< Встроенный HDMI разъём */
@@ -171,7 +171,7 @@ private:
     MotherBoard motherBoard_; /*!< Материнская плата, установленная в корпусе */
     GPU gpu_; /*!< Видеокарта, установленная в корпусе */
     PowerSupply powerSupply_; /*!< Блок питания корпуса */
-    int usbPortsCount_ {0}; /*!< Фиксированное число USB портов */
+    int usbPortsCount_{0}; /*!< Фиксированное число USB портов */
 };
 
 #endif

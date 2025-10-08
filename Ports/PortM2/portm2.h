@@ -18,7 +18,7 @@
  *           и отключение SSD, проверка возможности подключения и получение
  *           типа порта и размера подключенного накопителя.
  */
-class PortM2 : public Port{
+class PortM2 : public Port {
 public:
     /*! \brief Конструктор по умолчанию */
     PortM2();
@@ -27,7 +27,7 @@ public:
      *  \param ssd Ссылка на SSD для подключения
      *  \return true, если подключение успешно, false в противном случае
      */
-    bool ConnectDevice(const SSD& ssd);
+    bool ConnectDevice(const SSD &ssd);
 
     /*! \brief Отключить устройство от порта
      *  \return true, если отключение успешно,
@@ -45,7 +45,7 @@ public:
      *  \return true, если SSD совместим и может быть подключен
      *          false в противном случае
      */
-    bool CanAccept(const SSD& ssd) const;
+    bool CanAccept(const SSD &ssd) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта
@@ -58,8 +58,8 @@ public:
     int GetSSDSize() const;
 
 private:
-    PortType type_ {PortType::M2};    /*!< Тип порта*/
-    std::optional<SSD> ssd_;          /*!< Подключённый SSD, если есть */
+    PortType type_{PortType::M2}; /*!< Тип порта*/
+    std::optional<SSD> ssd_; /*!< Подключённый SSD, если есть */
 };
 
 #endif

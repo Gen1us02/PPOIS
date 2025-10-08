@@ -16,7 +16,7 @@ TEST_F(TestingCPU, TestSetSocketType) {
     ASSERT_EQ(cpu.GetSocketType(), "AM5");
 }
 
-TEST_F(TestingCPU, TestGetSocketType){
+TEST_F(TestingCPU, TestGetSocketType) {
     ASSERT_EQ(cpu.GetSocketType(), "AM4");
 }
 

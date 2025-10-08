@@ -18,7 +18,7 @@
  *           и отключение устройств общего типа Device, проверка совместимости
  *           и состояния занятости.
  */
-class HDMI : public Port{
+class HDMI : public Port {
 public:
     /*! \brief Конструктор по умолчанию */
     HDMI();
@@ -27,7 +27,7 @@ public:
      *  \param device Ссылка на устройство для подключения
      *  \return true если подключение успешно, false в противном случае
      */
-    bool ConnectDevice(const Device& device);
+    bool ConnectDevice(const Device &device);
 
     /*! \brief Отключить устройство от порта
      *  \return true если отключение успешно,
@@ -44,7 +44,7 @@ public:
      *  \param device Ссылка на проверяемое устройство
      *  \return true если устройство совместимо с HDMI-портом и может быть подключено
      */
-    bool CanAccept(const Device& device) const;
+    bool CanAccept(const Device &device) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта
@@ -52,8 +52,8 @@ public:
     std::string GetType() const override;
 
 private:
-    PortType type_ {PortType::HDMI};    /*!< Тип порта */
-    std::optional<Device> device_;      /*!< Подключённое устройство, если есть */
+    PortType type_{PortType::HDMI}; /*!< Тип порта */
+    std::optional<Device> device_; /*!< Подключённое устройство, если есть */
 };
 
 #endif

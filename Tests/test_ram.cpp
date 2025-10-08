@@ -16,7 +16,7 @@ TEST_F(TestingRAM, TestSetMemory) {
     ASSERT_EQ(ram.GetMemory(), 32);
 }
 
-TEST_F(TestingRAM, TestGetDynamicCount){
+TEST_F(TestingRAM, TestGetDynamicCount) {
     ASSERT_EQ(ram.GetMemory(), 16);
 }
 

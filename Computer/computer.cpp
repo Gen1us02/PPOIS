@@ -2,22 +2,26 @@
 
 Computer::Computer() = default;
 
-Computer::Computer(const Case& computerCase, const Display& display, const Microphone& microphone, const Speakers& speakers,
-                    const WiFiAdapter& wifiAdapter, const BluetoothAdapter& bluetoothAdapter, const KeyBoard& keyboard, const Mouse& mouse):
-case_(computerCase), display_(display), microphone_(microphone), speakers_(speakers), 
-wifiAdapter_(wifiAdapter), bluetoothAdapter_(bluetoothAdapter), keyboard_(keyboard), mouse_(mouse){}
-
-bool Computer::BuildComputer(){
-    return case_.InstallDisplay(this->display_, PortType::DisplayPort) &&
-            case_.InstallMicrophone(this->microphone_) &&
-            case_.InstallSpeakers(this->speakers_) &&
-            case_.InstallUSBDevice(this->wifiAdapter_) &&
-            case_.InstallUSBDevice(this->bluetoothAdapter_) &&
-            case_.InstallUSBDevice(this->keyboard_) &&
-            case_.InstallUSBDevice(this->mouse_);
+Computer::Computer(const Case &computerCase, const Display &display, const Microphone &microphone,
+                   const Speakers &speakers,
+                   const WiFiAdapter &wifiAdapter, const BluetoothAdapter &bluetoothAdapter, const KeyBoard &keyboard,
+                   const Mouse &mouse) : case_(computerCase), display_(display), microphone_(microphone),
+                                         speakers_(speakers),
+                                         wifiAdapter_(wifiAdapter), bluetoothAdapter_(bluetoothAdapter),
+                                         keyboard_(keyboard), mouse_(mouse) {
 }
 
-std::string Computer::TurnOn(int coolersSpeed, int powerSupplyVoltage){
+bool Computer::BuildComputer() {
+    return case_.InstallDisplay(this->display_, PortType::DisplayPort) &&
+           case_.InstallMicrophone(this->microphone_) &&
+           case_.InstallSpeakers(this->speakers_) &&
+           case_.InstallUSBDevice(this->wifiAdapter_) &&
+           case_.InstallUSBDevice(this->bluetoothAdapter_) &&
+           case_.InstallUSBDevice(this->keyboard_) &&
+           case_.InstallUSBDevice(this->mouse_);
+}
+
+std::string Computer::TurnOn(int coolersSpeed, int powerSupplyVoltage) {
     display_.TurnOn();
     microphone_.TurnOn();
     speakers_.TurnOn();
@@ -27,10 +31,11 @@ std::string Computer::TurnOn(int coolersSpeed, int powerSupplyVoltage){
     bluetoothAdapter_.ConnectBluetooth();
     keyboard_.TurnOn();
     mouse_.TurnOn();
-    return "Computer turn on\n" + case_.GetPowerSupplyVoltage(powerSupplyVoltage) + "\n" + case_.SetGpuCoolersSpeed(coolersSpeed);
+    return "Computer turn on\n" + case_.GetPowerSupplyVoltage(powerSupplyVoltage) + "\n" + case_.
+           SetGpuCoolersSpeed(coolersSpeed);
 }
 
-std::string Computer::TurnOff(){
+std::string Computer::TurnOff() {
     display_.TurnOff();
     microphone_.TurnOff();
     speakers_.TurnOff();

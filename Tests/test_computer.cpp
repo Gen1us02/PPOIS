@@ -5,16 +5,16 @@ class TestingComputer : public ::testing::Test {
 protected:
     void SetUp() override {
         std::vector<CaseCooler> caseCoolers = {
-            CaseCooler(15,150, "in"),
-            CaseCooler(15,150, "in"),
-            CaseCooler(15,150, "in"),
-            CaseCooler(15,150, "out"),
-            CaseCooler(15,150, "out"),
+            CaseCooler(15, 150, "in"),
+            CaseCooler(15, 150, "in"),
+            CaseCooler(15, 150, "in"),
+            CaseCooler(15, 150, "out"),
+            CaseCooler(15, 150, "out"),
         };
         motherboard_battery = MotherBoardBattery(3, "lithium", 230);
         motherboard = MotherBoard("AM5", motherboard_battery, 4, "DDR5", "B650");
         usbPort = USB();
-        cpuCooler = CPUCooler(15,120, "AM5");
+        cpuCooler = CPUCooler(15, 120, "AM5");
         gpu = GPU(15, 120, true, 12, 2);
         powerSupply = PowerSupply(15, 120, 750, 87, 100, 240);
         computerCase = Case(4, usbPort, caseCoolers, motherboard, gpu, powerSupply, cpuCooler);
@@ -25,7 +25,8 @@ protected:
         microphone = Microphone("dynamic", 14000, 90);
         wifiAdapter = WiFiAdapter();
         bluetoothAdapter = BluetoothAdapter();
-        computer = Computer(computerCase, display, microphone, speakers, wifiAdapter, bluetoothAdapter, keyboard, mouse);
+        computer = Computer(computerCase, display, microphone, speakers, wifiAdapter, bluetoothAdapter, keyboard,
+                            mouse);
     }
 
     MotherBoard motherboard;
@@ -50,8 +51,9 @@ TEST_F(TestingComputer, TestBuildComputer) {
     ASSERT_FALSE(computer.BuildComputer());
 }
 
-TEST_F(TestingComputer, TestTurnOn){
-    ASSERT_EQ(computer.TurnOn(100, 220), "Computer turn on\nThe power supply is connected to the mains with voltage 220\nCooler speed 100 rpm");
+TEST_F(TestingComputer, TestTurnOn) {
+    ASSERT_EQ(computer.TurnOn(100, 220),
+              "Computer turn on\nThe power supply is connected to the mains with voltage 220\nCooler speed 100 rpm");
     ASSERT_EQ(computer.TurnOn(200, 300), "Computer turn on\nThe power supply is broken.\nIncorrect speed");
 }
 
@@ -61,16 +63,16 @@ TEST_F(TestingComputer, TestTurnOff) {
 
 TEST(TestComputer, TestConstructor) {
     std::vector<CaseCooler> caseCoolers = {
-        CaseCooler(15,150, "in"),
-        CaseCooler(15,150, "in"),
-        CaseCooler(15,150, "in"),
-        CaseCooler(15,150, "out"),
-        CaseCooler(15,150, "out"),
+        CaseCooler(15, 150, "in"),
+        CaseCooler(15, 150, "in"),
+        CaseCooler(15, 150, "in"),
+        CaseCooler(15, 150, "out"),
+        CaseCooler(15, 150, "out"),
     };
     auto motherboard_battery = MotherBoardBattery(3, "lithium", 230);
     auto motherboard = MotherBoard("AM5", motherboard_battery, 4, "DDR5", "B650");
     auto usbPort = USB();
-    auto cpuCooler = CPUCooler(15,120, "AM5");
+    auto cpuCooler = CPUCooler(15, 120, "AM5");
     auto gpu = GPU(15, 120, true, 12, 2);
     auto powerSupply = PowerSupply(15, 120, 750, 87, 100, 240);
     auto computerCase = Case(4, usbPort, caseCoolers, motherboard, gpu, powerSupply, cpuCooler);
@@ -81,6 +83,7 @@ TEST(TestComputer, TestConstructor) {
     auto microphone = Microphone("dynamic", 14000, 90);
     auto wifiAdapter = WiFiAdapter();
     auto bluetoothAdapter = BluetoothAdapter();
-    auto computer = Computer(computerCase, display, microphone, speakers, wifiAdapter, bluetoothAdapter, keyboard, mouse);
+    auto computer = Computer(computerCase, display, microphone, speakers, wifiAdapter, bluetoothAdapter, keyboard,
+                             mouse);
     ASSERT_TRUE(computer.BuildComputer());
 }

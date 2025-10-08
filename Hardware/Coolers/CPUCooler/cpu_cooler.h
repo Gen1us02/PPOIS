@@ -15,7 +15,7 @@
  *  \details Наследует Cooler и Hardware. Хранит минимальную и максимальную
  *           скорости, совместимый сокет и возвращает тип кулера как "cpu".
  */
-class CPUCooler:public Cooler, public Hardware{
+class CPUCooler : public Cooler, public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     CPUCooler();
@@ -25,7 +25,7 @@ public:
      *  \param maxSpeed Максимальная скорость кулера
      *  \param socket Совместимый тип сокета
      */
-    CPUCooler(int minSpeed, int maxSpeed, const std::string& socket);
+    CPUCooler(int minSpeed, int maxSpeed, const std::string &socket);
 
     /*! \brief Установить минимальную скорость кулера
      *  \param minSpeed Новая минимальная скорость
@@ -51,7 +51,7 @@ public:
     /*! \brief Установить совместимый сокет кулера
      *  \param socket Строка с названием сокета
      */
-    void SetSocket(const std::string& socket);
+    void SetSocket(const std::string &socket);
 
     /*! \brief Получить совместимый сокет кулера
      *  \return Строка с именем сокета
@@ -68,11 +68,12 @@ public:
     *  \return Строка с указанием установленной скорости или сообщение об ошибке
     */
     std::string SetCurrentSpeed(int speed) const override;
+
 private:
-    int minSpeed_ {0};       /*!< Минимальная скорость кулера */
-    int maxSpeed_ {0};       /*!< Максимальная скорость кулера */
-    std::string socket_ {""};/*!< Совместимый тип сокета */
-    std::string type_ {"cpu"}; /*!< Тип кулера */
+    int minSpeed_{0}; /*!< Минимальная скорость кулера */
+    int maxSpeed_{0}; /*!< Максимальная скорость кулера */
+    std::string socket_{""}; /*!< Совместимый тип сокета */
+    std::string type_{"cpu"}; /*!< Тип кулера */
 };
 
 #endif

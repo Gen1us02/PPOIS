@@ -22,7 +22,7 @@ TEST_F(TestingMotherBoard, TestGetSocket) {
     ASSERT_EQ(motherboard.GetSocket(), "AM5");
 }
 
-TEST_F(TestingMotherBoard, TestInstallCPU){
+TEST_F(TestingMotherBoard, TestInstallCPU) {
     ASSERT_TRUE(motherboard.InstallCPU(cpu));
     ASSERT_FALSE(motherboard.InstallCPU(cpu));
     motherboard.UninstallCPU();
@@ -79,6 +79,7 @@ TEST_F(TestingMotherBoard, TestUninstallSSD) {
     ASSERT_TRUE(motherboard.UninstallSSD());
     ASSERT_FALSE(motherboard.UninstallSSD());
 }
+
 TEST_F(TestingMotherBoard, TestInstall) {
     motherboard.Install();
     ASSERT_TRUE(motherboard.IsInstaled());

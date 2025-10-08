@@ -7,16 +7,16 @@ class TestingComputerCase : public ::testing::Test {
 protected:
     void SetUp() override {
         std::vector<CaseCooler> caseCoolers = {
-            CaseCooler(15,150, "in"),
-            CaseCooler(15,150, "in"),
-            CaseCooler(15,150, "in"),
-            CaseCooler(15,150, "out"),
-            CaseCooler(15,150, "out"),
+            CaseCooler(15, 150, "in"),
+            CaseCooler(15, 150, "in"),
+            CaseCooler(15, 150, "in"),
+            CaseCooler(15, 150, "out"),
+            CaseCooler(15, 150, "out"),
         };
         motherboard_battery = MotherBoardBattery(3, "lithium", 230);
         motherboard = MotherBoard("AM5", motherboard_battery, 4, "DDR5", "B650");
         usbPort = USB();
-        cpuCooler = CPUCooler(15,120, "AM5");
+        cpuCooler = CPUCooler(15, 120, "AM5");
         gpu = GPU(15, 120, true, 12, 2);
         powerSupply = PowerSupply(15, 120, 750, 87, 100, 240);
         computerCase = Case(4, usbPort, caseCoolers, motherboard, gpu, powerSupply, cpuCooler);
@@ -35,7 +35,7 @@ TEST_F(TestingComputerCase, TestGetCoolersCount) {
     ASSERT_EQ(computerCase.GetCoolerCount(), 5);
 }
 
-TEST_F(TestingComputerCase, TestUsbPortsCount){
+TEST_F(TestingComputerCase, TestUsbPortsCount) {
     ASSERT_EQ(computerCase.GetUSBPortsCount(), 4);
 }
 
@@ -128,16 +128,16 @@ TEST_F(TestingComputerCase, TestUninstallUSBDevice) {
 
 TEST(TestCase, TestConstructor) {
     std::vector<CaseCooler> caseCoolers = {
-        CaseCooler(15,150, "in"),
-        CaseCooler(15,150, "in"),
-        CaseCooler(15,150, "in"),
-        CaseCooler(15,150, "out"),
-        CaseCooler(15,150, "out"),
+        CaseCooler(15, 150, "in"),
+        CaseCooler(15, 150, "in"),
+        CaseCooler(15, 150, "in"),
+        CaseCooler(15, 150, "out"),
+        CaseCooler(15, 150, "out"),
     };
     auto motherboard_battery = MotherBoardBattery(3, "lithium", 230);
     auto motherboard = MotherBoard("AM5", motherboard_battery, 4, "DDR5", "B650");
     auto usbPort = USB();
-    auto cpuCooler = CPUCooler(15,120, "AM5");
+    auto cpuCooler = CPUCooler(15, 120, "AM5");
     auto gpu = GPU(15, 120, true, 12, 2);
     auto powerSupply = PowerSupply(15, 120, 750, 87, 100, 240);
     auto computerCase = Case(4, usbPort, caseCoolers, motherboard, gpu, powerSupply, cpuCooler);

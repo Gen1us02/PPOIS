@@ -20,8 +20,8 @@
  *           характеристиками акустики, изменения громкости и отображения
  *           входного аудиосигнала от устройств ввода.
  */
-class Speakers : public OutputDevice{
-    public:
+class Speakers : public OutputDevice {
+public:
     /*! \brief Конструктор по умолчанию */
     Speakers();
 
@@ -80,7 +80,7 @@ class Speakers : public OutputDevice{
      *  \param microphone Объект устройства ввода
      *  \return Строковое представление входного аудиосигнала
      */
-    std::string DisplayInput(const InputDevice& microphone) const override;
+    std::string DisplayInput(const InputDevice &microphone) const override;
 
     /*! \brief Изменить громкость
      *  \details Если значение volumeValue выходит за допустимый диапазон,
@@ -89,11 +89,12 @@ class Speakers : public OutputDevice{
      *  \return Сообщение о результате операции либо текст ошибки
      */
     std::string ChangeVolume(int volumeValue) const;
+
 private:
-    int dynamicCount_ {0};
-    int power_ {0};
-    double weight_ {0.0};
-    int maxRate_ {0};
+    int dynamicCount_{0};
+    int power_{0};
+    double weight_{0.0};
+    int maxRate_{0};
 };
 
 #endif

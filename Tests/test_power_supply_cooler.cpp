@@ -16,7 +16,7 @@ TEST_F(TestingPowerSupplyCooler, TestSetMinSpeed) {
     ASSERT_EQ(power_supply_cooler.GetMinSpeed(), 30);
 }
 
-TEST_F(TestingPowerSupplyCooler, TestGetMinSpeed){
+TEST_F(TestingPowerSupplyCooler, TestGetMinSpeed) {
     ASSERT_EQ(power_supply_cooler.GetMinSpeed(), 15);
 }
 

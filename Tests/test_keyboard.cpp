@@ -16,7 +16,7 @@ TEST_F(TestingKeyBoard, TestSetType) {
     ASSERT_EQ(keyboard.GetType(), "membranic");
 }
 
-TEST_F(TestingKeyBoard, TestGetType){
+TEST_F(TestingKeyBoard, TestGetType) {
     ASSERT_EQ(keyboard.GetType(), "mechanic");
 }
 

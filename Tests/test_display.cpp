@@ -7,7 +7,7 @@ class TestingDisplay : public ::testing::Test {
 protected:
     void SetUp() override {
         display = Display("1920x1080", 4.1,
-            120, "1920x1080", 165, 21);
+                          120, "1920x1080", 165, 21);
         mouse = Mouse(100, 150, "lazer", 8000);
     }
 
@@ -21,7 +21,7 @@ TEST_F(TestingDisplay, TestSetResolution) {
     ASSERT_EQ(display.GetResolution(), "2560x1440");
 }
 
-TEST_F(TestingDisplay, TestGetType){
+TEST_F(TestingDisplay, TestGetType) {
     ASSERT_EQ(display.GetResolution(), "1920x1080");
 }
 
@@ -53,6 +53,7 @@ TEST_F(TestingDisplay, TestSupportsPortTrue) {
 TEST_F(TestingDisplay, TestSupportsPortFalse) {
     ASSERT_FALSE(display.SupportsPort(PortType::USB));
 }
+
 TEST_F(TestingDisplay, TestDisplayInputCorrect) {
     mouse.MoveCursor(500, 400);
     ASSERT_EQ(display.DisplayInput(mouse), "User input:\nx: 500 y: 400");
@@ -68,7 +69,8 @@ TEST_F(TestingDisplay, TestWebCameraVideo) {
 }
 
 TEST_F(TestingDisplay, TestDisplaySettings) {
-    ASSERT_EQ(display.DisplaySettings(), "Display settings: \nResolution: 1920x1080\nRefresh rate: 165\n""Display diagonal: 21");
+    ASSERT_EQ(display.DisplaySettings(),
+              "Display settings: \nResolution: 1920x1080\nRefresh rate: 165\n""Display diagonal: 21");
 }
 
 TEST_F(TestingDisplay, TestConnect) {
@@ -88,18 +90,18 @@ TEST_F(TestingDisplay, TestIsConnected) {
     ASSERT_FALSE(display.IsConnected());
 }
 
-TEST_F(TestingDisplay, TestConnectCamera){
+TEST_F(TestingDisplay, TestConnectCamera) {
     ASSERT_TRUE(display.IsCameraConnected());
 }
 
-TEST_F(TestingDisplay, TestDisconnectCamera){
+TEST_F(TestingDisplay, TestDisconnectCamera) {
     display.DisconnectCamera();
     ASSERT_FALSE(display.IsCameraConnected());
 }
 
 TEST(TestDisplay, TestConstructor) {
     auto display = Display("1920x1080", 4.1,
-            120, "1920x1080", 144, 18);
+                           120, "1920x1080", 144, 18);
     ASSERT_EQ(display.GetResolution(), "1920x1080");
     ASSERT_EQ(display.GetRefreshRate(), 144);
     ASSERT_EQ(display.GetDiagonal(), 18);

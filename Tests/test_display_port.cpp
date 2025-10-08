@@ -7,7 +7,7 @@ protected:
     void SetUp() override {
         display_port = DisplayPort();
         display = display = Display("1920x1080", 4.1,
-            120, "1920x1080", 165, 21);
+                                    120, "1920x1080", 165, 21);
     }
 
     DisplayPort display_port;
@@ -18,7 +18,7 @@ TEST_F(TestingDisplayPort, TestConnectDeviceTrue) {
     ASSERT_TRUE(display_port.ConnectDevice(display));
 }
 
-TEST_F(TestingDisplayPort, TestConnectDeviceFalse){
+TEST_F(TestingDisplayPort, TestConnectDeviceFalse) {
     display_port.ConnectDevice(display);
     ASSERT_FALSE(display_port.ConnectDevice(display));
     display_port.DisconnectDevice();

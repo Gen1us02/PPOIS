@@ -19,7 +19,7 @@
  *           и предоставляет методы для установки и получения этого значения. Может быть
  *           унаследован конкретными реализациями ввода для расширения поведения.
  */
-class InputDevice: public Device{
+class InputDevice : public Device {
 public:
     /*! \brief Виртуальный деструктор
      *  \details Обеспечивает корректное разрушение производных классов через указатель
@@ -39,9 +39,10 @@ public:
     *           внутреннего буфера input_. Используется при необходимости создать независимую
     *           копию устройства.
     */
-    InputDevice(const InputDevice& other)
+    InputDevice(const InputDevice &other)
         : Device(other),
-          input_(other.input_) {}
+          input_(other.input_) {
+    }
 
     /*! \brief Оператор присваивания
      *  \param other Объект-источник для присваивания
@@ -49,7 +50,7 @@ public:
      *  \details Выполняет безопасное присваивание с проверкой на самоприсваивание.
      *           Сохраняет семантику присваивания базового класса Device и копирует поле input_.
      */
-    InputDevice& operator=(const InputDevice& other) {
+    InputDevice &operator=(const InputDevice &other) {
         if (this != &other) {
             Device::operator=(other);
             input_ = other.input_;
@@ -61,7 +62,7 @@ public:
      *  \return Строка с последним вводом
      *  \details Возвращает текущее содержимое внутреннего поля input_.
      */
-    std::string GetInput() const{
+    std::string GetInput() const {
         return this->input_;
     };
 
@@ -71,11 +72,11 @@ protected:
      *  \details Метод сохраняет переданную строку во внутреннее поле для последующего
      *           использования или получения внешними компонентами системы.
      */
-    void ReadInput(const std::string& input){
+    void ReadInput(const std::string &input) {
         this->input_ = input;
     };
 
-    std::string input_ {""}; /*!< Внутренний буфер для ввода */
+    std::string input_{""}; /*!< Внутренний буфер для ввода */
 };
 
 #endif

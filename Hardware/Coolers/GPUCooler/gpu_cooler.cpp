@@ -3,39 +3,36 @@
 
 GPUCooler::GPUCooler() = default;
 
-GPUCooler::GPUCooler(int minSpeed, int maxSpeed):
-minSpeed_(minSpeed), maxSpeed_(maxSpeed){}
+GPUCooler::GPUCooler(int minSpeed, int maxSpeed) : minSpeed_(minSpeed), maxSpeed_(maxSpeed) {
+}
 
-void GPUCooler::SetMinSpeed(int minSpeed){
+void GPUCooler::SetMinSpeed(int minSpeed) {
     this->minSpeed_ = minSpeed;
 }
 
-int GPUCooler::GetMinSpeed() const{
+int GPUCooler::GetMinSpeed() const {
     return this->minSpeed_;
 }
 
-void GPUCooler::SetMaxSpeed(int maxSpeed){
+void GPUCooler::SetMaxSpeed(int maxSpeed) {
     this->maxSpeed_ = maxSpeed;
 }
 
-int GPUCooler::GetMaxSpeed() const{
+int GPUCooler::GetMaxSpeed() const {
     return this->maxSpeed_;
 }
 
-std::string GPUCooler::GetType() const{
+std::string GPUCooler::GetType() const {
     return this->type_;
 }
 
 std::string GPUCooler::SetCurrentSpeed(int speed) const {
-    try{
-        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
-        {
+    try {
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_) {
             throw ExceptionIncorrectSpeed("Incorrect speed");
         }
         return "Cooler speed " + std::to_string(speed) + " rpm";
-    }
-    catch(const ExceptionIncorrectSpeed& ex){
+    } catch (const ExceptionIncorrectSpeed &ex) {
         return ex.what();
     }
-        
 }

@@ -17,7 +17,7 @@
  *           подключение/отключение микрофона, проверка совместимости и
  *           состояния занятости, а также обнаружение подключенного микрофона.
  */
-class MicIn : public Port{
+class MicIn : public Port {
 public:
     /*! \brief Конструктор по умолчанию */
     MicIn();
@@ -26,7 +26,7 @@ public:
      *  \param microphone Ссылка на объект Microphone для подключения
      *  \return true, если подключение выполнено успешно, false в противном случае
      */
-    bool ConnectDevice(const Microphone& microphone);
+    bool ConnectDevice(const Microphone &microphone);
 
     /*! \brief Отключить устройство от порта
      *  \return true, если отключение выполнено успешно,
@@ -44,7 +44,7 @@ public:
      *  \return true, если микрофон совместим и может быть подключен
      *          fasle в противном случае
      */
-    bool CanAccept(const Microphone& microphone) const;
+    bool CanAccept(const Microphone &microphone) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта
@@ -57,8 +57,8 @@ public:
     std::string DetectMicriphone() const;
 
 private:
-    PortType type_ {PortType::MicIn};       /*!< Тип порта*/
-    std::optional<Microphone> microphone_;  /*!< Подключённый микрофон, если есть */
+    PortType type_{PortType::MicIn}; /*!< Тип порта*/
+    std::optional<Microphone> microphone_; /*!< Подключённый микрофон, если есть */
 };
 
 #endif

@@ -18,7 +18,7 @@
  *           Класс позволяет настроить характеристики камеры, получить их и сымитировать
  *           запись видеопотока или приём входных данных от пользователя или драйвера.
  */
-class WebCamera: public InputDevice, public Camera{
+class WebCamera : public InputDevice, public Camera {
 public:
     /*! \brief Конструктор по умолчанию
      *  \details Инициализирует камеру значениями по умолчанию.
@@ -32,13 +32,13 @@ public:
      *  \details Конструктор задаёт ключевые характеристики веб-камеры для моделирования
      *           возможностей захвата видео и совместимости с подсистемой отображения.
      */
-    WebCamera(const std::string& maxResolution, double megapixels, int maxFps);
+    WebCamera(const std::string &maxResolution, double megapixels, int maxFps);
 
     /*! \brief Установить максимальное разрешение камеры
      *  \param maxResolution Строка вида "widthxheight"
      *  \details Метод обновляет значение максимального разрешения камеры.
      */
-    void SetMaxResolution(const std::string& maxResolution);
+    void SetMaxResolution(const std::string &maxResolution);
 
     /*! \brief Получить максимальное разрешение камеры
      *  \return Строка с максимальным разрешением
@@ -72,10 +72,11 @@ public:
      *           строку с описанием полученного файла или состояния записи.
      */
     std::string MakeVideo(int seconds) override;
+
 private:
-    std::string maxResolution_ {""}; /*!< Максимальное разрешение камеры */
-    double megapixels_ {0.0}; /*!< Количество мегапикселей */
-    int maxFps_ {0}; /*!< Максимальная частота кадров */
+    std::string maxResolution_{""}; /*!< Максимальное разрешение камеры */
+    double megapixels_{0.0}; /*!< Количество мегапикселей */
+    int maxFps_{0}; /*!< Максимальная частота кадров */
 };
 
 #endif

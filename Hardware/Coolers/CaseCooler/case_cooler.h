@@ -14,7 +14,7 @@
  *  \details Наследует Cooler и Hardware. Хранит минимальную и максимальную
  *           скорости, направление воздуха и возвращает тип кулера как "case".
  */
-class CaseCooler:public Cooler, public Hardware{
+class CaseCooler : public Cooler, public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     CaseCooler();
@@ -24,7 +24,7 @@ public:
      *  \param maxSpeed Максимальная скорость кулера
      *  \param direction Направление потока воздуха
      */
-    CaseCooler(int, int, const std::string&);
+    CaseCooler(int, int, const std::string &);
 
     /*! \brief Установить минимальную скорость кулера
      *  \param minSpeed Новая минимальная скорость
@@ -49,7 +49,7 @@ public:
     /*! \brief Установить направление потока воздуха
      *  \param direction Строка с направлением
      */
-    void SetDirection(const std::string& direction);
+    void SetDirection(const std::string &direction);
 
     /*! \brief Получить направление потока воздуха
      *  \return Текущий режим направления
@@ -66,11 +66,12 @@ public:
     *  \return Строка с указанием установленной скорости или сообщение об ошибке
     */
     std::string SetCurrentSpeed(int speed) const override;
+
 private:
-    int minSpeed_ {0};   /*!< Минимальная скорость кулера */
-    int maxSpeed_ {0};   /*!< Максимальная скорость кулера */
-    std::string type_ {"case"}; /*!< Тип кулера */
-    std::string direction_ {""}; /*!< Направление потока воздуха */
+    int minSpeed_{0}; /*!< Минимальная скорость кулера */
+    int maxSpeed_{0}; /*!< Максимальная скорость кулера */
+    std::string type_{"case"}; /*!< Тип кулера */
+    std::string direction_{""}; /*!< Направление потока воздуха */
 };
 
 #endif

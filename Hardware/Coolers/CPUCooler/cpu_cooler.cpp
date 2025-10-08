@@ -3,47 +3,45 @@
 
 CPUCooler::CPUCooler() = default;
 
-CPUCooler::CPUCooler(int minSpeed, int maxSpeed, const std::string& socket):
-minSpeed_(minSpeed), maxSpeed_(maxSpeed), socket_(socket){}
+CPUCooler::CPUCooler(int minSpeed, int maxSpeed, const std::string &socket) : minSpeed_(minSpeed), maxSpeed_(maxSpeed),
+                                                                              socket_(socket) {
+}
 
-void CPUCooler::SetMinSpeed(int minSpeed){
+void CPUCooler::SetMinSpeed(int minSpeed) {
     this->minSpeed_ = minSpeed;
 }
 
-int CPUCooler::GetMinSpeed() const{
+int CPUCooler::GetMinSpeed() const {
     return this->minSpeed_;
 }
 
-void CPUCooler::SetMaxSpeed(int maxSpeed){
+void CPUCooler::SetMaxSpeed(int maxSpeed) {
     this->maxSpeed_ = maxSpeed;
 }
 
-int CPUCooler::GetMaxSpeed() const{
+int CPUCooler::GetMaxSpeed() const {
     return this->maxSpeed_;
 }
 
-void CPUCooler::SetSocket(const std::string& socket){
+void CPUCooler::SetSocket(const std::string &socket) {
     this->socket_ = socket;
 }
 
-std::string CPUCooler::GetSocket() const{
+std::string CPUCooler::GetSocket() const {
     return this->socket_;
 }
 
-std::string CPUCooler::GetType() const{
+std::string CPUCooler::GetType() const {
     return this->type_;
 }
 
 std::string CPUCooler::SetCurrentSpeed(int speed) const {
-    try{
-        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
-        {
+    try {
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_) {
             throw ExceptionIncorrectSpeed("Incorrect speed");
         }
         return "Cooler speed " + std::to_string(speed) + " rpm";
-    }
-    catch(const ExceptionIncorrectSpeed& ex){
+    } catch (const ExceptionIncorrectSpeed &ex) {
         return ex.what();
     }
-        
 }

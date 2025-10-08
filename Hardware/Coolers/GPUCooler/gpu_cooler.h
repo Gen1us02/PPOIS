@@ -14,7 +14,7 @@
  *  \details Наследует Cooler и Hardware. Хранит минимальную и максимальную
  *           скорости и возвращает тип кулера как "gpu".
  */
-class GPUCooler:public Cooler, public Hardware{
+class GPUCooler : public Cooler, public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     GPUCooler();
@@ -55,10 +55,11 @@ public:
     *  \return Строка с указанием установленной скорости или сообщение об ошибке
     */
     std::string SetCurrentSpeed(int speed) const override;
+
 private:
-    int minSpeed_ {0};       /*!< Минимальная скорость кулера */
-    int maxSpeed_ {0};       /*!< Максимальная скорость кулера */
-    std::string type_ {"gpu"};  /*!< Тип кулера */
+    int minSpeed_{0}; /*!< Минимальная скорость кулера */
+    int maxSpeed_{0}; /*!< Максимальная скорость кулера */
+    std::string type_{"gpu"}; /*!< Тип кулера */
 };
 
 #endif

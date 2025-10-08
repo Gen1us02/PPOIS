@@ -19,7 +19,7 @@
  *           методы для изменения этих параметров и проверки корректности
  *           диапазона питающего напряжения.
  */
-class PowerSupply : public Hardware{
+class PowerSupply : public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     PowerSupply();
@@ -96,11 +96,11 @@ private:
      */
     bool VoltageSupply(int voltage) const;
 
-    int power_ {0};              /*!< Выходная мощность в ваттах */
-    int efficiency_ {0};         /*!< КПД в процентах */
-    int minVoltage_ {0};         /*!< Минимальное допустимое входное напряжение в вольтах */
-    int maxVoltage_ {0};         /*!< Максимальное допустимое входное напряжение в вольтах */
-    PowerSupplyCooler cooler_;   /*!< Встроенный кулер блока питания */
+    int power_{0}; /*!< Выходная мощность в ваттах */
+    int efficiency_{0}; /*!< КПД в процентах */
+    int minVoltage_{0}; /*!< Минимальное допустимое входное напряжение в вольтах */
+    int maxVoltage_{0}; /*!< Максимальное допустимое входное напряжение в вольтах */
+    PowerSupplyCooler cooler_; /*!< Встроенный кулер блока питания */
 };
 
 #endif

@@ -17,7 +17,7 @@
  *           подключение и отключение дисплеев, проверка совместимости устройства
  *           и состояния занятости порта, а также получение строкового представления типа.
  */
-class DisplayPort : public Port{
+class DisplayPort : public Port {
 public:
     /*! \brief Конструктор по умолчанию */
     DisplayPort();
@@ -26,7 +26,7 @@ public:
      *  \param display Ссылка на объект Display для подключения
      *  \return true, если подключение выполнено успешно, false в противном случае
      */
-    bool ConnectDevice(const Display& display);
+    bool ConnectDevice(const Display &display);
 
     /*! \brief Отключить устройство от порта
      *  \return true, если отключение выполнено успешно,
@@ -43,7 +43,7 @@ public:
      *  \param display Ссылка на проверяемый Display
      *  \return true, если дисплей совместим и может быть подключен
      */
-    bool CanAccept(const Display& display) const;
+    bool CanAccept(const Display &display) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта
@@ -51,8 +51,8 @@ public:
     std::string GetType() const override;
 
 private:
-    PortType type_ {PortType::DisplayPort}; /*!< Тип порта */
-    std::optional<Display> display_;         /*!< Подключённый дисплей, если есть */
+    PortType type_{PortType::DisplayPort}; /*!< Тип порта */
+    std::optional<Display> display_; /*!< Подключённый дисплей, если есть */
 };
 
 #endif

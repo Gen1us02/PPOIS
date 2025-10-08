@@ -20,7 +20,7 @@
  *           Класс предназначен для наследования конкретными реализациями сетевых и
  *           периферийных адаптеров.
  */
-class Adapter : public Device{
+class Adapter : public Device {
 public:
     /*! \brief Виртуальный деструктор
      *  \details Обеспечивает корректное удаление производных реализаций через указатель
@@ -33,7 +33,7 @@ public:
      *  \details Чисто виртуальная функция должна сохранять или конфигурировать тип интерфейса,
      *           используемого адаптером.
      */
-    virtual void SetConnectionInterface(const std::string& connectionInterface) = 0;
+    virtual void SetConnectionInterface(const std::string &connectionInterface) = 0;
 
     /*! \brief Получить строковое представление интерфейса подключения
      *  \return Строка с обозначением интерфейса подключения

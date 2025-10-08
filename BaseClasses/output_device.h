@@ -18,7 +18,7 @@
  *           определяя чисто виртуальный метод DisplayInput для обработки входных событий
  *           от устройств ввода и формирования человекочитаемого описания события.
  */
-class OutputDevice : public Device{
+class OutputDevice : public Device {
 public:
     /*! \brief Виртуальный деструктор
      *  \details Обеспечивает корректное уничтожение производных классов через указатель
@@ -36,8 +36,9 @@ public:
     *  \details Выполняет поэлементное копирование состояния базового класса Device.
     *  Используется при необходимости создать независимую копию устройства.
     */
-    OutputDevice(const OutputDevice& other)
-        : Device(other){}
+    OutputDevice(const OutputDevice &other)
+        : Device(other) {
+    }
 
     /*! \brief Оператор присваивания
      *  \param other Объект-источник для присваивания
@@ -45,7 +46,7 @@ public:
      *  \details Выполняет безопасное присваивание с проверкой на самоприсваивание.
      *           Сохраняет семантику присваивания базового класса Device.
      */
-    OutputDevice& operator=(const OutputDevice& other) {
+    OutputDevice &operator=(const OutputDevice &other) {
         if (this != &other) {
             Device::operator=(other);
         }
@@ -58,7 +59,7 @@ public:
      *  \details Чисто виртуальный метод обязан быть реализован в производных классах.
      *           Метод используется для имитации отображения действий пользователя на устройстве вывода.
      */
-    virtual std::string DisplayInput(const InputDevice& inputDevice) const = 0;
+    virtual std::string DisplayInput(const InputDevice &inputDevice) const = 0;
 };
 
 #endif

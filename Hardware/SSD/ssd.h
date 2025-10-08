@@ -19,7 +19,7 @@
  *           и тип порта. Предоставляет интерфейс для установки и получения этих
  *           параметров, проверки поддержки порта и оценки времени операций.
  */
-class SSD : public MemoryDevice, public Hardware{
+class SSD : public MemoryDevice, public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     SSD();
@@ -91,11 +91,11 @@ public:
     double WriteTime(int dataSize);
 
 private:
-    int memorySize_ {0};        /*!< Размер памяти накопителя */
-    int readSpeed_ {0};         /*!< Скорость чтения в МБ/с */
-    int writeSpeed_ {0};        /*!< Скорость записи в МБ/с */
-    int timeBeforeBreak_ {0};   /*!< Ожидаемое время до поломки в часах */
-    PortType port_ {PortType::M2}; /*!< Тип порта, к которому ориентирован SSD */
+    int memorySize_{0}; /*!< Размер памяти накопителя */
+    int readSpeed_{0}; /*!< Скорость чтения в МБ/с */
+    int writeSpeed_{0}; /*!< Скорость записи в МБ/с */
+    int timeBeforeBreak_{0}; /*!< Ожидаемое время до поломки в часах */
+    PortType port_{PortType::M2}; /*!< Тип порта, к которому ориентирован SSD */
 };
 
 #endif

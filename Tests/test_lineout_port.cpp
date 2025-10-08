@@ -7,7 +7,6 @@ protected:
     void SetUp() override {
         lineout_port = LineOut();
         speakers = Speakers(2, 70, 2.5, 14000);
-
     }
 
     LineOut lineout_port;
@@ -18,7 +17,7 @@ TEST_F(TestingLineOut, TestConnectDeviceTrue) {
     ASSERT_TRUE(lineout_port.ConnectDevice(speakers));
 }
 
-TEST_F(TestingLineOut, TestConnectDeviceFalse){
+TEST_F(TestingLineOut, TestConnectDeviceFalse) {
     lineout_port.ConnectDevice(speakers);
     ASSERT_FALSE(lineout_port.ConnectDevice(speakers));
     lineout_port.DisconnectDevice();

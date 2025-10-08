@@ -16,7 +16,7 @@ TEST_F(TestingPowerSupply, TestSetPower) {
     ASSERT_EQ(power_supply.GetPower(), 800);
 }
 
-TEST_F(TestingPowerSupply, TestGetDynamicCount){
+TEST_F(TestingPowerSupply, TestGetDynamicCount) {
     ASSERT_EQ(power_supply.GetPower(), 750);
 }
 

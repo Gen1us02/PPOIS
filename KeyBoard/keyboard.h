@@ -13,7 +13,7 @@
  *  \details Наследуется от InputDevice и реализует базовую функциональность
  *           клавиатуры: хранение типа устройства и обработку нажатий кнопок.
  */
-class KeyBoard : public InputDevice{
+class KeyBoard : public InputDevice {
 public:
     /*! \brief Конструктор по умолчанию */
     KeyBoard();
@@ -21,25 +21,26 @@ public:
     /*! \brief Конструктор с установкой типа клавиатуры
      *  \param type Строка, описывающая тип клавиатуры
      */
-    KeyBoard(const std::string& type);
+    KeyBoard(const std::string &type);
 
     /*! \brief Установить тип клавиатуры
      *  \param type Новое значение типа клавиатуры
      */
-    void SetType(const std::string& type);
+    void SetType(const std::string &type);
 
     /*! \brief Получить тип клавиатуры
      *  \return Строка с текущим типом клавиатуры
      */
-  std::string GetType() const;
+    std::string GetType() const;
 
     /*! \brief Обработать нажатие кнопки
      *  \param key Строка с именем или кодом нажатой кнопки
      *  \return Строковое сообщение о результате нажатия
      */
-    std::string PressButton(const std::string& key);
+    std::string PressButton(const std::string &key);
+
 private:
-    std::string type_ {""}; /*!< Тип клавиатуры */
+    std::string type_{""}; /*!< Тип клавиатуры */
 };
 
 #endif

@@ -15,7 +15,7 @@
  *           Класс также содержит методы управления состоянием соединения Bluetooth и проверки
  *           текущего состояния подключения.
  */
-class BluetoothAdapter : public Adapter{
+class BluetoothAdapter : public Adapter {
 public:
     /*! \brief Конструктор по умолчанию
      *  \details Инициализирует адаптер со значениями по умолчанию.
@@ -28,13 +28,13 @@ public:
      *  \param coverageRadius Радиус покрытия в метрах
      *  \details Позволяет задать ключевые характеристики адаптера при создании объекта.
      */
-    BluetoothAdapter(const std::string& connectionInterface, int speed, int coverageRadius);
+    BluetoothAdapter(const std::string &connectionInterface, int speed, int coverageRadius);
 
     /*! \brief Установить интерфейс подключения
      *  \param connectionInterface Строковое описание интерфейса подключения
      *  \details Сохраняет описание интерфейса (например стандарта Bluetooth).
      */
-    void SetConnectionInterface(const std::string& connectionInterface) override;
+    void SetConnectionInterface(const std::string &connectionInterface) override;
 
     /*! \brief Получить интерфейс подключения
      *  \return Строка с описанием интерфейса подключения
@@ -82,10 +82,10 @@ public:
     bool IsConnectBluetooth() const;
 
 private:
-    std::string connectionInterface_ {""}; /*!< Описание интерфейса подключения */
-    int speed_ {0}; /*!< Рабочая скорость адаптера */
-    int coverageRadius_ {0}; /*!< Радиус покрытия в метрах */
-    bool isConnectBluetooth_ {false}; /*!< Флаг состояния Bluetooth-соединения */
+    std::string connectionInterface_{""}; /*!< Описание интерфейса подключения */
+    int speed_{0}; /*!< Рабочая скорость адаптера */
+    int coverageRadius_{0}; /*!< Радиус покрытия в метрах */
+    bool isConnectBluetooth_{false}; /*!< Флаг состояния Bluetooth-соединения */
 };
 
 #endif

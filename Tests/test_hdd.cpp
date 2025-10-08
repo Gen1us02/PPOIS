@@ -16,7 +16,7 @@ TEST_F(TestingHDD, TestSetMemorySize) {
     ASSERT_EQ(hdd.GetMemorySize(), 2048);
 }
 
-TEST_F(TestingHDD, TestGetMemorySize){
+TEST_F(TestingHDD, TestGetMemorySize) {
     ASSERT_EQ(hdd.GetMemorySize(), 1024);
 }
 

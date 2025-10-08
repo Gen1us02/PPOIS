@@ -3,43 +3,41 @@
 
 DisplayPort::DisplayPort() = default;
 
-bool DisplayPort::ConnectDevice(const Display& display){
-    try{
-        if (this->display_.has_value()){
+bool DisplayPort::ConnectDevice(const Display &display) {
+    try {
+        if (this->display_.has_value()) {
             throw ExceptionIsOccupiedError("The port is busy");
         }
         if (!CanAccept(display)) return false;
         this->display_.emplace(display);
         return true;
-    }
-    catch (const ExceptionIsOccupiedError& ex){
+    } catch (const ExceptionIsOccupiedError &ex) {
         std::cout << ex.what();
         return false;
     }
 }
 
-bool DisplayPort::DisconnectDevice(){
-    try{
+bool DisplayPort::DisconnectDevice() {
+    try {
         if (!this->display_.has_value()) {
             throw ExceptionNotIsOccupiedError("The port is free");
         }
         this->display_.reset();
         return true;
-    }
-    catch (const ExceptionNotIsOccupiedError& ex){
+    } catch (const ExceptionNotIsOccupiedError &ex) {
         std::cout << ex.what();
         return false;
     }
 }
 
-bool DisplayPort::CanAccept(const Display& display) const{
+bool DisplayPort::CanAccept(const Display &display) const {
     return display.SupportsPort(this->type_);
 }
 
-std::string DisplayPort::GetType() const{
+std::string DisplayPort::GetType() const {
     return ToString(this->type_);
 }
 
-bool DisplayPort::IsOccupied() const{
+bool DisplayPort::IsOccupied() const {
     return this->display_.has_value();
 }

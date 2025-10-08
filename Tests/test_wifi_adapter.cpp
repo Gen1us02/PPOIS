@@ -16,7 +16,7 @@ TEST_F(TestingWiFiAdapter, TestSetConnectionInterface) {
     ASSERT_EQ(wifiadapter.GetConnectionInterface(), "USB3.0");
 }
 
-TEST_F(TestingWiFiAdapter, TestGetConnectionInterface){
+TEST_F(TestingWiFiAdapter, TestGetConnectionInterface) {
     ASSERT_EQ(wifiadapter.GetConnectionInterface(), "USB2.0");
 }
 

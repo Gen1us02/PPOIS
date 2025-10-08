@@ -16,7 +16,7 @@ TEST_F(TestingGPU, TestSetRtxSupport) {
     ASSERT_EQ(gpu.GetRtxSupport(), false);
 }
 
-TEST_F(TestingGPU, TestGetRtxSupport){
+TEST_F(TestingGPU, TestGetRtxSupport) {
     ASSERT_EQ(gpu.GetRtxSupport(), true);
 }
 
@@ -51,7 +51,8 @@ TEST_F(TestingGPU, TestSetDlssModeCorrect) {
 
 TEST_F(TestingGPU, TestSetDlssModeIncorrect) {
     ASSERT_EQ(gpu.SetDlssMode(""), "DLSS mode cannot be empty");
-    ASSERT_EQ(gpu.SetDlssMode("agfafafs"), "Invalid DLSS mode. Valid modes: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
+    ASSERT_EQ(gpu.SetDlssMode("agfafafs"),
+              "Invalid DLSS mode. Valid modes: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
 }
 
 TEST_F(TestingGPU, TestInstall) {

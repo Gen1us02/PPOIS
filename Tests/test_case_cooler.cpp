@@ -16,7 +16,7 @@ TEST_F(TestingCaseCooler, TestSetMinSpeed) {
     ASSERT_EQ(case_cooler.GetMinSpeed(), 30);
 }
 
-TEST_F(TestingCaseCooler, TestGetMinSpeed){
+TEST_F(TestingCaseCooler, TestGetMinSpeed) {
     ASSERT_EQ(case_cooler.GetMinSpeed(), 15);
 }
 

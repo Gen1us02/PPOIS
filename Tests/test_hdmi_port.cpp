@@ -8,9 +8,8 @@ protected:
     void SetUp() override {
         hdmi_port = HDMI();
         display = display = Display("1920x1080", 4.1,
-            120, "1920x1080", 165, 21);
+                                    120, "1920x1080", 165, 21);
         microphone = Microphone();
-
     }
 
     HDMI hdmi_port;
@@ -22,7 +21,7 @@ TEST_F(TestingHDMI, TestConnectDeviceTrue) {
     ASSERT_TRUE(hdmi_port.ConnectDevice(display));
 }
 
-TEST_F(TestingHDMI, TestConnectDeviceFalse){
+TEST_F(TestingHDMI, TestConnectDeviceFalse) {
     hdmi_port.ConnectDevice(display);
     ASSERT_FALSE(hdmi_port.ConnectDevice(display));
     hdmi_port.DisconnectDevice();

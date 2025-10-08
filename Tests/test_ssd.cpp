@@ -16,7 +16,7 @@ TEST_F(TestingSSD, TestSetMemorySize) {
     ASSERT_EQ(ssd.GetMemorySize(), 2048);
 }
 
-TEST_F(TestingSSD, TestGetMemorySize){
+TEST_F(TestingSSD, TestGetMemorySize) {
     ASSERT_EQ(ssd.GetMemorySize(), 1024);
 }
 

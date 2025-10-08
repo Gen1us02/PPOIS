@@ -3,48 +3,46 @@
 
 PortM2::PortM2() = default;
 
-bool PortM2::ConnectDevice(const SSD& ssd){
-    try{
-        if (this->ssd_.has_value()){
+bool PortM2::ConnectDevice(const SSD &ssd) {
+    try {
+        if (this->ssd_.has_value()) {
             throw ExceptionIsOccupiedError("The port is busy");
         }
         if (!CanAccept(ssd)) return false;
         this->ssd_.emplace(ssd);
         return true;
-    }
-    catch (const ExceptionIsOccupiedError& ex){
+    } catch (const ExceptionIsOccupiedError &ex) {
         std::cout << ex.what();
         return false;
     }
 }
 
-bool PortM2::DisconnectDevice(){
-    try{
+bool PortM2::DisconnectDevice() {
+    try {
         if (!this->ssd_.has_value()) {
             throw ExceptionNotIsOccupiedError("The port is free");
         }
         this->ssd_.reset();
         return true;
-    }
-    catch (const ExceptionNotIsOccupiedError& ex){
+    } catch (const ExceptionNotIsOccupiedError &ex) {
         std::cout << ex.what();
         return false;
     }
 }
 
-bool PortM2::IsOccupied() const{
+bool PortM2::IsOccupied() const {
     return this->ssd_.has_value();
 }
 
-bool PortM2::CanAccept(const SSD& ssd) const{
+bool PortM2::CanAccept(const SSD &ssd) const {
     return ssd.SupportsPort(this->type_);
 }
 
-std::string PortM2::GetType() const{
+std::string PortM2::GetType() const {
     return ToString(this->type_);
 }
 
-int PortM2::GetSSDSize() const{
+int PortM2::GetSSDSize() const {
     if (!this->ssd_.has_value()) return 0;
     return ssd_->GetMemorySize();
 }

@@ -3,57 +3,58 @@
 
 PowerSupply::PowerSupply() = default;
 
-PowerSupply::PowerSupply(int minSpeed, int maxSpeed, int power, int efficiency, int minVoltage, int maxVoltage):
-power_(power), efficiency_(efficiency), minVoltage_(minVoltage), maxVoltage_(maxVoltage), cooler_(minSpeed, maxSpeed){}
+PowerSupply::PowerSupply(int minSpeed, int maxSpeed, int power, int efficiency, int minVoltage,
+                         int maxVoltage) : power_(power), efficiency_(efficiency), minVoltage_(minVoltage),
+                                           maxVoltage_(maxVoltage), cooler_(minSpeed, maxSpeed) {
+}
 
-void PowerSupply::SetPower(int power){
+void PowerSupply::SetPower(int power) {
     this->power_ = power;
 }
 
-int PowerSupply::GetPower() const{
+int PowerSupply::GetPower() const {
     return this->power_;
 }
 
-void PowerSupply::SetEfficiency(int efficiency){
+void PowerSupply::SetEfficiency(int efficiency) {
     this->efficiency_ = efficiency;
 }
 
-int PowerSupply::GetEfficiency() const{
+int PowerSupply::GetEfficiency() const {
     return this->efficiency_;
 }
 
-void PowerSupply::SetMinVoltage(int minVoltage){
+void PowerSupply::SetMinVoltage(int minVoltage) {
     this->minVoltage_ = minVoltage;
 }
 
-int PowerSupply::GetMinVoltage() const{
+int PowerSupply::GetMinVoltage() const {
     return this->minVoltage_;
 }
 
-void PowerSupply::SetMaxVoltage(int maxVoltage){
+void PowerSupply::SetMaxVoltage(int maxVoltage) {
     this->maxVoltage_ = maxVoltage;
 }
 
-int PowerSupply::GetMaxVoltage() const{
+int PowerSupply::GetMaxVoltage() const {
     return this->maxVoltage_;
 }
 
-std::string PowerSupply::SetCoolerCurrentSpeed(int speed) const{
+std::string PowerSupply::SetCoolerCurrentSpeed(int speed) const {
     return this->cooler_.SetCurrentSpeed(speed);
 }
 
-bool PowerSupply::VoltageSupply(int voltage) const{
+bool PowerSupply::VoltageSupply(int voltage) const {
     return voltage >= this->minVoltage_ && voltage <= this->maxVoltage_;
 }
 
-std::string PowerSupply::VoltageSupplyMessage(int voltage) const{
-    try{
-        if (!VoltageSupply(voltage)){
+std::string PowerSupply::VoltageSupplyMessage(int voltage) const {
+    try {
+        if (!VoltageSupply(voltage)) {
             throw ExceptionIncorrectVoltage("The power supply is broken.");
         }
         return "The power supply is connected to the mains with voltage " + std::to_string(voltage);
-    }
-    catch (const ExceptionIncorrectVoltage& ex){
+    } catch (const ExceptionIncorrectVoltage &ex) {
         return ex.what();
     }
 }

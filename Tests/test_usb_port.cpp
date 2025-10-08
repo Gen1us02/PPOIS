@@ -9,7 +9,6 @@ protected:
         usb_port = USB();
         mouse = Mouse();
         microphone = Microphone();
-
     }
 
     USB usb_port;
@@ -21,7 +20,7 @@ TEST_F(TestingUSB, TestConnectDeviceTrue) {
     ASSERT_TRUE(usb_port.ConnectDevice(mouse));
 }
 
-TEST_F(TestingUSB, TestConnectDeviceFalse){
+TEST_F(TestingUSB, TestConnectDeviceFalse) {
     usb_port.ConnectDevice(mouse);
     ASSERT_FALSE(usb_port.ConnectDevice(mouse));
     usb_port.DisconnectDevice();

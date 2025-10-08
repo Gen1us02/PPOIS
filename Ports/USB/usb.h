@@ -15,7 +15,7 @@
  *  \details Наследует Port и реализует поведение порта USB. Подключение и
  *           отключение устройств, проверка возможности подключения и состояние занятости.
  */
-class USB : public Port{
+class USB : public Port {
 public:
     /*! \brief Конструктор по умолчанию */
     USB();
@@ -24,7 +24,7 @@ public:
      *  \param device Ссылка на устройство для подключения
      *  \return true, если подключение успешно, false в противном случае
      */
-    bool ConnectDevice(const Device& device);
+    bool ConnectDevice(const Device &device);
 
     /*! \brief Отключить устройство от порта
      *  \return true, если отключение успешно,
@@ -41,7 +41,7 @@ public:
      *  \param device Ссылка на проверяемое устройство
      *  \return true, если устройство совместимо с портом и может быть подключено
      */
-    bool CanAccept(const Device& device) const;
+    bool CanAccept(const Device &device) const;
 
     /*! \brief Получить тип порта в виде строки
      *  \return Строковое представление типа порта
@@ -49,9 +49,8 @@ public:
     std::string GetType() const override;
 
 private:
-
-    PortType type_ {PortType::USB};        /*!< Тип порта*/
-    std::optional<Device> device_;         /*!< Подключённое устройство, если есть */
+    PortType type_{PortType::USB}; /*!< Тип порта*/
+    std::optional<Device> device_; /*!< Подключённое устройство, если есть */
 };
 
 #endif

@@ -17,7 +17,7 @@
  *           частоты. Предоставляет методы для изменения и получения этих параметров
  *           и для переключения турбо-режима.
  */
-class CPU: public Hardware{
+class CPU : public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     CPU();
@@ -29,12 +29,12 @@ public:
      *  \param baseFrequency Базовая рабочая частота в ГГц
      *  \param maxFrequency Максимальная частота в ГГц
      */
-    CPU(const std::string& socketType, int coreCount, int maxThreadCount, double baseFrequency, double maxFrequency);
+    CPU(const std::string &socketType, int coreCount, int maxThreadCount, double baseFrequency, double maxFrequency);
 
     /*! \brief Установить тип сокета процессора
      *  \param socketType Строка с названием сокета
      */
-    void SetSocketType(const std::string& socketType);
+    void SetSocketType(const std::string &socketType);
 
     /*! \brief Получить тип сокета процессора
      *  \return Строка с названием сокета
@@ -88,11 +88,11 @@ public:
     std::string SetTurboMode(bool mode) const;
 
 private:
-    std::string socketType_ {""}; /*!< Тип сокета процессора */
-    int coreCount_ {0};           /*!< Число физических ядер */
-    int maxThreadCount_ {0};      /*!< Максимальное число потоков */
-    double baseFrequency_ {0.0};  /*!< Базовая частота в ГГц */
-    double maxFrequency_ {0.0};   /*!< Максимальная частота в ГГц */
+    std::string socketType_{""}; /*!< Тип сокета процессора */
+    int coreCount_{0}; /*!< Число физических ядер */
+    int maxThreadCount_{0}; /*!< Максимальное число потоков */
+    double baseFrequency_{0.0}; /*!< Базовая частота в ГГц */
+    double maxFrequency_{0.0}; /*!< Максимальная частота в ГГц */
 };
 
 #endif

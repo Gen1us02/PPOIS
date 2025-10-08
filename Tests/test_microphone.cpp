@@ -16,7 +16,7 @@ TEST_F(TestingMicrophone, TestSetType) {
     ASSERT_EQ(microphone.GetType(), "electret");
 }
 
-TEST_F(TestingMicrophone, TestGetType){
+TEST_F(TestingMicrophone, TestGetType) {
     ASSERT_EQ(microphone.GetType(), "dynamic");
 }
 

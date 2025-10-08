@@ -3,39 +3,36 @@
 
 PowerSupplyCooler::PowerSupplyCooler() = default;
 
-PowerSupplyCooler::PowerSupplyCooler(int minSpeed, int maxSpeed):
-minSpeed_(minSpeed), maxSpeed_(maxSpeed){}
+PowerSupplyCooler::PowerSupplyCooler(int minSpeed, int maxSpeed) : minSpeed_(minSpeed), maxSpeed_(maxSpeed) {
+}
 
-void PowerSupplyCooler::SetMinSpeed(int minSpeed){
+void PowerSupplyCooler::SetMinSpeed(int minSpeed) {
     this->minSpeed_ = minSpeed;
 }
 
-int PowerSupplyCooler::GetMinSpeed() const{
+int PowerSupplyCooler::GetMinSpeed() const {
     return this->minSpeed_;
 }
 
-void PowerSupplyCooler::SetMaxSpeed(int maxSpeed){
+void PowerSupplyCooler::SetMaxSpeed(int maxSpeed) {
     this->maxSpeed_ = maxSpeed;
 }
 
-int PowerSupplyCooler::GetMaxSpeed() const{
+int PowerSupplyCooler::GetMaxSpeed() const {
     return this->maxSpeed_;
 }
 
-std::string PowerSupplyCooler::GetType() const{
+std::string PowerSupplyCooler::GetType() const {
     return this->type_;
 }
 
 std::string PowerSupplyCooler::SetCurrentSpeed(int speed) const {
-    try{
-        if (speed < this->minSpeed_ || speed > this->maxSpeed_)
-        {
+    try {
+        if (speed < this->minSpeed_ || speed > this->maxSpeed_) {
             throw ExceptionIncorrectSpeed("Incorrect speed");
         }
         return "Cooler speed " + std::to_string(speed) + " rpm";
-    }
-    catch(const ExceptionIncorrectSpeed& ex){
+    } catch (const ExceptionIncorrectSpeed &ex) {
         return ex.what();
     }
-        
 }

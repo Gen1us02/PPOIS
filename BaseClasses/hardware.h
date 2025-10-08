@@ -17,7 +17,7 @@
  *           методы для проверки состояния, установки и удаления компонента. Наследники
  *           могут расширять поведение, добавляя собственную инициализацию и освобождение ресурсов.
  */
-class Hardware{
+class Hardware {
 public:
     /*! \brief Виртуальный деструктор
      *  \details Обеспечивает корректное разрушение производных классов через указатель на базовый тип.
@@ -28,7 +28,7 @@ public:
      *  \return true если компонент установлен, false если отсутствует
      *  \details Метод возвращает текущее состояние флага установки компонента.
      */
-    bool IsInstaled() const{
+    bool IsInstaled() const {
         return this->isInstalled_;
     };
 
@@ -36,8 +36,8 @@ public:
      *  \details Выполняет установку компонента, изменяя внутренний флаг состояния.
      *           Если компонент уже установлен, вызов игнорируется.
      */
-    void Install(){
-        if(isInstalled_) return;
+    void Install() {
+        if (isInstalled_) return;
         this->isInstalled_ = true;
     }
 
@@ -45,13 +45,13 @@ public:
      *  \details Выполняет удаление компонента, изменяя внутренний флаг состояния.
      *           Если компонент уже отсутствует, вызов игнорируется.
      */
-    void Uninstall(){
-        if(!isInstalled_) return;
+    void Uninstall() {
+        if (!isInstalled_) return;
         this->isInstalled_ = false;
     }
 
 protected:
-    bool isInstalled_ {false}; /*!< Флаг состояния установки компонента */
+    bool isInstalled_{false}; /*!< Флаг состояния установки компонента */
 };
 
 #endif

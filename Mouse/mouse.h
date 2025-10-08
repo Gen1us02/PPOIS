@@ -13,7 +13,7 @@
  *  \details Наследует InputDevice и реализует функциональность управления курсором:
  *           установка и получение координат, тип сенсора, разрешение в DPI и перемещение курсора.
  */
-class Mouse:public InputDevice{
+class Mouse : public InputDevice {
 public:
     /*! \brief Конструктор по умолчанию */
     Mouse();
@@ -24,7 +24,7 @@ public:
      *  \param sensorType Тип сенсора
      *  \param dpi Разрешение сенсора в DPI
      */
-    Mouse(int cursorX, int cursorY, const std::string& sensorType, int dpi);
+    Mouse(int cursorX, int cursorY, const std::string &sensorType, int dpi);
 
     /*! \brief Установить координату X курсора
      *  \param cursorX Новое значение координаты X
@@ -49,7 +49,7 @@ public:
     /*! \brief Установить тип сенсора мыши
      *  \param sensorType Строка, описывающая тип сенсора (например, "optical", "laser")
      */
-    void SetSensorType(const std::string& sensorType);
+    void SetSensorType(const std::string &sensorType);
 
     /*! \brief Получить тип сенсора мыши
      *  \return Строка с типом сенсора
@@ -74,10 +74,10 @@ public:
     void MoveCursor(int x, int y);
 
 private:
-    int cursorX_ {0};           /*!< Текущая координата X курсора */
-    int cursorY_ {0};           /*!< Текущая координата Y курсора */
-    std::string sensorType_ {""};/*!< Тип сенсора */
-    int dpi_ {0};                /*!< Чувствительность мыши */
+    int cursorX_{0}; /*!< Текущая координата X курсора */
+    int cursorY_{0}; /*!< Текущая координата Y курсора */
+    std::string sensorType_{""}; /*!< Тип сенсора */
+    int dpi_{0}; /*!< Чувствительность мыши */
 };
 
 #endif

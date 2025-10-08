@@ -13,7 +13,7 @@
  *           хранит тип, максимальную частоту записи, отношение сигнал/шум,
  *           состояние заглушения и предоставляет методы управления и чтения звука.
  */
-class Microphone: public InputDevice{
+class Microphone : public InputDevice {
 public:
     /*! \brief Конструктор по умолчанию */
     Microphone();
@@ -23,12 +23,12 @@ public:
      *  \param maxFrequency Максимальная частота, поддерживаемая микрофоном (в Гц)
      *  \param signalNoiseRatio Отношение сигнал/шум (в дБ)
      */
-    Microphone(const std::string& type, int maxFrequency, int signalNoiseRatio);
+    Microphone(const std::string &type, int maxFrequency, int signalNoiseRatio);
 
     /*! \brief Установить тип микрофона
      *  \param type Строка, описывающая тип микрофона
      */
-    void SetType(const std::string& type);
+    void SetType(const std::string &type);
 
     /*! \brief Получить тип микрофона
      *  \return Строка с типом микрофона
@@ -76,10 +76,10 @@ public:
     std::string ReadSound();
 
 private:
-    std::string type_ {""};         /*!< Тип микрофона */
-    int maxFrequency_ {0};          /*!< Максимальная частота в герцах */
-    int signalNoiseRatio_ {0};      /*!< Отношение сигнал/шум в дБ */
-    bool isMute_ {false};           /*!< Флаг заглушения микрофона */
+    std::string type_{""}; /*!< Тип микрофона */
+    int maxFrequency_{0}; /*!< Максимальная частота в герцах */
+    int signalNoiseRatio_{0}; /*!< Отношение сигнал/шум в дБ */
+    bool isMute_{false}; /*!< Флаг заглушения микрофона */
 };
 
 #endif

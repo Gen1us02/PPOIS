@@ -14,7 +14,7 @@
  *  \details Наследует Battery. Предоставляет методы установки и получения
  *           напряжения и типа, управления ёмкостью и проверки, «живая» ли батарея.
  */
-class MotherBoardBattery : public Battery{
+class MotherBoardBattery : public Battery {
 public:
     /*! \brief Конструктор по умолчанию */
     MotherBoardBattery();
@@ -24,7 +24,7 @@ public:
      *  \param type Строка, описывающая тип батареи
      *  \param capacity Ёмкость батареи (в мА·ч)
      */
-    MotherBoardBattery(int voltage, const std::string& type, int capacity);
+    MotherBoardBattery(int voltage, const std::string &type, int capacity);
 
     /*! \brief Установить напряжение батареи
      *  \param voltage Новое значение напряжения
@@ -42,7 +42,7 @@ public:
      *  \param type Строка с описанием типа батареи
      *  \note Переопределяет виртуальный метод Battery
      */
-    void SetType(const std::string& type) override;
+    void SetType(const std::string &type) override;
 
     /*! \brief Получить тип батареи
      *  \return Строка с типом батареи
@@ -67,9 +67,9 @@ public:
     bool IsAlive() const;
 
 private:
-    int voltage_ {0};        /*!< Текущее напряжение батареи */
-    std::string type_ {""};  /*!< Тип батареи */
-    int capacity_ {0};       /*!< Ёмкость батареи */
+    int voltage_{0}; /*!< Текущее напряжение батареи */
+    std::string type_{""}; /*!< Тип батареи */
+    int capacity_{0}; /*!< Ёмкость батареи */
 };
 
 #endif

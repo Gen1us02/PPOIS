@@ -16,7 +16,7 @@ TEST_F(TestingGPUCooler, TestSetMinSpeed) {
     ASSERT_EQ(gpu_cooler.GetMinSpeed(), 30);
 }
 
-TEST_F(TestingGPUCooler, TestGetMinSpeed){
+TEST_F(TestingGPUCooler, TestGetMinSpeed) {
     ASSERT_EQ(gpu_cooler.GetMinSpeed(), 15);
 }
 

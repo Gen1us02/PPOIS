@@ -16,7 +16,7 @@
  *           общий объём, тип, рабочую частоту и состояние включения. Предоставляет
  *           интерфейс для управления этими параметрами и получения статуса.
  */
-class RAM : public Hardware{
+class RAM : public Hardware {
 public:
     /*! \brief Конструктор по умолчанию */
     RAM();
@@ -27,7 +27,7 @@ public:
      *  \param type Строка, описывающая тип памяти (например, "DDR4")
      *  \param frequency Рабочая частота памяти (в МГц)
      */
-    RAM(int memory, const std::string& type, int frequency);
+    RAM(int memory, const std::string &type, int frequency);
 
     /*! \brief Установить объём памяти
      *  \param memory Новый объём памяти
@@ -42,7 +42,7 @@ public:
     /*! \brief Установить тип памяти
      *  \param type Строка с описанием типа памяти
      */
-    void SetType(const std::string& type);
+    void SetType(const std::string &type);
 
     /*! \brief Получить тип памяти
      *  \return Строка с типом памяти
@@ -73,11 +73,12 @@ public:
      *  \return Строка с описанием текущего состояния памяти
      */
     std::string RamStatus() const;
+
 private:
-    int memory_ {0};        /*!< Общий объём памяти */
-    std::string type_ {0};  /*!< Тип памяти */
-    int frequency_ {0};     /*!< Частота памяти в МГц */
-    bool enabled_ {false};  /*!< Флаг состояния включения */
+    int memory_{0}; /*!< Общий объём памяти */
+    std::string type_{0}; /*!< Тип памяти */
+    int frequency_{0}; /*!< Частота памяти в МГц */
+    bool enabled_{false}; /*!< Флаг состояния включения */
 };
 
 

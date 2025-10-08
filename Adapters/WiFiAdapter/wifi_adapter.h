@@ -18,7 +18,7 @@
  *           интерфейса, значение скорости и диапазон частот в ГГц,
  *           а также флаг текущего подключения к сети. Предназначен для симуляций и тестов.
  */
-class WiFiAdapter : public Adapter{
+class WiFiAdapter : public Adapter {
 public:
     /*! \brief Конструктор по умолчанию
      *  \details Инициализирует адаптер значениями по умолчанию.
@@ -32,13 +32,13 @@ public:
      *  \details Конструктор позволяет задать ключевые характеристики адаптера для моделирования
      *           конкретных сетевых возможностей и поведения при подключении.
      */
-    WiFiAdapter(const std::string& connectionInterface, int speed, double frequencyRange);
+    WiFiAdapter(const std::string &connectionInterface, int speed, double frequencyRange);
 
     /*! \brief Установить строковое обозначение интерфейса подключения
      *  \param connectionInterface Строка с названием интерфейса подключения
      *  \details Сохраняет описание интерфейса, используемого адаптером.
      */
-    void SetConnectionInterface(const std::string& connectionInterface) override;
+    void SetConnectionInterface(const std::string &connectionInterface) override;
 
     /*! \brief Получить строковое обозначение интерфейса подключения
      *  \return Строка с интерфейсом подключения
@@ -88,10 +88,10 @@ public:
     void DisconnectWiFi();
 
 private:
-    std::string connectionInterface_ {""}; /*!< Описание интерфейса подключения */
-    int speed_ {0}; /*!< Рабочая скорость адаптера */
-    double frequencyRange_ {0}; /*!< Частотный диапазон в ГГц */
-    bool isConnectWiFi_ {false}; /*!< Флаг состояния подключения к сети */
+    std::string connectionInterface_{""}; /*!< Описание интерфейса подключения */
+    int speed_{0}; /*!< Рабочая скорость адаптера */
+    double frequencyRange_{0}; /*!< Частотный диапазон в ГГц */
+    bool isConnectWiFi_{false}; /*!< Флаг состояния подключения к сети */
 };
 
 #endif
