@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/Coolers/GPUCooler/gpu_cooler.h"
 #include "gtest/gtest.h"
 
@@ -36,7 +37,7 @@ TEST_F(TestingGPUCooler, TestGetType) {
 
 TEST_F(TestingGPUCooler, TestSetCurrentSpeed) {
     ASSERT_EQ(gpu_cooler.SetCurrentSpeed(100), "Cooler speed 100 rpm");
-    ASSERT_EQ(gpu_cooler.SetCurrentSpeed(200), "Incorrect speed");
+    ASSERT_THROW(gpu_cooler.SetCurrentSpeed(200), ExceptionIncorrectSpeed);
 }
 
 TEST_F(TestingGPUCooler, TestInstall) {

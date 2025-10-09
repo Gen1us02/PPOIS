@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Ports/MicIn/micin.h"
 #include "../Microphone/microphone.h"
 #include "gtest/gtest.h"
@@ -19,7 +20,7 @@ TEST_F(TestingMicIn, TestConnectDeviceTrue) {
 
 TEST_F(TestingMicIn, TestConnectDeviceFalse) {
     micin_port.ConnectDevice(microphone);
-    ASSERT_FALSE(micin_port.ConnectDevice(microphone));
+    ASSERT_THROW(micin_port.ConnectDevice(microphone), ExceptionIsOccupiedError);
     micin_port.DisconnectDevice();
     ASSERT_TRUE(micin_port.ConnectDevice(microphone));
 }
@@ -30,7 +31,7 @@ TEST_F(TestingMicIn, TestDisconnectDeviceTrue) {
 }
 
 TEST_F(TestingMicIn, TestDisconnectDeviceFalse) {
-    ASSERT_FALSE(micin_port.DisconnectDevice());
+    ASSERT_THROW(micin_port.DisconnectDevice(), ExceptionNotIsOccupiedError);
 }
 
 TEST_F(TestingMicIn, TestIsOccupied) {

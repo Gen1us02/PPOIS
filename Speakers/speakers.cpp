@@ -44,23 +44,15 @@ int Speakers::GetMaxRate() const {
 }
 
 std::string Speakers::DisplayInput(const InputDevice &microphone) const {
-    try {
-        if (!(typeid(microphone) == typeid(Microphone))) {
-            throw ExceptionIncorrectInstance("Device isn't microphone");
-        }
-        return "User volume:\n" + microphone.GetInput();
-    } catch (const ExceptionIncorrectInstance &ex) {
-        return ex.what();
+    if (!(typeid(microphone) == typeid(Microphone))) {
+        throw ExceptionIncorrectInstance("Device isn't microphone");
     }
+    return "User volume:\n" + microphone.GetInput();
 }
 
 std::string Speakers::ChangeVolume(int volumeValue) const {
-    try {
-        if (volumeValue > 100 || volumeValue < 0) {
-            throw ExceptionIncorrectVolume("Incorrect volume value");
-        }
-        return "Volume change on " + std::to_string(volumeValue);
-    } catch (const ExceptionIncorrectVolume &ex) {
-        return ex.what();
+    if (volumeValue > 100 || volumeValue < 0) {
+        throw ExceptionIncorrectVolume("Incorrect volume value");
     }
+    return "Volume change on " + std::to_string(volumeValue);
 }

@@ -4,30 +4,20 @@
 LineOut::LineOut() = default;
 
 bool LineOut::ConnectDevice(const Speakers &speakers) {
-    try {
-        if (this->speakers_.has_value()) {
-            throw ExceptionIsOccupiedError("The port is busy");
-        }
-        if (!CanAccept(speakers)) return false;
-        this->speakers_.emplace(speakers);
-        return true;
-    } catch (const ExceptionIsOccupiedError &ex) {
-        std::cout << ex.what();
-        return false;
+    if (this->speakers_.has_value()) {
+        throw ExceptionIsOccupiedError("The port is busy");
     }
+    if (!CanAccept(speakers)) return false;
+    this->speakers_.emplace(speakers);
+    return true;
 }
 
 bool LineOut::DisconnectDevice() {
-    try {
-        if (!this->speakers_.has_value()) {
-            throw ExceptionNotIsOccupiedError("The port is free");
-        }
-        this->speakers_.reset();
-        return true;
-    } catch (const ExceptionNotIsOccupiedError &ex) {
-        std::cout << ex.what();
-        return false;
+    if (!this->speakers_.has_value()) {
+        throw ExceptionNotIsOccupiedError("The port is free");
     }
+    this->speakers_.reset();
+    return true;
 }
 
 bool LineOut::IsOccupied() const {

@@ -1,4 +1,5 @@
 #include "../Display/display.h"
+#include "../Exceptions/exceptions.h"
 #include "../Microphone/microphone.h"
 #include "../Mouse/mouse.h"
 #include "gtest/gtest.h"
@@ -61,7 +62,7 @@ TEST_F(TestingDisplay, TestDisplayInputCorrect) {
 
 TEST_F(TestingDisplay, TestDisplayInputIncorrrect) {
     auto microphone = Microphone();
-    ASSERT_EQ(display.DisplayInput(microphone), "Device is not keyboard or mouse");
+    ASSERT_THROW(display.DisplayInput(microphone), ExceptionIncorrectInstance);
 }
 
 TEST_F(TestingDisplay, TestWebCameraVideo) {

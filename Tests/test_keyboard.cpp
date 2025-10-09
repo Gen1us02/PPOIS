@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../KeyBoard/keyboard.h"
 #include "gtest/gtest.h"
 
@@ -21,11 +22,15 @@ TEST_F(TestingKeyBoard, TestGetType) {
 }
 
 TEST_F(TestingKeyBoard, TestPressButtonCorrect) {
+    ASSERT_THROW(keyboard.PressButton("g"), ExceptionConnection);
+    keyboard.Connect();
     ASSERT_EQ(keyboard.PressButton("f"), "Button pressed f");
 }
 
 TEST_F(TestingKeyBoard, TestPressButtonIncorrect) {
-    ASSERT_EQ(keyboard.PressButton("fad"), "Pressed a lot of buttons");
+    ASSERT_THROW(keyboard.PressButton("f"), ExceptionConnection);
+    keyboard.Connect();
+    ASSERT_THROW(keyboard.PressButton("fsj"), ExceptionManyKeysPressed);
 }
 
 TEST_F(TestingKeyBoard, TestSupportsPortCorrrect) {

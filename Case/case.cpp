@@ -1,5 +1,7 @@
 #include "case.h"
 
+#include "../Exceptions/exceptions.h"
+
 Case::Case() = default;
 
 Case::Case(int usbPortsCount, const USB &usbPort, const std::vector<CaseCooler> &coolers,
@@ -40,66 +42,116 @@ bool Case::UninstallUSBDeviceByIndex(int portIndex) {
 }
 
 bool Case::InstallDisplay(const Display &display, PortType port) {
-    if (port == PortType::HDMI) {
-        return hdmiPort_.ConnectDevice(display);
-    }
+    try {
+        if (port == PortType::HDMI) {
+            return hdmiPort_.ConnectDevice(display);
+        }
 
-    if (port == PortType::DisplayPort) {
-        return displayPort_.ConnectDevice(display);
-    }
+        if (port == PortType::DisplayPort) {
+            return displayPort_.ConnectDevice(display);
+        }
 
-    return false;
+        return false;
+    } catch (const ExceptionIsOccupiedError &ex) {
+        std::cout << ex.what() << std::endl;
+        return false;
+    }
 }
 
 bool Case::UninstallDisplay() {
-    if (displayPort_.IsOccupied()) {
-        return displayPort_.DisconnectDevice();
-    }
+    try {
+        if (displayPort_.IsOccupied()) {
+            return displayPort_.DisconnectDevice();
+        }
 
-    if (hdmiPort_.IsOccupied()) {
-        return hdmiPort_.DisconnectDevice();;
-    }
+        if (hdmiPort_.IsOccupied()) {
+            return hdmiPort_.DisconnectDevice();
+        }
 
-    return false;
+        return false;
+    } catch (const ExceptionNotIsOccupiedError &ex) {
+        std::cout << ex.what() << std::endl;
+        return false;
+    }
 }
 
 bool Case::InstallSpeakers(const Speakers &speakers) {
-    return lineoutPort_.ConnectDevice(speakers);
+    try {
+        return lineoutPort_.ConnectDevice(speakers);
+    } catch (const ExceptionIsOccupiedError &ex) {
+        std::cout << ex.what() << std::endl;
+        return false;
+    }
 }
 
 bool Case::UninstallSpeakers() {
-    return lineoutPort_.DisconnectDevice();
+    try {
+        return lineoutPort_.DisconnectDevice();
+    } catch (const ExceptionNotIsOccupiedError &ex) {
+        std::cout << ex.what() << std::endl;
+        return false;
+    }
 }
 
 bool Case::InstallMicrophone(const Microphone &microphone) {
-    return micinPort_.ConnectDevice(microphone);
+    try {
+        return micinPort_.ConnectDevice(microphone);
+    } catch (const ExceptionIsOccupiedError &ex) {
+        std::cout << ex.what() << std::endl;
+        return false;
+    }
 }
 
 bool Case::UninstallMicrophone() {
-    return micinPort_.DisconnectDevice();
+    try {
+        return micinPort_.DisconnectDevice();
+    } catch (const ExceptionNotIsOccupiedError &ex) {
+        std::cout << ex.what() << std::endl;
+        return false;
+    }
 }
 
 std::string Case::SetCaseCoolersSpeed(int speed) const {
-    std::string result;
-    for (const CaseCooler &cooler: coolers_) {
-        result = cooler.SetCurrentSpeed(speed);
-    }
+    try {
+        std::string result;
+        for (const CaseCooler &cooler: coolers_) {
+            result = cooler.SetCurrentSpeed(speed);
+        }
 
-    return result;
+        return result;
+    } catch (const ExceptionIncorrectSpeed &ex) {
+        return ex.what();
+    }
 }
 
 std::string Case::SetPowerSupplyCoolerSpeed(int speed) const {
-    return powerSupply_.SetCoolerCurrentSpeed(speed);
+    try {
+        return powerSupply_.SetCoolerCurrentSpeed(speed);
+    } catch (const ExceptionIncorrectSpeed &ex) {
+        return ex.what();
+    }
 }
 
 std::string Case::SetCpuCoolerSpeed(int speed) const {
-    return cpuCooler_.SetCurrentSpeed(speed);
+    try {
+        return cpuCooler_.SetCurrentSpeed(speed);
+    } catch (const ExceptionIncorrectSpeed &ex) {
+        return ex.what();
+    }
 }
 
 std::string Case::SetGpuCoolersSpeed(int speed) const {
-    return gpu_.SetCoolerCurrentSpeed(speed);
+    try {
+        return gpu_.SetCoolerCurrentSpeed(speed);
+    } catch (const ExceptionIncorrectSpeed &ex) {
+        return ex.what();
+    }
 }
 
 std::string Case::GetPowerSupplyVoltage(int voltage) const {
-    return powerSupply_.VoltageSupplyMessage(voltage);
+    try {
+        return powerSupply_.VoltageSupplyMessage(voltage);
+    } catch (const ExceptionIncorrectVoltage &ex) {
+        return ex.what();
+    }
 }

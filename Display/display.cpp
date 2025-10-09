@@ -45,14 +45,10 @@ std::string Display::DisplaySettings() const {
 }
 
 std::string Display::DisplayInput(const InputDevice &inputDevice) const {
-    try {
-        if (!(typeid(inputDevice) == typeid(KeyBoard) || typeid(inputDevice) == typeid(Mouse))) {
-            throw ExceptionIncorrectInstance("Device is not keyboard or mouse");
-        }
-        return "User input:\n" + inputDevice.GetInput();
-    } catch (const ExceptionIncorrectInstance &ex) {
-        return ex.what();
+    if (!(typeid(inputDevice) == typeid(KeyBoard) || typeid(inputDevice) == typeid(Mouse))) {
+        throw ExceptionIncorrectInstance("Device is not keyboard or mouse");
     }
+    return "User input:\n" + inputDevice.GetInput();
 }
 
 std::string Display::WebCameraVideo(int seconds) {

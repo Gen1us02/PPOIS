@@ -1,5 +1,6 @@
 #include "../Ports/HDMI/hdmi.h"
 #include "../Display/display.h"
+#include "../Exceptions/exceptions.h"
 #include "../Microphone/microphone.h"
 #include "gtest/gtest.h"
 
@@ -23,7 +24,7 @@ TEST_F(TestingHDMI, TestConnectDeviceTrue) {
 
 TEST_F(TestingHDMI, TestConnectDeviceFalse) {
     hdmi_port.ConnectDevice(display);
-    ASSERT_FALSE(hdmi_port.ConnectDevice(display));
+    ASSERT_THROW(hdmi_port.ConnectDevice(display), ExceptionIsOccupiedError);
     hdmi_port.DisconnectDevice();
     ASSERT_FALSE(hdmi_port.ConnectDevice(microphone));
 }
@@ -34,7 +35,7 @@ TEST_F(TestingHDMI, TestDisconnectDeviceTrue) {
 }
 
 TEST_F(TestingHDMI, TestDisconnectDeviceFalse) {
-    ASSERT_FALSE(hdmi_port.DisconnectDevice());
+    ASSERT_THROW(hdmi_port.DisconnectDevice(), ExceptionNotIsOccupiedError);
 }
 
 TEST_F(TestingHDMI, TestIsOccupied) {

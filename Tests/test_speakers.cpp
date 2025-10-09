@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Speakers/speakers.h"
 #include "../Microphone/microphone.h"
 #include "../Mouse/mouse.h"
@@ -62,7 +63,7 @@ TEST_F(TestingSpeakers, TestDisplayInputCorrect) {
 }
 
 TEST_F(TestingSpeakers, TestDisplayInputIncorrect) {
-    ASSERT_EQ("Device isn't microphone", speakers.DisplayInput(mouse));
+    ASSERT_THROW(speakers.DisplayInput(mouse), ExceptionIncorrectInstance);
 }
 
 TEST_F(TestingSpeakers, TestChangeVolumeCorrect) {
@@ -70,7 +71,7 @@ TEST_F(TestingSpeakers, TestChangeVolumeCorrect) {
 }
 
 TEST_F(TestingSpeakers, TestChangeVolumeIncorrect) {
-    ASSERT_EQ("Incorrect volume value", speakers.ChangeVolume(150));
+    ASSERT_THROW(speakers.ChangeVolume(150), ExceptionIncorrectVolume);
 }
 
 TEST_F(TestingSpeakers, TestConnect) {

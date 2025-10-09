@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Ports/LineOut/lineout.h"
 #include "../Speakers/speakers.h"
 #include "gtest/gtest.h"
@@ -19,7 +20,7 @@ TEST_F(TestingLineOut, TestConnectDeviceTrue) {
 
 TEST_F(TestingLineOut, TestConnectDeviceFalse) {
     lineout_port.ConnectDevice(speakers);
-    ASSERT_FALSE(lineout_port.ConnectDevice(speakers));
+    ASSERT_THROW(lineout_port.ConnectDevice(speakers), ExceptionIsOccupiedError);
     lineout_port.DisconnectDevice();
     ASSERT_TRUE(lineout_port.ConnectDevice(speakers));
 }
@@ -30,7 +31,7 @@ TEST_F(TestingLineOut, TestDisconnectDeviceTrue) {
 }
 
 TEST_F(TestingLineOut, TestDisconnectDeviceFalse) {
-    ASSERT_FALSE(lineout_port.DisconnectDevice());
+    ASSERT_THROW(lineout_port.DisconnectDevice(), ExceptionNotIsOccupiedError);
 }
 
 TEST_F(TestingLineOut, TestIsOccupied) {

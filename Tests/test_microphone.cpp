@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Microphone/microphone.h"
 #include "gtest/gtest.h"
 
@@ -63,7 +64,7 @@ TEST_F(TestingMicrophone, TestReadSoundCorrect) {
 }
 
 TEST_F(TestingMicrophone, TestReadSoundIncorrect) {
-    ASSERT_EQ(microphone.ReadSound(), "Microphone is not connected");
+    ASSERT_THROW(microphone.ReadSound(), ExceptionConnection);
 }
 
 TEST_F(TestingMicrophone, TestConnect) {

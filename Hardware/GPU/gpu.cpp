@@ -30,11 +30,16 @@ int GPU::GetCoolerCount() const {
 }
 
 std::string GPU::SetCoolerCurrentSpeed(int speed) const {
-    std::string result;
-    for (const GPUCooler &cooler: this->coolers_) {
-        result = cooler.SetCurrentSpeed(speed);
+    try {
+        std::string result;
+        for (const GPUCooler &cooler: this->coolers_) {
+            result = cooler.SetCurrentSpeed(speed);
+        }
+        return result;
     }
-    return result;
+    catch (const ExceptionIncorrectSpeed &ex) {
+        return ex.what();
+    }
 }
 
 std::string GPU::SetVsync(bool mode) const {
@@ -42,26 +47,22 @@ std::string GPU::SetVsync(bool mode) const {
 }
 
 std::string GPU::SetDlssMode(const std::string &dlssMode) const {
-    try {
-        const std::vector<std::string> validModes = {
-            "Ultra Performance",
-            "Performance",
-            "Balanced",
-            "Quality",
-            "Ultra Quality"
-        };
+    const std::vector<std::string> validModes = {
+        "Ultra Performance",
+        "Performance",
+        "Balanced",
+        "Quality",
+        "Ultra Quality"
+    };
 
-        if (dlssMode.empty()) {
-            throw ExceptionIncorrectDLLSMode("DLSS mode cannot be empty");
-        }
-
-        if (std::find(validModes.begin(), validModes.end(), dlssMode) == validModes.end()) {
-            throw ExceptionIncorrectDLLSMode(
-                "Invalid DLSS mode. Valid modes: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
-        }
-
-        return "DLSS mode is set to " + dlssMode;
-    } catch (const ExceptionIncorrectDLLSMode &ex) {
-        return ex.what();
+    if (dlssMode.empty()) {
+        throw ExceptionIncorrectDLLSMode("DLSS mode cannot be empty");
     }
+
+    if (std::find(validModes.begin(), validModes.end(), dlssMode) == validModes.end()) {
+        throw ExceptionIncorrectDLLSMode(
+            "Invalid DLSS mode. Valid modes: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
+    }
+
+    return "DLSS mode is set to " + dlssMode;
 }

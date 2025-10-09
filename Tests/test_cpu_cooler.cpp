@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/Coolers/CPUCooler/cpu_cooler.h"
 #include "gtest/gtest.h"
 
@@ -46,7 +47,7 @@ TEST_F(TestingCPUCooler, TestGetType) {
 
 TEST_F(TestingCPUCooler, TestSetCurrentSpeed) {
     ASSERT_EQ(cpu_cooler.SetCurrentSpeed(100), "Cooler speed 100 rpm");
-    ASSERT_EQ(cpu_cooler.SetCurrentSpeed(200), "Incorrect speed");
+    ASSERT_THROW(cpu_cooler.SetCurrentSpeed(200), ExceptionIncorrectSpeed);
 }
 
 TEST_F(TestingCPUCooler, TestInstall) {

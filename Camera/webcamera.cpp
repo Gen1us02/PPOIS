@@ -1,4 +1,5 @@
 #include "webcamera.h"
+#include "../Exceptions/exceptions.h"
 #include <format>
 
 WebCamera::WebCamera() = default;
@@ -33,8 +34,7 @@ int WebCamera::GetMaxFps() const {
 
 std::string WebCamera::MakeVideo(int seconds) {
     if (!IsConnected()) {
-        std::cout << "Camera isn't connected";
-        return "";
+        throw ExceptionConnection("WebCamera is not connected");
     }
     int frames_count = seconds * maxFps_;
 

@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/GPU/gpu.h"
 #include "gtest/gtest.h"
 
@@ -50,9 +51,9 @@ TEST_F(TestingGPU, TestSetDlssModeCorrect) {
 }
 
 TEST_F(TestingGPU, TestSetDlssModeIncorrect) {
-    ASSERT_EQ(gpu.SetDlssMode(""), "DLSS mode cannot be empty");
-    ASSERT_EQ(gpu.SetDlssMode("agfafafs"),
-              "Invalid DLSS mode. Valid modes: Ultra Performance, Performance, Balanced, Quality, Ultra Quality");
+    ASSERT_THROW(gpu.SetDlssMode(""), ExceptionIncorrectDLLSMode);
+    ASSERT_THROW(gpu.SetDlssMode("agfafafs"),
+                 ExceptionIncorrectDLLSMode);
 }
 
 TEST_F(TestingGPU, TestInstall) {

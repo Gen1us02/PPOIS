@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/RAM/ram.h"
 #include "gtest/gtest.h"
 
@@ -57,7 +58,7 @@ TEST_F(TestingRAM, TestRamStatusCorrect) {
 }
 
 TEST_F(TestingRAM, TestRamStatusIncorrect) {
-    ASSERT_EQ(ram.RamStatus(), "The computer turns off, the data is cleared");
+    ASSERT_THROW(ram.RamStatus(), ExceptionRAMStatusError);
 }
 
 TEST_F(TestingRAM, TestInstall) {

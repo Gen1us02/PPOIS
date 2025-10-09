@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/PowerSupply/power_supply.h"
 #include "gtest/gtest.h"
 
@@ -63,7 +64,7 @@ TEST_F(TestingPowerSupply, TestVoltageMessageCorrect) {
 }
 
 TEST_F(TestingPowerSupply, TestVoltageMessageIncorrect) {
-    ASSERT_EQ(power_supply.VoltageSupplyMessage(280), "The power supply is broken.");
+    ASSERT_THROW(power_supply.VoltageSupplyMessage(280), ExceptionIncorrectVoltage);
 }
 
 TEST_F(TestingPowerSupply, TestInstall) {

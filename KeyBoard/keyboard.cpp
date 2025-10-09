@@ -18,13 +18,12 @@ std::string KeyBoard::GetType() const {
 }
 
 std::string KeyBoard::PressButton(const std::string &key) {
-    try {
-        if (key.size() != 1) {
-            throw ExceptionManyKeysPressed("Pressed a lot of buttons");
-        }
-        ReadInput(key);
-        return "Button pressed " + key;
-    } catch (const ExceptionManyKeysPressed &ex) {
-        return ex.what();
+    if (!IsConnected()) {
+        throw ExceptionConnection("Keyboard not connected");
     }
+    if (key.size() != 1) {
+        throw ExceptionManyKeysPressed("Pressed a lot of buttons");
+    }
+    ReadInput(key);
+    return "Button pressed " + key;
 }

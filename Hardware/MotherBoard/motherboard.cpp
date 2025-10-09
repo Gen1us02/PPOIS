@@ -70,9 +70,6 @@ bool MotherBoard::IsRAMCompatibility(const RAM &module) const {
 
 bool MotherBoard::InstallSSD(const SSD &ssd) {
     try {
-        if (ssdPort_.IsOccupied()) {
-            throw ExceptionIsOccupiedError("Порт занят");
-        }
         this->ssd_.emplace(ssd);
         ssd_->Install();
         return ssdPort_.ConnectDevice(ssd);
@@ -84,9 +81,6 @@ bool MotherBoard::InstallSSD(const SSD &ssd) {
 
 bool MotherBoard::UninstallSSD() {
     try {
-        if (!ssdPort_.IsOccupied()) {
-            throw ExceptionNotIsOccupiedError("Порт свободен");
-        }
         ssd_->Uninstall();
         this->ssd_.reset();
         return ssdPort_.DisconnectDevice();

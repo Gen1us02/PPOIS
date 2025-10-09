@@ -39,12 +39,8 @@ bool RAM::IsEnabled() const {
 }
 
 std::string RAM::RamStatus() const {
-    try {
-        if (!this->enabled_) {
-            throw ExceptionRAMStatusError("The computer turns off, the data is cleared");
-        }
-        return "RAM is working. Application data is collecting";
-    } catch (const ExceptionRAMStatusError &ex) {
-        return ex.what();
+    if (!this->enabled_) {
+        throw ExceptionRAMStatusError("The computer turns off, the data is cleared");
     }
+    return "RAM is working. Application data is collecting";
 }

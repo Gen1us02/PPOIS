@@ -27,12 +27,8 @@ std::string GPUCooler::GetType() const {
 }
 
 std::string GPUCooler::SetCurrentSpeed(int speed) const {
-    try {
-        if (speed < this->minSpeed_ || speed > this->maxSpeed_) {
-            throw ExceptionIncorrectSpeed("Incorrect speed");
-        }
-        return "Cooler speed " + std::to_string(speed) + " rpm";
-    } catch (const ExceptionIncorrectSpeed &ex) {
-        return ex.what();
+    if (speed < this->minSpeed_ || speed > this->maxSpeed_) {
+        throw ExceptionIncorrectSpeed("Incorrect speed");
     }
+    return "Cooler speed " + std::to_string(speed) + " rpm";
 }

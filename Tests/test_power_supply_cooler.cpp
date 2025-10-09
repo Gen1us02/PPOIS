@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/Coolers/PowerSupplyCooler/power_supply_cooler.h"
 #include "gtest/gtest.h"
 
@@ -36,7 +37,7 @@ TEST_F(TestingPowerSupplyCooler, TestGetType) {
 
 TEST_F(TestingPowerSupplyCooler, TestSetCurrentSpeed) {
     ASSERT_EQ(power_supply_cooler.SetCurrentSpeed(100), "Cooler speed 100 rpm");
-    ASSERT_EQ(power_supply_cooler.SetCurrentSpeed(200), "Incorrect speed");
+    ASSERT_THROW(power_supply_cooler.SetCurrentSpeed(200), ExceptionIncorrectSpeed);
 }
 
 TEST_F(TestingPowerSupplyCooler, TestInstall) {

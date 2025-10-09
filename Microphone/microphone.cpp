@@ -52,17 +52,13 @@ bool Microphone::IsMuted() const {
 }
 
 std::string Microphone::ReadSound() {
-    try {
-        if (!IsConnected()) {
-            throw ExceptionConnection("Microphone is not connected");
-        }
-        std::string sound = "Microphone read: " + type_
-                            + " freq=" + std::to_string(maxFrequency_)
-                            + " snr=" + std::to_string(signalNoiseRatio_);
-
-        ReadInput(sound);
-        return sound;
-    } catch (const ExceptionConnection &ex) {
-        return ex.what();
+    if (!IsConnected()) {
+        throw ExceptionConnection("Microphone is not connected");
     }
+    std::string sound = "Microphone read: " + type_
+                        + " freq=" + std::to_string(maxFrequency_)
+                        + " snr=" + std::to_string(signalNoiseRatio_);
+
+    ReadInput(sound);
+    return sound;
 }

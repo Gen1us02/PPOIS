@@ -1,5 +1,6 @@
 #include "../Ports/DisplayPort/displayport.h"
 #include "../Display/display.h"
+#include "../Exceptions/exceptions.h"
 #include "gtest/gtest.h"
 
 class TestingDisplayPort : public ::testing::Test {
@@ -20,7 +21,7 @@ TEST_F(TestingDisplayPort, TestConnectDeviceTrue) {
 
 TEST_F(TestingDisplayPort, TestConnectDeviceFalse) {
     display_port.ConnectDevice(display);
-    ASSERT_FALSE(display_port.ConnectDevice(display));
+    ASSERT_THROW(display_port.ConnectDevice(display), ExceptionIsOccupiedError);
     display_port.DisconnectDevice();
     ASSERT_TRUE(display_port.ConnectDevice(display));
 }
@@ -31,7 +32,7 @@ TEST_F(TestingDisplayPort, TestDisconnectDeviceTrue) {
 }
 
 TEST_F(TestingDisplayPort, TestDisconnectDeviceFalse) {
-    ASSERT_FALSE(display_port.DisconnectDevice());
+    ASSERT_THROW(display_port.DisconnectDevice(), ExceptionNotIsOccupiedError);
 }
 
 TEST_F(TestingDisplayPort, TestIsOccupied) {

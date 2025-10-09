@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Ports/USB/usb.h"
 #include "../Mouse/mouse.h"
 #include "../Microphone/microphone.h"
@@ -22,7 +23,7 @@ TEST_F(TestingUSB, TestConnectDeviceTrue) {
 
 TEST_F(TestingUSB, TestConnectDeviceFalse) {
     usb_port.ConnectDevice(mouse);
-    ASSERT_FALSE(usb_port.ConnectDevice(mouse));
+    ASSERT_THROW(usb_port.ConnectDevice(mouse), ExceptionIsOccupiedError);
     usb_port.DisconnectDevice();
     ASSERT_FALSE(usb_port.ConnectDevice(microphone));
 }
@@ -33,7 +34,7 @@ TEST_F(TestingUSB, TestDisconnectDeviceTrue) {
 }
 
 TEST_F(TestingUSB, TestDisconnectDeviceFalse) {
-    ASSERT_FALSE(usb_port.DisconnectDevice());
+    ASSERT_THROW(usb_port.DisconnectDevice(), ExceptionNotIsOccupiedError);
 }
 
 TEST_F(TestingUSB, TestIsOccupied) {

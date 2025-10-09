@@ -4,30 +4,20 @@
 MicIn::MicIn() = default;
 
 bool MicIn::ConnectDevice(const Microphone &microphone) {
-    try {
-        if (this->microphone_.has_value()) {
-            throw ExceptionIsOccupiedError("The port is busy");
-        }
-        if (!CanAccept(microphone)) return false;
-        this->microphone_.emplace(microphone);
-        return true;
-    } catch (const ExceptionIsOccupiedError &ex) {
-        std::cout << ex.what();
-        return false;
+    if (this->microphone_.has_value()) {
+        throw ExceptionIsOccupiedError("The port is busy");
     }
+    if (!CanAccept(microphone)) return false;
+    this->microphone_.emplace(microphone);
+    return true;
 }
 
 bool MicIn::DisconnectDevice() {
-    try {
-        if (!this->microphone_.has_value()) {
-            throw ExceptionNotIsOccupiedError("The port is free");
-        }
-        this->microphone_.reset();
-        return true;
-    } catch (const ExceptionNotIsOccupiedError &ex) {
-        std::cout << ex.what();
-        return false;
+    if (!this->microphone_.has_value()) {
+        throw ExceptionNotIsOccupiedError("The port is free");
     }
+    this->microphone_.reset();
+    return true;
 }
 
 bool MicIn::IsOccupied() const {

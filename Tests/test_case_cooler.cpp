@@ -1,3 +1,4 @@
+#include "../Exceptions/exceptions.h"
 #include "../Hardware/Coolers/CaseCooler/case_cooler.h"
 #include "gtest/gtest.h"
 
@@ -46,7 +47,7 @@ TEST_F(TestingCaseCooler, TestGetType) {
 
 TEST_F(TestingCaseCooler, TestSetCurrentSpeed) {
     ASSERT_EQ(case_cooler.SetCurrentSpeed(100), "Cooler speed 100 rpm");
-    ASSERT_EQ(case_cooler.SetCurrentSpeed(200), "Incorrect speed");
+    ASSERT_THROW(case_cooler.SetCurrentSpeed(200), ExceptionIncorrectSpeed);
 }
 
 TEST_F(TestingCaseCooler, TestInstall) {

@@ -41,7 +41,11 @@ int PowerSupply::GetMaxVoltage() const {
 }
 
 std::string PowerSupply::SetCoolerCurrentSpeed(int speed) const {
-    return this->cooler_.SetCurrentSpeed(speed);
+    try {
+        return this->cooler_.SetCurrentSpeed(speed);
+    } catch (const ExceptionIncorrectSpeed &ex) {
+        return ex.what();
+    }
 }
 
 bool PowerSupply::VoltageSupply(int voltage) const {
@@ -49,12 +53,8 @@ bool PowerSupply::VoltageSupply(int voltage) const {
 }
 
 std::string PowerSupply::VoltageSupplyMessage(int voltage) const {
-    try {
-        if (!VoltageSupply(voltage)) {
-            throw ExceptionIncorrectVoltage("The power supply is broken.");
-        }
-        return "The power supply is connected to the mains with voltage " + std::to_string(voltage);
-    } catch (const ExceptionIncorrectVoltage &ex) {
-        return ex.what();
+    if (!VoltageSupply(voltage)) {
+        throw ExceptionIncorrectVoltage("The power supply is broken.");
     }
+    return "The power supply is connected to the mains with voltage " + std::to_string(voltage);
 }
