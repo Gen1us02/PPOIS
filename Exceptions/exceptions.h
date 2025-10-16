@@ -1,0 +1,41 @@
+#ifndef EXCEPTIONS
+#define EXCEPTIONS
+#include <string>
+#include <exception>
+
+class Exception : public std::exception {
+public:
+    explicit Exception(const char *message);
+    const char *what() const noexcept override;
+
+private:
+    std::string message_;
+};
+
+
+class ExceptionIncorrectTrack : public Exception {
+public:
+    explicit ExceptionIncorrectTrack(const char *message);
+};
+
+class ExceptionIncorrectAlbum : public Exception {
+public:
+    explicit ExceptionIncorrectAlbum(const char *message);
+};
+
+class ExceptionTrackLimit : public Exception {
+public:
+    explicit ExceptionTrackLimit(const char *message);
+};
+
+class ExceptionInvalidGenre : public Exception {
+public:
+    explicit ExceptionInvalidGenre(const char *message);
+};
+
+class ExceptionTrackReleased : public Exception {
+public:
+    explicit ExceptionTrackReleased(const char *message);
+};
+
+#endif
