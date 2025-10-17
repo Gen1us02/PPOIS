@@ -38,4 +38,14 @@ public:
     explicit ExceptionTrackReleased(const char *message);
 };
 
+class ExceptionTrackPaused : public Exception {
+public:
+    explicit ExceptionTrackPaused(const char *message);
+};
+
+class ExceptionTrackPlaying : public Exception {
+public:
+    explicit ExceptionTrackPlaying(const char *message);
+};
+
 #endif

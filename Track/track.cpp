@@ -55,31 +55,6 @@ int Track::GetDuration() const
     return this->duration_;
 }
 
-//Вынести в кнопку запуска трека
-// void Track::PlayTrack()
-// {
-//     std::vector<std::string> lines;
-//     char* token = std::strtok(this->text_.data(), "\n");
-//     while (token != nullptr)
-//     {
-//         lines.push_back(token);
-//         token = std::strtok(nullptr, "\n");
-//     }
-//     //int lineDelay = static_cast<int>((this->duration_ / static_cast<double>(lines.size())) * 1000);
-//     for (int i = 0; i < lines.size(); i++)
-//     {
-//         //int charDelay = static_cast<int>((lineDelay / static_cast<double>(lines[i].size())) * 1000);
-//         for (int j = 0; j < lines[i].size(); j++)
-//         {
-//             std::cout << lines[i][j];
-//             std::cout.flush();
-//             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-//         }
-//         std::cout << "\n";
-//         std::this_thread::sleep_for(std::chrono::milliseconds(300));
-//     }
-// }
-
 void Track::MarkFavourite()
 {
     this->isFavourite_ = true;
@@ -104,3 +79,19 @@ std::string Track::GetGenreType() const
 {
     return GenreTypeToString(this->genre_);
 }
+
+void Track::Play()
+{
+    this->isPlaying_= true;
+}
+
+void Track::Pause()
+{
+    this->isPlaying_ = false;
+}
+
+bool Track::IsPlaying() const
+{
+    return this->isPlaying_;
+}
+

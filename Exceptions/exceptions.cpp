@@ -28,3 +28,11 @@ ExceptionInvalidGenre::ExceptionInvalidGenre(const char* message) : Exception(me
 ExceptionTrackReleased::ExceptionTrackReleased(const char* message) : Exception(message)
 {
 }
+
+ExceptionTrackPaused::ExceptionTrackPaused(const char* message) : Exception(message)
+{
+}
+
+ExceptionTrackPlaying::ExceptionTrackPlaying(const char* message) : Exception(message)
+{
+}

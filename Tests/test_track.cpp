@@ -86,6 +86,26 @@ TEST_F(TestingTrack, TestIsFavourite)
     ASSERT_FALSE(track.IsFavourite());
 }
 
+TEST_F(TestingTrack, TestPlay)
+{
+    ASSERT_FALSE(track.IsPlaying());
+    track.Play();
+    ASSERT_TRUE(track.IsPlaying());
+}
+
+TEST_F(TestingTrack, TestPause)
+{
+    track.Play();
+    ASSERT_TRUE(track.IsPlaying());
+    track.Pause();
+    ASSERT_FALSE(track.IsPlaying());
+}
+
+TEST_F(TestingTrack, TestIsPlaying)
+{
+    ASSERT_FALSE(track.IsPlaying());
+}
+
 TEST_F(TestingTrack, TestSetGenre)
 {
     ASSERT_EQ(track.GetGenreType(), "Blues");

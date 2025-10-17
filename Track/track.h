@@ -18,10 +18,12 @@ public:
     int GetDuration() const;
     void SetListenings(int duration);
     int GetListenings() const;
-    //void PlayTrack();
     void MarkFavourite();
     void UnmarkFavourite();
     bool IsFavourite() const;
+    void Play();
+    void Pause();
+    bool IsPlaying() const;
     void SetGenreType(GenreType genreType);
     std::string GetGenreType() const;
 
@@ -31,6 +33,7 @@ private:
     int listenings_ {0};
     int duration_{0};
     bool isFavourite_ {false};
+    bool isPlaying_ {false};
     GenreType genre_;
 };
 
