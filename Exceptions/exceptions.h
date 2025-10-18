@@ -48,4 +48,14 @@ public:
     explicit ExceptionTrackPlaying(const char *message);
 };
 
+class ExceptionIncorrectVolume : public Exception {
+public:
+    explicit ExceptionIncorrectVolume(const char *message);
+};
+
+class ExceptionIncorrectDuration : public Exception {
+public:
+    explicit ExceptionIncorrectDuration(const char *message);
+};
+
 #endif

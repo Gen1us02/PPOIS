@@ -36,3 +36,11 @@ ExceptionTrackPaused::ExceptionTrackPaused(const char* message) : Exception(mess
 ExceptionTrackPlaying::ExceptionTrackPlaying(const char* message) : Exception(message)
 {
 }
+
+ExceptionIncorrectVolume::ExceptionIncorrectVolume(const char* message) : Exception(message)
+{
+}
+
+ExceptionIncorrectDuration::ExceptionIncorrectDuration(const char* message) : Exception(message)
+{
+}
