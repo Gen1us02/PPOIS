@@ -15,6 +15,7 @@ public:
     void SetTitle(const std::string& title) override;
     std::string GetTitle() const override;
     void AddTrack(const Track& track) override;
+    void RemoveTrack(const Track& track);
     std::string GetTrackList() const override;
     int GetTrackCount() const override;
 private:

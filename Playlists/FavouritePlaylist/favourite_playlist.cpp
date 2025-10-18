@@ -38,7 +38,26 @@ void FavouritePlaylist::AddTrack(const Track& track)
     }
 
     this->tracks_.push_back(track);
-    tracks_.back().MarkFavourite();
+}
+
+void FavouritePlaylist::RemoveTrack(const Track& track)
+{
+    int index = -1;
+    for (int i = 0; i < this->tracks_.size(); i++)
+    {
+        if (tracks_[i].GetName() == track.GetName())
+        {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1)
+    {
+        throw ExceptionIncorrectTrack("This track is not in playlist");
+    }
+
+    this->tracks_.erase(tracks_.begin() + index);
 }
 
 int FavouritePlaylist::GetTrackCount() const

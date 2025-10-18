@@ -7,7 +7,7 @@ protected:
     void SetUp() override
     {
         std::vector<Track> tracks = {
-            Track("Killer", "", 1000000, 96, GenreType::Phonk),
+            Track("Killer", "", 1000000, "Artemdjdj",96, GenreType::Phonk),
         };
         extendedPlayAlbum = ExtendedPlayAlbum("MyExtendedPlayAlbum", tracks);
     }
@@ -29,13 +29,13 @@ TEST_F(TestingExtendedPlayAlbum, TestGetTitle)
 
 TEST_F(TestingExtendedPlayAlbum, TestAddTrack)
 {
-    extendedPlayAlbum.AddTrack(Track("Boys Interface", "", 1341515, 86, GenreType::Blues));
+    extendedPlayAlbum.AddTrack(Track("Boys Interface", "", 1341515, "Artemdjdj",86, GenreType::Blues));
     ASSERT_EQ(extendedPlayAlbum.GetTrackCount(), 2);
-    ASSERT_THROW(extendedPlayAlbum.AddTrack(Track("Killer", "", 1000000, 96,GenreType::Phonk)), ExceptionIncorrectTrack);
-    auto track1 = Track("SHADOW", "", 3048201, 145, GenreType::Phonk);
+    ASSERT_THROW(extendedPlayAlbum.AddTrack(Track("Killer", "", 1000000, "Artemdjdj",96,GenreType::Phonk)), ExceptionIncorrectTrack);
+    auto track1 = Track("SHADOW", "", 3048201, "Artemdjdj",145, GenreType::Phonk);
     extendedPlayAlbum.AddTrack(track1);
     ASSERT_EQ(extendedPlayAlbum.GetTrackCount(), 3);
-    auto track2 = Track("Neon Blade", "", 1309893, 189, GenreType::Phonk);
+    auto track2 = Track("Neon Blade", "", 1309893, "Artemdjdj",189, GenreType::Phonk);
     ASSERT_THROW(extendedPlayAlbum.AddTrack(track2), ExceptionTrackLimit);
 }
 
@@ -62,8 +62,8 @@ TEST_F(TestingExtendedPlayAlbum, TestGetAlbumType)
 TEST(TestExtendedPlayAlbum, TestConstructor)
 {
     std::vector<Track> tracks = {
-        Track("Boys Interface", "", 2884789, 106, GenreType::Jazz),
-        Track("OneShot", "", 408600,123, GenreType::Rock)
+        Track("Boys Interface", "", 2884789, "Artemdjdj",106, GenreType::Jazz),
+        Track("OneShot", "", 408600,"Artemdjdj",123, GenreType::Rock)
     };
     auto extendedPlayAlbum = ExtendedPlayAlbum("NewExtendedPlayAlbum", tracks);
     ASSERT_EQ(extendedPlayAlbum.GetTitle(), "NewExtendedPlayAlbum");

@@ -7,8 +7,8 @@ protected:
     void SetUp() override
     {
         std::vector<Track> tracks = {
-            Track("Killer", "", 1000000, 96, GenreType::Phonk),
-            Track("Kerosene", "", 408600, 153, GenreType::Phonk),
+            Track("Killer", "", 1000000, "Artemdjdj",96, GenreType::Phonk),
+            Track("Kerosene", "", 408600, "Artemdjdj",153, GenreType::Phonk),
         };
         compilationAlbum = CompilationAlbum("MyCompilationAlbum", tracks);
     }
@@ -30,9 +30,9 @@ TEST_F(TestingCompilationAlbum, TestGetTitle)
 
 TEST_F(TestingCompilationAlbum, TestAddTrack)
 {
-    compilationAlbum.AddTrack(Track("Boys Interface", "", 1341515, 86, GenreType::Phonk));
+    compilationAlbum.AddTrack(Track("Boys Interface", "", 1341515, "Artemdjdj",86, GenreType::Phonk));
     ASSERT_EQ(compilationAlbum.GetTrackCount(), 3);
-    ASSERT_THROW(compilationAlbum.AddTrack(Track("Killer", "", 1000000, 96, GenreType::Blues)), ExceptionIncorrectTrack);
+    ASSERT_THROW(compilationAlbum.AddTrack(Track("Killer", "", 1000000, "Artemdjdj",96, GenreType::Blues)), ExceptionIncorrectTrack);
 }
 
 TEST_F(TestingCompilationAlbum, TestGetTrackCount)
@@ -58,8 +58,8 @@ TEST_F(TestingCompilationAlbum, TestGetAlbumType)
 TEST(TestCompilationAlbum, TestConstructor)
 {
     std::vector<Track> tracks = {
-        Track("Boys Interface", "", 2884789, 106, GenreType::Phonk),
-        Track("OneShot", "", 408600, 123, GenreType::Jazz)
+        Track("Boys Interface", "", 2884789, "Artemdjdj",106, GenreType::Phonk),
+        Track("OneShot", "", 408600, "Artemdjdj",123, GenreType::Jazz)
     };
     auto compilationAlbum = CompilationAlbum("NewCompilationAlbum", tracks);
     ASSERT_EQ(compilationAlbum.GetTitle(), "NewCompilationAlbum");

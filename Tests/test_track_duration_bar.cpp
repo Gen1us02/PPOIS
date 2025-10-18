@@ -7,7 +7,7 @@ class TestingTrackDurationBar : public ::testing::Test
 protected:
     void SetUp() override
     {
-        track = Track("Dancing Nihilist", "", 3853903, 156, GenreType::Phonk);
+        track = Track("Dancing Nihilist", "", 3853903, "Artemdjdj",156, GenreType::Phonk);
         int duration = track.GetDuration();
         trackDurationBar = TrackDurationBar(100, duration);
     }
@@ -30,7 +30,7 @@ TEST_F(TestingTrackDurationBar, TestGetLength)
 
 TEST_F(TestingTrackDurationBar, TestSetDuration)
 {
-    auto track = Track("Bad Boys", "Bad boys bad boys what you gonna do when they come for you", 8370593, 139,
+    auto track = Track("Bad Boys", "Bad boys bad boys what you gonna do when they come for you", 8370593, "Artemdjdj",139,
                        GenreType::Rap);
     ASSERT_EQ(trackDurationBar.GetDuration(), 156);
     trackDurationBar.SetDuration(track.GetDuration());

@@ -7,8 +7,8 @@ protected:
     void SetUp() override
     {
         std::vector<Track> tracks = {
-            Track("Killer", "", 1000000, 96, GenreType::Jazz),
-            Track("Kerosene", "", 408600,153, GenreType::Rap)
+            Track("Killer", "", 1000000, "famous",96, GenreType::Jazz),
+            Track("Kerosene", "", 408600,"famous",153, GenreType::Rap)
         };
         artist = Artist("Иван", 26, 100000, "famous");
         artist.RealeseTrack("Killer", "", 96, GenreType::Jazz);
@@ -84,11 +84,13 @@ TEST_F(TestingArtist, TestGetTrackList)
 
 TEST_F(TestingArtist, TestRealeseAlbum)
 {
-    std::vector<Track> track1 = {Track("Killer", "", 1000000, 96, GenreType::Jazz),};
-    std::vector<Track> track2 = {Track("sgsgsgs", "", 1000000, 96, GenreType::Jazz),};
+    std::vector<Track> track1 = {Track("Killer", "", 1000000, "famous",96, GenreType::Jazz)};
+    std::vector<Track> track2 = {Track("sgsgsgs", "", 1000000, "famous", 96, GenreType::Jazz)};
+    std::vector<Track> track3 = {Track("Kerosene", "", 1000000, "jksdfks", 96, GenreType::Jazz)};
     ASSERT_EQ(artist.RealeseAlbum(AlbumType::StudioAlbum, "NewAlbum", track1), "Исполнитель famous, выпустил альбом NewAlbum");
     ASSERT_THROW(artist.RealeseAlbum(AlbumType::ExtendedAlbum, "NewAlbum", track1), ExceptionIncorrectAlbum);
     ASSERT_THROW(artist.RealeseAlbum(AlbumType::ConcertAlbum, "NewAlbum2", track2), ExceptionIncorrectTrack);
+    ASSERT_THROW(artist.RealeseAlbum(AlbumType::ConcertAlbum, "NewAlbum3", track3), ExceptionIncorrectArtist);
 }
 
 TEST_F(TestingArtist, TestAddTrackToAlbum)

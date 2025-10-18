@@ -7,8 +7,8 @@ protected:
     void SetUp() override
     {
         std::vector<Track> tracks = {
-            Track("Killer", "", 1823479, 96, GenreType::Blues),
-            Track("Kerosene", "", 408600,153, GenreType::Blues),
+            Track("Killer", "", 1823479, "Artemdjdj",96, GenreType::Blues),
+            Track("Kerosene", "", 408600,"Artemdjdj",153, GenreType::Blues),
         };
         favouritePlaylist = FavouritePlaylist("MyFavouritePlaylist", tracks);
     }
@@ -30,9 +30,16 @@ TEST_F(TestingFavouritePlaylist, TestGetTitle)
 
 TEST_F(TestingFavouritePlaylist, TestAddTrack)
 {
-    favouritePlaylist.AddTrack(Track("28 Days Later", "", 1341515, 146, GenreType::Blues));
+    favouritePlaylist.AddTrack(Track("28 Days Later", "", 1341515, "Artemdjdj",146, GenreType::Blues));
     ASSERT_EQ(favouritePlaylist.GetTrackCount(), 3);
-    ASSERT_THROW(favouritePlaylist.AddTrack(Track("Killer", "", 148249213, 163, GenreType::Rock)), ExceptionIncorrectTrack);
+    ASSERT_THROW(favouritePlaylist.AddTrack(Track("Killer", "", 148249213, "Artemdjdj",163, GenreType::Rock)), ExceptionIncorrectTrack);
+}
+
+TEST_F(TestingFavouritePlaylist, TestRemoveTrack)
+{
+    favouritePlaylist.RemoveTrack(Track("Killer", "", 148249213, "Artemdjdj",163, GenreType::Rock));
+    ASSERT_EQ(favouritePlaylist.GetTrackCount(), 1);
+    ASSERT_THROW(favouritePlaylist.RemoveTrack(Track("jfsjfji", "", 148249213, "Artemdjdj",163, GenreType::Rock)), ExceptionIncorrectTrack);
 }
 
 TEST_F(TestingFavouritePlaylist, TestGetTrackCount)
@@ -54,8 +61,8 @@ TEST_F(TestingFavouritePlaylist, TestGetPlaylistType)
 TEST(TestFavouritePlaylist, TestConstructor)
 {
     std::vector<Track> tracks = {
-        Track("Boys Interface", "", 2884789, 106, GenreType::Jazz),
-        Track("OneShot", "", 408600, 123, GenreType::Jazz),
+        Track("Boys Interface", "", 2884789, "Artemdjdj",106, GenreType::Jazz),
+        Track("OneShot", "", 408600, "Artemdjdj",123, GenreType::Jazz),
     };
     auto favouritePlaylist = FavouritePlaylist("NewFavouritePlaylist", tracks);
     ASSERT_EQ(favouritePlaylist.GetTitle(), "NewFavouritePlaylist");

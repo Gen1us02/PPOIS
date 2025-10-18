@@ -44,3 +44,15 @@ ExceptionIncorrectVolume::ExceptionIncorrectVolume(const char* message) : Except
 ExceptionIncorrectDuration::ExceptionIncorrectDuration(const char* message) : Exception(message)
 {
 }
+
+ExceptionInvalidPassword::ExceptionInvalidPassword(const char* message) : Exception(message)
+{
+}
+
+ExceptionInvalidEmail::ExceptionInvalidEmail(const char* message) : Exception(message)
+{
+}
+
+ExceptionIncorrectArtist::ExceptionIncorrectArtist(const char* message) : Exception(message)
+{
+}

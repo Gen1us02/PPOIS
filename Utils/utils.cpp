@@ -1,4 +1,5 @@
-#include "album_factory.h"
+#include "utils.h"
+#include "algorithm"
 #include "../Albums/CompilationAlbum/compilation_album.h"
 #include "../Albums/ConcertAlbum/concert_album.h"
 #include "../Albums/ExtendedPlayAlbum/extendedplay_album.h"
@@ -21,4 +22,16 @@ std::shared_ptr<Album> AlbumFactory(AlbumType type,
     default:
         throw ExceptionIncorrectAlbum("Unknown album type");
     }
+}
+
+bool PasswordValidator(const std::string& password)
+{
+    const std::regex passwordRegex("(^[a-zA-Z0-9.-@]{8,25}$)");
+    return std::regex_match(password, passwordRegex);
+}
+
+bool EmailValidator(const std::string& email)
+{
+    const std::regex emailRegex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})");
+    return std::regex_match(email, emailRegex);
 }

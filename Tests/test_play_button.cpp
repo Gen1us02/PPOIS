@@ -39,7 +39,7 @@ TEST_F(TestingPlayButton, TestGetHeight)
 TEST_F(TestingPlayButton, TestPlayTrack)
 {
     testing::internal::CaptureStdout();
-    auto track = Track("Smells like teen spirit", "With the lights out, it's less dangerous\n", 0, 100,
+    auto track = Track("Smells like teen spirit", "With the lights out, it's less dangerous\n", 0, "Artemdjdj",100,
                        GenreType::Blues);
     playButton.PlayTrack(track);
     std::string output = testing::internal::GetCapturedStdout();
@@ -51,7 +51,7 @@ TEST_F(TestingPlayButton, TestPlayTrack)
 
 TEST_F(TestingPlayButton, TestPauseTrack)
 {
-    auto track = Track("Smells like teen spirit", "With the lights out, it's less dangerous\n", 0, 100,
+    auto track = Track("Smells like teen spirit", "With the lights out, it's less dangerous\n", 0, "Artemdjdj",100,
                        GenreType::Blues);
     track.Play();
     ASSERT_EQ(playButton.PauseTrack(track), "Track paused");

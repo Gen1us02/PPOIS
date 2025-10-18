@@ -7,9 +7,10 @@
 
 Track::Track() = default;
 
-Track::Track(const std::string& name, const std::string& text, int listenings, int duration, GenreType genre) :
+Track::Track(const std::string& name, const std::string& text, int listenings, const std::string& artistPseudonym,
+             int duration, GenreType genre) :
     name_(name), text_(text),
-    duration_(duration), listenings_(listenings), genre_(genre)
+    duration_(duration), listenings_(listenings), genre_(genre), artistPseudonym_(artistPseudonym)
 {
 }
 
@@ -80,9 +81,14 @@ std::string Track::GetGenreType() const
     return GenreTypeToString(this->genre_);
 }
 
+std::string Track::GetArtistPseudonym() const
+{
+    return this->artistPseudonym_;
+}
+
 void Track::Play()
 {
-    this->isPlaying_= true;
+    this->isPlaying_ = true;
 }
 
 void Track::Pause()
@@ -94,4 +100,3 @@ bool Track::IsPlaying() const
 {
     return this->isPlaying_;
 }
-

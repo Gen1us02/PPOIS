@@ -2,18 +2,37 @@
 #include <format>
 
 #include "album_type.h"
-#include "../Utils/album_factory.h"
+#include "../Utils/utils.h"
 
 Artist::Artist() = default;
 
-Artist::Artist(const std::string& name, int age, int listeners, const std::string& pseudonym) : listeners_(listeners),
+Artist::Artist(const std::string& name, int age, int listeners, const std::string& pseudonym) : name_(name), age_(age),
+    listeners_(listeners),
     pseudonym_(pseudonym)
 {
-    this->name_ = name;
-    this->age_ = age;
 }
 
 Artist::~Artist() = default;
+
+void Artist::SetName(const std::string& name)
+{
+    this->name_ = name;
+}
+
+std::string Artist::GetName() const
+{
+    return this->name_;
+}
+
+void Artist::SetAge(int age)
+{
+    this->age_ = age;
+}
+
+int Artist::GetAge() const
+{
+    return this->age_;
+}
 
 void Artist::SetListeners(int listeners)
 {
@@ -73,7 +92,7 @@ std::string Artist::RealeseTrack(const std::string& name, const std::string& tex
         }
     }
 
-    auto track = Track(name, text, 0, duration, genre);
+    auto track = Track(name, text, 0, this->pseudonym_, duration, genre);
     this->tracks_.push_back(track);
     return std::format("Исполнитель {}, выпустил трек {}", this->pseudonym_, name);
 }
@@ -143,6 +162,10 @@ std::string Artist::RealeseAlbum(AlbumType type, const std::string& albumTitle, 
         found = false;
         for (const auto& artistTrack : this->tracks_)
         {
+            if (track.GetArtistPseudonym() != this->pseudonym_)
+            {
+                throw ExceptionIncorrectArtist("It is not this artists track");
+            }
             if (track.GetName() == artistTrack.GetName())
             {
                 found = true;

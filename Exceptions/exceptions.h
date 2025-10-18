@@ -58,4 +58,19 @@ public:
     explicit ExceptionIncorrectDuration(const char *message);
 };
 
+class ExceptionInvalidPassword : public Exception {
+public:
+    explicit ExceptionInvalidPassword(const char *message);
+};
+
+class ExceptionInvalidEmail : public Exception {
+public:
+    explicit ExceptionInvalidEmail(const char *message);
+};
+
+class ExceptionIncorrectArtist : public Exception {
+public:
+    explicit ExceptionIncorrectArtist(const char *message);
+};
+
 #endif

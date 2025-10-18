@@ -8,7 +8,7 @@ class Track
 {
 public:
     Track();
-    Track(const std::string& name, const std::string& text, int listenings, int duration, GenreType genreType);
+    Track(const std::string& name, const std::string& text, int listenings, const std::string& pseudonym,int duration, GenreType genreType);
     ~Track();
     void SetName(const std::string& name);
     std::string GetName() const;
@@ -24,6 +24,7 @@ public:
     void Play();
     void Pause();
     bool IsPlaying() const;
+    std::string GetArtistPseudonym() const;
     void SetGenreType(GenreType genreType);
     std::string GetGenreType() const;
 
@@ -32,6 +33,7 @@ private:
     std::string text_{""};
     int listenings_ {0};
     int duration_{0};
+    std::string artistPseudonym_;
     bool isFavourite_ {false};
     bool isPlaying_ {false};
     GenreType genre_;

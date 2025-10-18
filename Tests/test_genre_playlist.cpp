@@ -7,8 +7,8 @@ protected:
     void SetUp() override
     {
         std::vector<Track> tracks = {
-            Track("Killer", "", 1823479, 96, GenreType::Phonk),
-            Track("Kerosene", "", 408600,153, GenreType::Phonk)
+            Track("Killer", "", 1823479, "Artemdjdj",96, GenreType::Phonk),
+            Track("Kerosene", "", 408600,"Artemdjdj",153, GenreType::Phonk)
         };
         genrePlaylist = GenrePlaylist("MyGenrePlaylist", tracks, GenreType::Phonk);
     }
@@ -30,10 +30,10 @@ TEST_F(TestingGenrePlaylist, TestGetTitle)
 
 TEST_F(TestingGenrePlaylist, TestAddTrack)
 {
-    genrePlaylist.AddTrack(Track("28 Days Later", "", 1341515, 146, GenreType::Phonk));
+    genrePlaylist.AddTrack(Track("28 Days Later", "", 1341515, "Artemdjdj",146, GenreType::Phonk));
     ASSERT_EQ(genrePlaylist.GetTrackCount(), 3);
-    ASSERT_THROW(genrePlaylist.AddTrack(Track("Killer", "", 148249213, 163, GenreType::Phonk)), ExceptionIncorrectTrack);
-    ASSERT_THROW(genrePlaylist.AddTrack(Track("Rain", "", 1043813, 75 ,GenreType::Rap)), ExceptionInvalidGenre);
+    ASSERT_THROW(genrePlaylist.AddTrack(Track("Killer", "", 148249213, "Artemdjdj",163, GenreType::Phonk)), ExceptionIncorrectTrack);
+    ASSERT_THROW(genrePlaylist.AddTrack(Track("Rain", "", 1043813, "Artemdjdj",75 ,GenreType::Rap)), ExceptionInvalidGenre);
 }
 
 TEST_F(TestingGenrePlaylist, TestGetTrackCount)
@@ -55,8 +55,8 @@ TEST_F(TestingGenrePlaylist, TestGetPlaylistType)
 TEST(TestGenrePlaylist, TestConstructor)
 {
     std::vector<Track> tracks = {
-        Track("Boys Interface", "", 2884789, 106, GenreType::Phonk),
-        Track("OneShot", "", 408600, 123, GenreType::Phonk)
+        Track("Boys Interface", "", 2884789, "Artemdjdj",106, GenreType::Phonk),
+        Track("OneShot", "", 408600, "Artemdjdj",123, GenreType::Phonk)
     };
     auto genrePlaylist = GenrePlaylist("NewGenrePlaylist", tracks, GenreType::Phonk);
     ASSERT_EQ(genrePlaylist.GetTitle(), "NewGenrePlaylist");

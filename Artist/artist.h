@@ -16,6 +16,10 @@ public:
     Artist();
     Artist(const std::string& name, int age, int listeners, const std::string& pseudonym);
     ~Artist();
+    void SetName(const std::string& name) override;
+    std::string GetName() const override;
+    void SetAge(int age) override;
+    int GetAge() const override;
     void SetListeners(int listeners);
     int GetListeners() const;
     void SetPseudonym(const std::string& pseudonym);
@@ -28,6 +32,8 @@ public:
     std::string RealeseAlbum(AlbumType type, const std::string& albumTitle, const std::vector<Track>& albumTracks);
 
 private:
+    std::string name_ {""};
+    int age_ {0};
     int listeners_{0};
     std::string pseudonym_{""};
     std::vector<Track> tracks_;

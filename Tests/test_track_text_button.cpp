@@ -38,7 +38,7 @@ TEST_F(TestingTrackTextButton, TestGetHeight)
 
 TEST_F(TestingTrackTextButton, TestGetTrackText)
 {
-    auto track = Track("A Real Hero", "Back against the wall and odds", 842348, 78, GenreType::Jazz);
+    auto track = Track("A Real Hero", "Back against the wall and odds", 842348, "Artemdjdj",78, GenreType::Jazz);
     ASSERT_EQ(trackTextButton.GetTrackText(track), "Back against the wall and odds");
 }
 

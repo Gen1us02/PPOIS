@@ -8,7 +8,7 @@ protected:
     {
         track = Track("Трава у дома",
                       "Земля в иллюминаторе\nЗемля в иллюминаторе\nЗемля в иллюминаторе\nКак сын грустит о матери как сын грустит о матери",
-                      100000 ,200, GenreType::Blues);
+                      100000 ,"Artemdjdj",200, GenreType::Blues);
     }
 
     Track track;
@@ -120,7 +120,7 @@ TEST_F(TestingTrack, TestGetGenre)
 
 TEST(TestTrack, TestConstructor)
 {
-    auto track = Track("Pulse", "", 1500000,300, GenreType::Phonk);
+    auto track = Track("Pulse", "", 1500000,"Artemdjdj",300, GenreType::Phonk);
     ASSERT_EQ(track.GetName(), "Pulse");
     ASSERT_EQ(track.GetText(), "");
     ASSERT_EQ(track.GetListenings(), 1500000);
