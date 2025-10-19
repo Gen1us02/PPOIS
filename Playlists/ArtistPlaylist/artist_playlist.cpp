@@ -52,3 +52,8 @@ std::string ArtistPlaylist::GetTrackList() const
 
     return result;
 }
+
+std::string ArtistPlaylist::GetArtistPseudonym() const
+{
+    return artist_.GetPseudonym();
+}

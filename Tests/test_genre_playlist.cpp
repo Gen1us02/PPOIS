@@ -52,6 +52,11 @@ TEST_F(TestingGenrePlaylist, TestGetPlaylistType)
     ASSERT_EQ(genrePlaylist.GetPlaylistType(), "Genre Playlist");
 }
 
+TEST_F(TestingGenrePlaylist, TestGetGenreType)
+{
+    ASSERT_EQ(genrePlaylist.GetGenreType(), "Phonk");
+}
+
 TEST(TestGenrePlaylist, TestConstructor)
 {
     std::vector<Track> tracks = {

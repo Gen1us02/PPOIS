@@ -7,8 +7,8 @@ protected:
     void SetUp() override
     {
         std::vector<Track> tracks = {
-            Track("Killer", "", 1823479, 96, GenreType::Blues),
-            Track("Kerosene", "", 408600,153, GenreType::Blues),
+            Track("Killer", "", 1823479, "Artemdjdj",96, GenreType::Blues),
+            Track("Kerosene", "", 408600,"Artemdjdj",153, GenreType::Blues),
         };
         dailyPlaylist = DailyPlaylist("MyDailyPlaylist", tracks);
     }
@@ -30,9 +30,9 @@ TEST_F(TestingDailyPlaylist, TestGetTitle)
 
 TEST_F(TestingDailyPlaylist, TestAddTrack)
 {
-    dailyPlaylist.AddTrack(Track("28 Days Later", "", 1341515, 146, GenreType::Blues));
+    dailyPlaylist.AddTrack(Track("28 Days Later", "", 1341515, "Artemdjdj",146, GenreType::Blues));
     ASSERT_EQ(dailyPlaylist.GetTrackCount(), 3);
-    ASSERT_THROW(dailyPlaylist.AddTrack(Track("Killer", "", 148249213, 163, GenreType::Phonk)), ExceptionIncorrectTrack);
+    ASSERT_THROW(dailyPlaylist.AddTrack(Track("Killer", "", 148249213, "Artemdjdj",163, GenreType::Phonk)), ExceptionIncorrectTrack);
 }
 
 TEST_F(TestingDailyPlaylist, TestGetTrackCount)
@@ -53,14 +53,14 @@ TEST_F(TestingDailyPlaylist, TestGetPlaylistType)
 
 TEST_F(TestingDailyPlaylist, TestGetDate)
 {
-    ASSERT_EQ(dailyPlaylist.GetDate(), "17.10.2025");
+    ASSERT_EQ(dailyPlaylist.GetDate(), "19.10.2025");
 }
 
 TEST(TestDailyPlaylist, TestConstructor)
 {
     std::vector<Track> tracks = {
-        Track("Boys Interface", "", 2884789, 106, GenreType::Blues),
-        Track("OneShot", "", 408600, 123, GenreType::Blues),
+        Track("Boys Interface", "", 2884789, "Artemdjdj",106, GenreType::Blues),
+        Track("OneShot", "", 408600, "Artemdjdj",123, GenreType::Blues),
     };
     auto dailyPlaylist = DailyPlaylist("NewDailyPlaylist", tracks);
     ASSERT_EQ(dailyPlaylist.GetTitle(), "NewDailyPlaylist");

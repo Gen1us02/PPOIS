@@ -32,7 +32,7 @@ void GenrePlaylist::AddTrack(const Track& track)
             throw ExceptionIncorrectTrack("This track is already in playlist");
         }
 
-        if (track.GetGenreType() != GetGenreType(this->genre_))
+        if (track.GetGenreType() != GenreTypeToString(this->genre_))
         {
             throw ExceptionInvalidGenre("Track is not of this genre");
         }
@@ -57,7 +57,7 @@ std::string GenrePlaylist::GetTrackList() const
     return result;
 }
 
-std::string GenrePlaylist::GetGenreType(GenreType genreType)
+std::string GenrePlaylist::GetGenreType() const
 {
-    return GenreTypeToString(genreType);
+    return GenreTypeToString(this->genre_);
 }

@@ -14,12 +14,11 @@ public:
     void SetHeight(int height) override;
     int GetHeight() const override;
     void DisableVolume(int& volume);
-    void EnableVolume(int& volume);
+    void EnableVolume(int& volume, int lastVolume);
 
 private:
     int width_{0};
     int height_{0};
-    int lastVolume_{0};
 };
 
 

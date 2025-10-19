@@ -10,7 +10,7 @@ class FavouritePlaylist : public Playlist
 public:
     FavouritePlaylist();
     ~FavouritePlaylist();
-    FavouritePlaylist(const std::string& title, const std::vector<Track>& track_);
+    FavouritePlaylist(const std::string& title, const std::vector<Track>& tracks);
     std::string GetPlaylistType() const override;
     void SetTitle(const std::string& title) override;
     std::string GetTitle() const override;

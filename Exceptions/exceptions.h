@@ -73,4 +73,14 @@ public:
     explicit ExceptionIncorrectArtist(const char *message);
 };
 
+class ExceptionIncorrectPlaylist : public Exception {
+public:
+    explicit ExceptionIncorrectPlaylist(const char *message);
+};
+
+class ExceptionMarkFailed : public Exception {
+public:
+    explicit ExceptionMarkFailed(const char *message);
+};
+
 #endif

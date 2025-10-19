@@ -30,11 +30,10 @@ int VolumeButton::GetHeight() const
 
 void VolumeButton::DisableVolume(int& volume)
 {
-    this->lastVolume_ = volume;
     volume = 0;
 }
 
-void VolumeButton::EnableVolume(int& volume)
+void VolumeButton::EnableVolume(int& volume, int lastVolume)
 {
-    volume = lastVolume_;
+    volume = lastVolume;
 }

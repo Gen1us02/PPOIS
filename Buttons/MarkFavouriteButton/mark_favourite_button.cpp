@@ -40,7 +40,9 @@ void MarkFavouriteButton::MarkFavourite(Track& track, FavouritePlaylist& playlis
     }
     catch (const ExceptionIncorrectTrack& ex)
     {
-        std::cout << ex.what();
+        std::string errorMessage = "Mark failed: ";
+        errorMessage += ex.what();
+        throw ExceptionMarkFailed(errorMessage.c_str());
     }
 }
 
@@ -53,6 +55,8 @@ void MarkFavouriteButton::UnmarkFavourite(Track& track, FavouritePlaylist& playl
     }
     catch (const ExceptionIncorrectTrack& ex)
     {
-        std::cout << ex.what();
+        std::string errorMessage = "Unmark failed: ";
+        errorMessage += ex.what();
+        throw ExceptionMarkFailed(errorMessage.c_str());
     }
 }

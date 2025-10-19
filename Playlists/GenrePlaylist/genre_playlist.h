@@ -1,5 +1,5 @@
-#ifndef FAVOURITE_PLAYLIST
-#define FAVOURITE_PLAYLIST
+#ifndef GENRE_PLAYLIST
+#define GENRE_PLAYLIST
 #include "playlist.h"
 #include "playlist_type.h"
 #include "../Exceptions/exceptions.h"
@@ -18,7 +18,7 @@ public:
     void AddTrack(const Track& track) override;
     std::string GetTrackList() const override;
     int GetTrackCount() const override;
-    std::string GetGenreType(GenreType genreType);
+    std::string GetGenreType() const;
 
 private:
     std::string title_ {""};

@@ -44,20 +44,15 @@ TEST_F(TestingMarkFavouriteButton, TestGetHeight)
 
 TEST_F(TestingMarkFavouriteButton, TestMarkFavourite)
 {
-    testing::internal::CaptureStdout();
     auto track = Track("28 Days Later", "", 1341515, "Artemdjdj",146, GenreType::Blues);
     markFavouriteButton.MarkFavourite(track, favouritePlaylist);
     ASSERT_EQ(favouritePlaylist.GetTrackCount(), 3);
     ASSERT_TRUE(track.IsFavourite());
-    markFavouriteButton.MarkFavourite(track, favouritePlaylist);
-    std::string output = testing::internal::GetCapturedStdout();
-    ASSERT_FALSE(output.empty());
-    ASSERT_EQ(output, "This track is already in playlist");
+    ASSERT_THROW(markFavouriteButton.MarkFavourite(track, favouritePlaylist), ExceptionMarkFailed);
 }
 
 TEST_F(TestingMarkFavouriteButton, TestMarkUnmarkFavourite)
 {
-    testing::internal::CaptureStdout();
     auto track = Track("28 Days Later", "", 1341515, "Artemdjdj",146, GenreType::Blues);
     markFavouriteButton.MarkFavourite(track, favouritePlaylist);
     ASSERT_EQ(favouritePlaylist.GetTrackCount(), 3);
@@ -65,10 +60,7 @@ TEST_F(TestingMarkFavouriteButton, TestMarkUnmarkFavourite)
     markFavouriteButton.UnmarkFavourite(track, favouritePlaylist);
     ASSERT_EQ(favouritePlaylist.GetTrackCount(), 2);
     ASSERT_FALSE(track.IsFavourite());
-    markFavouriteButton.UnmarkFavourite(track, favouritePlaylist);
-    std::string output = testing::internal::GetCapturedStdout();
-    ASSERT_FALSE(output.empty());
-    ASSERT_EQ(output, "This track is not in playlist");
+    ASSERT_THROW(markFavouriteButton.UnmarkFavourite(track, favouritePlaylist), ExceptionMarkFailed);
 }
 
 TEST(TestMarkFavouriteButton, TestConstructor)

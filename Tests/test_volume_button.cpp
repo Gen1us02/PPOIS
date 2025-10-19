@@ -46,9 +46,10 @@ TEST_F(TestingVolumeButton, TestDisableVolume)
 TEST_F(TestingVolumeButton, TestEnableVolume)
 {
     auto volume = 25;
+    auto lastVolume = volume;
     volumeButton.DisableVolume(volume);
     ASSERT_EQ(volume, 0);
-    volumeButton.EnableVolume(volume);
+    volumeButton.EnableVolume(volume, lastVolume);
     ASSERT_EQ(volume, 25);
 }
 

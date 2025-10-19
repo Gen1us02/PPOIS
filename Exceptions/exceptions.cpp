@@ -56,3 +56,11 @@ ExceptionInvalidEmail::ExceptionInvalidEmail(const char* message) : Exception(me
 ExceptionIncorrectArtist::ExceptionIncorrectArtist(const char* message) : Exception(message)
 {
 }
+
+ExceptionIncorrectPlaylist::ExceptionIncorrectPlaylist(const char* message) : Exception(message)
+{
+}
+
+ExceptionMarkFailed::ExceptionMarkFailed(const char* message) : Exception(message)
+{
+}

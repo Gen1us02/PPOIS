@@ -17,6 +17,7 @@ public:
     void AddTrack(const Track& track) override;
     int GetTrackCount() const override;
     std::string GetTrackList() const override;
+    std::string GetArtistPseudonym() const;
 
 private:
     std::string title_{""};

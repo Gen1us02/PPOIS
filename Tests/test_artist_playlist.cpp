@@ -58,6 +58,11 @@ TEST_F(TestingArtistPlaylist, TestGetPlaylistType)
     ASSERT_EQ(artistPlaylist.GetPlaylistType(), "Artist Playlist");
 }
 
+TEST_F(TestingArtistPlaylist, TestGetArtistPseudonym)
+{
+    ASSERT_EQ(artistPlaylist.GetArtistPseudonym(), "DjBulka");
+}
+
 TEST(TestArtistPlaylist, TestConstructor)
 {
     auto artist = Artist("Дима", 19, 32409, "DjBulka");
