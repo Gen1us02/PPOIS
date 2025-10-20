@@ -6,7 +6,10 @@ FavouritePlaylist::FavouritePlaylist(const std::string& title, const std::vector
 {
     for (auto& track : tracks_)
     {
-        track.MarkFavourite();
+        if (!track.IsFavourite())
+        {
+            track.MarkFavourite();
+        }
     }
 }
 

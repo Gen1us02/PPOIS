@@ -1,7 +1,5 @@
 #include "mark_favourite_button.h"
-
 #include <iostream>
-#include <ostream>
 
 MarkFavouriteButton::MarkFavouriteButton() = default;
 
@@ -57,6 +55,6 @@ void MarkFavouriteButton::UnmarkFavourite(Track& track, FavouritePlaylist& playl
     {
         std::string errorMessage = "Unmark failed: ";
         errorMessage += ex.what();
-        throw ExceptionMarkFailed(errorMessage.c_str());
+        throw ExceptionUnmarkFailed(errorMessage.c_str());
     }
 }

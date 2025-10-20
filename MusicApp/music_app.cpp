@@ -124,7 +124,7 @@ void MusicApp::UnmarkFavouriteTrack()
     {
         markFavouriteButton_.UnmarkFavourite(this->currentTrack_, mediaLibrary_.GetFavouritePlaylist());
     }
-    catch (const ExceptionMarkFailed& ex)
+    catch (const ExceptionUnmarkFailed& ex)
     {
         std::cout << ex.what();
     }
@@ -138,7 +138,7 @@ std::string MusicApp::ShowNowPlayingTrackInfo() const
 void MusicApp::NextTrack()
 {
     nextTrackButton_.GetNextTrackIndex(this->currentTrackIndex_);
-    if (this->currentTrackIndex_ >= 0 && this->currentTrackIndex_ <= queue_.GetTracks().size())
+    if (this->currentTrackIndex_ >= 0 && this->currentTrackIndex_ < queue_.GetTracks().size())
     {
         this->currentTrack_ = queue_.GetTracks()[this->currentTrackIndex_];
         trackDurationBar_.SetDuration(this->currentTrack_.GetDuration());

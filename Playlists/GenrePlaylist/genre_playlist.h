@@ -21,7 +21,7 @@ public:
     std::string GetGenreType() const;
 
 private:
-    std::string title_ {""};
+    std::string title_;
     std::vector<Track> tracks_;
     PlaylistType type_ {PlaylistType::GenrePlaylist};
     GenreType genre_;

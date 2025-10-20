@@ -23,8 +23,8 @@ public:
 
 private:
     User user_;
-    std::string description_{""};
-    std::string gender_{""};
+    std::string description_;
+    std::string gender_;
     std::unordered_set<GenreType> preferences_;
 };
 

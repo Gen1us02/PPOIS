@@ -19,7 +19,7 @@ public:
     std::string GetTrackList() const override;
     int GetTrackCount() const override;
 private:
-    std::string title_ {""};
+    std::string title_;
     std::vector<Track> tracks_;
     PlaylistType type_ {PlaylistType::FavouritePlaylist};
 };

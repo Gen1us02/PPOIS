@@ -28,12 +28,12 @@ public:
     std::string GetUserInfo() const;
 
 private:
-    std::string name_{""};
-    std::string surname_{""};
+    std::string name_;
+    std::string surname_;
     int age_{0};
-    std::string email_{""};
-    std::string username_{""};
-    std::string password_{""};
+    std::string email_;
+    std::string username_;
+    std::string password_;
 };
 
 

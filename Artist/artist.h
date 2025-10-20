@@ -32,10 +32,10 @@ public:
     std::string RealeseAlbum(AlbumType type, const std::string& albumTitle, const std::vector<Track>& albumTracks);
 
 private:
-    std::string name_ {""};
+    std::string name_;
     int age_ {0};
     int listeners_{0};
-    std::string pseudonym_{""};
+    std::string pseudonym_;
     std::vector<Track> tracks_;
     std::vector<std::shared_ptr<Album>> albums_;
 };

@@ -112,6 +112,29 @@ TEST_F(TestingMusicApp, TestFavouriteTrackOperations)
     ASSERT_NO_THROW(musicApp.UnmarkFavouriteTrack());
 }
 
+TEST_F(TestingMusicApp, TestMarkFavouriteTrack)
+{
+    testing::internal::CaptureStdout();
+    auto track = Track("Трек для избранного", "Артист", 900000, "artist", 160, GenreType::Blues);
+    musicApp.AddTrackToQueue(track);
+    musicApp.NextTrack();
+    musicApp.MarkFavouriteTrack();
+    musicApp.MarkFavouriteTrack();
+    std::string output = testing::internal::GetCapturedStdout();
+    ASSERT_FALSE(output.empty());
+    ASSERT_EQ(output, "Mark failed: This track is already in playlist");
+}
+
+TEST_F(TestingMusicApp, TestUnmarkFavourite)
+{
+    testing::internal::CaptureStdout();
+    musicApp.UnmarkFavouriteTrack();
+    musicApp.UnmarkFavouriteTrack();
+    std::string output = testing::internal::GetCapturedStdout();
+    ASSERT_FALSE(output.empty());
+    ASSERT_EQ(output, "Unmark failed: This track is not in playlist");
+}
+
 TEST_F(TestingMusicApp, TestNowPlayingTrackInfo)
 {
     ASSERT_EQ(musicApp.ShowNowPlayingTrackInfo(), "Утренний трек\nivan_artist");

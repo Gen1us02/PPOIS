@@ -23,7 +23,7 @@ public:
     std::string GetTrackList() const override;
 
 private:
-    std::string title_{""};
+    std::string title_;
     std::vector<Track> tracks_;
     std::string date_;
     PlaylistType type_{PlaylistType::DailyPlaylist};

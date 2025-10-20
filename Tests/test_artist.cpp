@@ -76,6 +76,11 @@ TEST_F(TestingArtist, TestGetArtistInfo)
               "Псевдоним: famous");
 }
 
+TEST_F(TestingArtist, TestGetAlbumList)
+{
+    ASSERT_EQ(artist.GetAlbumList(), "MyAlbum\n");
+}
+
 TEST_F(TestingArtist, TestGetTrackList)
 {
     artist.RealeseTrack("Boys Interface", "", 136, GenreType::Blues);

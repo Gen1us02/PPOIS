@@ -64,3 +64,7 @@ ExceptionIncorrectPlaylist::ExceptionIncorrectPlaylist(const char* message) : Ex
 ExceptionMarkFailed::ExceptionMarkFailed(const char* message) : Exception(message)
 {
 }
+
+ExceptionUnmarkFailed::ExceptionUnmarkFailed(const char* message) : Exception(message)
+{
+}

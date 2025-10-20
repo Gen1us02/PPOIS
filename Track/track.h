@@ -29,8 +29,8 @@ public:
     std::string GetGenreType() const;
 
 private:
-    std::string name_{""};
-    std::string text_{""};
+    std::string name_;
+    std::string text_;
     int listenings_ {0};
     int duration_{0};
     std::string artistPseudonym_;

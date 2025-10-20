@@ -83,4 +83,9 @@ public:
     explicit ExceptionMarkFailed(const char *message);
 };
 
+class ExceptionUnmarkFailed : public Exception {
+public:
+    explicit ExceptionUnmarkFailed(const char *message);
+};
+
 #endif

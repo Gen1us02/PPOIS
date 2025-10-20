@@ -29,7 +29,7 @@ public:
     std::string GetPlaylistList() const override;
 
 private:
-    std::string title_{""};
+    std::string title_;
     std::vector<ArtistPlaylist> artistsPlaylists_;
     std::vector<GenrePlaylist> genrePlaylists_;
     FavouritePlaylist favouritePlaylist_;

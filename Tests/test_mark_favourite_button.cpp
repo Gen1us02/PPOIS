@@ -60,7 +60,7 @@ TEST_F(TestingMarkFavouriteButton, TestMarkUnmarkFavourite)
     markFavouriteButton.UnmarkFavourite(track, favouritePlaylist);
     ASSERT_EQ(favouritePlaylist.GetTrackCount(), 2);
     ASSERT_FALSE(track.IsFavourite());
-    ASSERT_THROW(markFavouriteButton.UnmarkFavourite(track, favouritePlaylist), ExceptionMarkFailed);
+    ASSERT_THROW(markFavouriteButton.UnmarkFavourite(track, favouritePlaylist), ExceptionUnmarkFailed);
 }
 
 TEST(TestMarkFavouriteButton, TestConstructor)

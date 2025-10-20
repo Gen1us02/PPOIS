@@ -20,7 +20,7 @@ public:
     std::string GetAlbumType() const override;
 
 private:
-    std::string title_{""};
+    std::string title_;
     std::vector<Track> tracks_;
     AlbumType albumType_ {AlbumType::CompilationAlbum};
 };

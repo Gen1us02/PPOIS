@@ -20,7 +20,7 @@ public:
     std::string GetArtistPseudonym() const;
 
 private:
-    std::string title_{""};
+    std::string title_;
     Artist artist_;
     std::vector<Track> tracks_;
     PlaylistType type_{PlaylistType::ArtistPlaylist};
