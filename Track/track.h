@@ -1,43 +1,154 @@
+/*! \file track.h
+ *  \brief Заголовочный файл с описанием класса Track
+ *  \details Содержит объявление класса Track, представляющего музыкальный трек.
+ *           Класс предоставляет методы для управления основными характеристиками
+ *           трека, включая название, текст, длительность, статистику прослушиваний
+ *           и управление состоянием воспроизведения.
+ */
 #ifndef TRACK
 #define TRACK
 #include <string>
 #include "../BaseClasses/genre_type.h"
 
-
+/*! \class Track
+ *  \brief Модель музыкального трека
+ *  \details Track предоставляет методы для управления всеми аспектами музыкального трека,
+ *           включая метаданные, текст, статистику прослушиваний, состояние воспроизведения
+ *           и статус избранного. Является основной единицей контента в музыкальном приложении.
+ */
 class Track
 {
 public:
+    /*! \brief Конструктор по умолчанию
+     *  \details Инициализирует трек с пустыми значениями названия, текста и псевдонима исполнителя,
+     *           нулевыми значениями прослушиваний и длительности, неопределенным жанром.
+     */
     Track();
-    Track(const std::string& name, const std::string& text, int listenings, const std::string& pseudonym,int duration, GenreType genreType);
+
+    /*! \brief Конструктор с инициализацией параметров трека
+     *  \param name Название трека
+     *  \param text Текст трека
+     *  \param listenings Количество прослушиваний
+     *  \param pseudonym Псевдоним исполнителя
+     *  \param duration Длительность трека в секундах
+     *  \param genreType Жанр трека
+     *  \details Позволяет создать трек с заданными характеристиками.
+     */
+    Track(const std::string& name, const std::string& text, int listenings, const std::string& pseudonym, int duration,
+          GenreType genreType);
+
+    /*! \brief Деструктор
+     *  \details Обеспечивает корректное уничтожение объекта трека.
+     */
     ~Track();
+
+    /*! \brief Установить название трека
+     *  \param name Новое название трека
+     *  \details Сохраняет название трека.
+     */
     void SetName(const std::string& name);
+
+    /*! \brief Получить название трека
+     *  \return Строка с названием трека
+     *  \details Возвращает текущее установленное название трека.
+     */
     std::string GetName() const;
+
+    /*! \brief Установить текст трека
+     *  \param text Новый текст трека
+     *  \details Сохраняет текстовое содержимое (лирику) трека.
+     */
     void SetText(const std::string& text);
+
+    /*! \brief Получить текст трека
+     *  \return Строка с текстом трека
+     *  \details Возвращает текущий установленный текст трека.
+     */
     std::string GetText() const;
+
+    /*! \brief Установить длительность трека
+     *  \param duration Длительность трека в секундах
+     *  \details Сохраняет длительность трека.
+     */
     void SetDuration(int duration);
+
+    /*! \brief Получить длительность трека
+     *  \return Длительность трека в секундах
+     *  \details Возвращает текущую установленную длительность трека.
+     */
     int GetDuration() const;
+
+    /*! \brief Установить количество прослушиваний
+     *  \param duration Количество прослушиваний (исправлено: параметр должен быть listenings)
+     *  \details Сохраняет количество прослушиваний трека.
+     */
     void SetListenings(int duration);
+
+    /*! \brief Получить количество прослушиваний
+     *  \return Количество прослушиваний трека
+     *  \details Возвращает текущее количество прослушиваний трека.
+     */
     int GetListenings() const;
+
+    /*! \brief Пометить трек как избранный
+     *  \details Устанавливает флаг избранного для трека.
+     */
     void MarkFavourite();
+
+    /*! \brief Убрать пометку избранного с трека
+     *  \details Снимает флаг избранного с трека.
+     */
     void UnmarkFavourite();
+
+    /*! \brief Проверить, является ли трек избранным
+     *  \return true если трек помечен как избранный, false в противном случае
+     *  \details Возвращает статус избранного для трека.
+     */
     bool IsFavourite() const;
+
+    /*! \brief Воспроизвести трек
+     *  \details Устанавливает флаг воспроизведения трека и увеличивает счетчик прослушиваний.
+     */
     void Play();
+
+    /*! \brief Поставить трек на паузу
+     *  \details Снимает флаг воспроизведения трека.
+     */
     void Pause();
+
+    /*! \brief Проверить, воспроизводится ли трек
+     *  \return true если трек воспроизводится, false в противном случае
+     *  \details Возвращает статус воспроизведения трека.
+     */
     bool IsPlaying() const;
+
+    /*! \brief Получить псевдоним исполнителя
+     *  \return Строка с псевдонимом исполнителя
+     *  \details Возвращает псевдоним исполнителя, связанного с треком.
+     */
     std::string GetArtistPseudonym() const;
+
+    /*! \brief Установить жанр трека
+     *  \param genreType Жанр трека
+     *  \details Сохраняет жанр трека.
+     */
     void SetGenreType(GenreType genreType);
+
+    /*! \brief Получить жанр трека
+     *  \return Строка с описанием жанра трека
+     *  \details Возвращает строковое представление жанра трека.
+     */
     std::string GetGenreType() const;
 
 private:
-    std::string name_;
-    std::string text_;
-    int listenings_ {0};
-    int duration_{0};
-    std::string artistPseudonym_;
-    bool isFavourite_ {false};
-    bool isPlaying_ {false};
-    GenreType genre_;
+    std::string name_; /*!< Название трека */
+    std::string text_; /*!< Текст трека (лирика) */
+    int listenings_{0}; /*!< Количество прослушиваний трека */
+    int duration_{0}; /*!< Длительность трека в секундах */
+    std::string artistPseudonym_; /*!< Псевдоним исполнителя трека */
+    bool isFavourite_{false}; /*!< Флаг избранного трека */
+    bool isPlaying_{false}; /*!< Флаг состояния воспроизведения трека */
+    GenreType genre_; /*!< Жанр трека */
 };
-
 
 #endif
