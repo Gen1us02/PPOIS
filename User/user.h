@@ -7,7 +7,7 @@
 #ifndef USER
 #define USER
 #include <string>
-#include "../Utils/utils.h"
+#include "../Validator/validator.h"
 #include "../Exceptions/exceptions.h"
 
 /*! \class User

@@ -8,7 +8,7 @@
 #define EXTENDEDPLAY_ALBUM
 
 #include "album.h"
-#include "album_type.h"
+#include "../../EnumClasses/album_type.h"
 #include <vector>
 
 /*! \class ExtendedPlayAlbum

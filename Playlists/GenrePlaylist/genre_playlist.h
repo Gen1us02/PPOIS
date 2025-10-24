@@ -7,9 +7,9 @@
 #ifndef GENRE_PLAYLIST
 #define GENRE_PLAYLIST
 #include "playlist.h"
-#include "playlist_type.h"
+#include "../../EnumClasses/playlist_type.h"
 #include "../Exceptions/exceptions.h"
-#include "../BaseClasses/genre_type.h"
+#include "../../EnumClasses/genre_type.h"
 #include <vector>
 
 /*! \class GenrePlaylist

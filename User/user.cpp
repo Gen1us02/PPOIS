@@ -9,11 +9,11 @@ User::~User() = default;
 User::User(const std::string& name, const std::string& surname, int age, const std::string& email,
            const std::string& username, const std::string& password)
 {
-    if (!EmailValidator(email))
+    if (!Validator::EmailValidator(email))
     {
         throw ExceptionInvalidEmail("Email validation failed.");
     }
-    if (!PasswordValidator(password))
+    if (!Validator::PasswordValidator(password))
     {
         throw ExceptionInvalidPassword("Password validation failed.");
     }
@@ -58,7 +58,7 @@ int User::GetAge() const
 
 void User::SetEmail(const std::string& email)
 {
-    if (!EmailValidator(email))
+    if (!Validator::EmailValidator(email))
     {
         throw ExceptionInvalidEmail("Email validation failed.");
     }
@@ -73,7 +73,7 @@ std::string User::GetEmail() const
 
 void User::SetPassword(const std::string& password)
 {
-    if (!PasswordValidator(password))
+    if (!Validator::PasswordValidator(password))
     {
         throw ExceptionInvalidPassword("Password validation failed.");
     }

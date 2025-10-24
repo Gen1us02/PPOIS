@@ -7,7 +7,7 @@
 #ifndef FAVOURITE_PLAYLIST
 #define FAVOURITE_PLAYLIST
 #include "playlist.h"
-#include "playlist_type.h"
+#include "../../EnumClasses/playlist_type.h"
 #include "../Exceptions/exceptions.h"
 #include <vector>
 

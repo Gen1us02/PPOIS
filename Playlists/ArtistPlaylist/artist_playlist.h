@@ -8,7 +8,7 @@
 #define ARTIST_PLAYLIST
 #include "../Artist/artist.h"
 #include "playlist.h"
-#include "playlist_type.h"
+#include "../../EnumClasses/playlist_type.h"
 
 /*! \class ArtistPlaylist
  *  \brief Модель плейлиста исполнителя

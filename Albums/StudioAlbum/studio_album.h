@@ -9,7 +9,7 @@
 #include "album.h"
 #include <vector>
 
-#include "album_type.h"
+#include "../../EnumClasses/album_type.h"
 
 /*! \class StudioAlbum
  *  \brief Модель студийного альбома

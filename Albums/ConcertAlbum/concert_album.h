@@ -6,7 +6,7 @@
 #ifndef CONCERT_ALBUM
 #define CONCERT_ALBUM
 #include "album.h"
-#include "album_type.h"
+#include "../../EnumClasses/album_type.h"
 #include <string>
 #include <vector>
 

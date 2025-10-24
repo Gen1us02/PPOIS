@@ -14,7 +14,7 @@
 #include "../Track/track.h"
 #include "../BaseClasses/human.h"
 #include "../BaseClasses/album.h"
-#include "../BaseClasses/album_type.h"
+#include "../EnumClasses/album_type.h"
 
 /*! \class Artist
  *  \brief Модель музыкального исполнителя

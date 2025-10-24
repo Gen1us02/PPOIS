@@ -8,7 +8,7 @@
 #define DAILY_PLAYLIST
 #include <vector>
 #include <chrono>
-#include "playlist_type.h"
+#include "../../EnumClasses/playlist_type.h"
 #include "../Exceptions/exceptions.h"
 #include "playlist.h"
 

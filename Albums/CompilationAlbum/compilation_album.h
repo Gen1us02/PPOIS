@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "album.h"
-#include "album_type.h"
+#include "../../EnumClasses/album_type.h"
 
 /*! \class CompilationAlbum
  *  \brief Модель сборника

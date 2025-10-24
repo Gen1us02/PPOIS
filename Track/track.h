@@ -8,7 +8,7 @@
 #ifndef TRACK
 #define TRACK
 #include <string>
-#include "../BaseClasses/genre_type.h"
+#include "../EnumClasses/genre_type.h"
 
 /*! \class Track
  *  \brief Модель музыкального трека

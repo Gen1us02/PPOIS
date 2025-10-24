@@ -1,8 +1,8 @@
 #include "artist.h"
 #include <format>
 
-#include "album_type.h"
-#include "../Utils/utils.h"
+#include "../EnumClasses/album_type.h"
+#include "../AlbumFactory/album_factory.h"
 
 Artist::Artist() = default;
 
@@ -179,7 +179,7 @@ std::string Artist::RealeseAlbum(AlbumType type, const std::string& albumTitle, 
         }
     }
 
-    auto newAlbum = AlbumFactory(type, albumTitle, albumTracks);
+    auto newAlbum = AlbumFactory::CreateAlbum(type, albumTitle, albumTracks);
     albums_.push_back(std::move(newAlbum));
     return std::format("Исполнитель {}, выпустил альбом {}", this->pseudonym_, albumTitle);
 }

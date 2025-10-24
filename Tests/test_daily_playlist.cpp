@@ -53,7 +53,13 @@ TEST_F(TestingDailyPlaylist, TestGetPlaylistType)
 
 TEST_F(TestingDailyPlaylist, TestGetDate)
 {
-    ASSERT_EQ(dailyPlaylist.GetDate(), "19.10.2025");
+    ASSERT_EQ(dailyPlaylist.GetDate(), "24.10.2025");
+}
+
+TEST_F(TestingDailyPlaylist, TestUpdateDate)
+{
+    dailyPlaylist.UpdateDate();
+    ASSERT_EQ(dailyPlaylist.GetDate(), "24.10.2025");
 }
 
 TEST(TestDailyPlaylist, TestConstructor)

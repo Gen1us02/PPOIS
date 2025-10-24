@@ -8,7 +8,7 @@
 #define PROFILE
 #include "../User/user.h"
 #include "unordered_set"
-#include "genre_type.h"
+#include "../EnumClasses/genre_type.h"
 #include "../Exceptions/exceptions.h"
 
 /*! \class Profile
