@@ -8,8 +8,9 @@ def get_user_input() -> List[int | str | Book]:
     print("Выберите тип данных для сортировки: ")
     print("===================================")
     print("1 - Целые числа")
-    print("2 - Строки")
-    print("3 - Объекты класса \"Книга\" по цене")
+    print("2 - Вещественные числа")
+    print("3 - Строки")
+    print("4 - Объекты класса \"Книга\" по цене")
     
     choice = input("Ваш выбор: ").strip()
     
@@ -23,13 +24,22 @@ def get_user_input() -> List[int | str | Book]:
                     return [int(x) for x in data]
                 except ValueError:
                     print("Неверный ввод повторите попытку")
-
+                    
             case "2":
+                print("Вводите вещественные числа через пробел:")
+                data = input().strip().split()
+                
+                try:
+                    return [float(x) for x in data]
+                except ValueError:
+                    print("Неверный ввод повторите попытку")
+
+            case "3":
                 print("Вводите строки через пробел:")
                 data = input().strip().split()
                 
                 return data
-            case "3":
+            case "4":
                 books = []
                 print("Вводите данные о книге через пробел: Название Цена Количество страниц(введите stop, чтобы завершить ввод)")
                 
