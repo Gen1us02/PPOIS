@@ -1,7 +1,7 @@
 from typing import List
 from Sorts.book import Book
-from Sorts.pancakesort import pancakeSort
-from Sorts.smoothsort import smoothSort
+from Sorts.pancakesort import PancakeSort
+from Sorts.smoothsort import SmoothSort
 
 
 def get_user_input() -> List[int | str | Book]:
@@ -89,12 +89,12 @@ def menu() -> None:
             case "1":
                 print(f"Массив до сортировки: {data}")
                 data_copy = data[:]
-                pancakeSort(data_copy)
+                PancakeSort.sort(data_copy)
                 print(f"Массив после сортировки: {data_copy}")
             case "2":
                 print(f"Массив до сортировки: {data}")
                 data_copy = data[:]
-                smoothSort(data_copy)
+                SmoothSort.sort(data_copy)
                 print(f"Массив после сортировки: {data_copy}")
             case "3":
                 print("Программа завершена")
