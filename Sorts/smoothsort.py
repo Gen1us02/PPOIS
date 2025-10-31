@@ -1,6 +1,11 @@
-class SmoothSort:
+from typing import Generic, TypeVar, List, Tuple
+
+
+T = TypeVar("T")
+
+class SmoothSort(Generic[T]):
     @staticmethod
-    def sort(lst):
+    def sort(lst: List[T]) -> None:
         leo_nums = SmoothSort._leonardo_numbers(len(lst))
         heap = []
 
@@ -27,7 +32,7 @@ class SmoothSort:
                 SmoothSort._restore_heap(lst, t_r, heap, leo_nums)
 
     @staticmethod
-    def _leonardo_numbers(hi):
+    def _leonardo_numbers(hi: int) -> List[int]:
 
         a, b = 1, 1
         numbers = []
@@ -37,7 +42,7 @@ class SmoothSort:
         return numbers
 
     @staticmethod
-    def _restore_heap(lst, i, heap, leo_nums):
+    def _restore_heap(lst: List[T], i: int, heap: List[T], leo_nums: List[int]) -> None:
         current = len(heap) - 1
         k = heap[current]
 
@@ -65,7 +70,7 @@ class SmoothSort:
                 break
 
     @staticmethod
-    def _get_child_trees(i, k, leo_nums):
+    def _get_child_trees(i: int, k: int, leo_nums: List[int]) -> Tuple[int, int, int ,int]:
         t_r, k_r = i - 1, k - 2
         t_l, k_l = t_r - leo_nums[k_r], k - 1
         
