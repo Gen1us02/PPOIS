@@ -1,11 +1,21 @@
+"""Модуль, реализующий класс плавной сортировки
+"""
 from typing import Generic, TypeVar, List, Tuple
 
 
 T = TypeVar("T")
 
 class SmoothSort(Generic[T]):
+    """
+    Класс SmoothSort, реализующий алгоритм плавной сортировки
+    """
     @staticmethod
     def sort(lst: List[T]) -> None:
+        """Статический метод, реализующий сам алгоритм плавной сортировки "на месте"
+
+        Args:
+            lst (List[T]): Массив любых типов данных для сортировки
+        """
         leo_nums = SmoothSort._leonardo_numbers(len(lst))
         heap = []
 
@@ -33,7 +43,14 @@ class SmoothSort(Generic[T]):
 
     @staticmethod
     def _leonardo_numbers(hi: int) -> List[int]:
+        """Статический метод для вычисления Леонардовой последовательности до заданного члена
 
+        Args:
+            hi (int): Количество элементов Леонардовой последовательности
+
+        Returns:
+            List[int]: Массив элементов Леонардовой последовательности
+        """
         a, b = 1, 1
         numbers = []
         while a <= hi:
@@ -43,6 +60,19 @@ class SmoothSort(Generic[T]):
 
     @staticmethod
     def _restore_heap(lst: List[T], i: int, heap: List[T], leo_nums: List[int]) -> None:
+        """
+        Статический метод, восстанавливающий свойство кучи для дерева Леонардо.
+
+        Метод выполняет две операции:
+        1. Поднимает элемент вверх по куче, если он больше родителя
+        2. Опускает элемент вниз по куче, если он меньше детей
+
+        Args:
+            lst (List[T]): Сортируемый массив
+            i (int): Индекс текущего элемента
+            heap (List[T]): Массив размеров деревьев Леонардо
+            leo_nums (List[int]): Массив чисел Леонардо
+        """
         current = len(heap) - 1
         k = heap[current]
 
@@ -71,6 +101,21 @@ class SmoothSort(Generic[T]):
 
     @staticmethod
     def _get_child_trees(i: int, k: int, leo_nums: List[int]) -> Tuple[int, int, int ,int]:
+        """
+        Статический метод, находящий индексы и размеры дочерних деревьев Леонардо.
+
+        Args:
+            i (int): Индекс корня текущего дерева
+            k (int): Размер текущего дерева
+            leo_nums (List[int]): Массив чисел Леонардо
+
+        Returns:
+            Tuple[int, int, int, int]: Кортеж (t_r, k_r, t_l, k_l), где:
+                t_r: индекс правого дочернего дерева
+                k_r: размер правого дочернего дерева
+                t_l: индекс левого дочернего дерева
+                k_l: размер левого дочернего дерева
+        """
         t_r, k_r = i - 1, k - 2
         t_l, k_l = t_r - leo_nums[k_r], k - 1
         

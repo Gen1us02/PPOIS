@@ -1,10 +1,18 @@
+"""
+Модуль реализующий функции для отображения интерфейса пользователю
+"""
 from typing import List
 from Sorts.book import Book
 from Sorts.pancakesort import PancakeSort
 from Sorts.smoothsort import SmoothSort
 
 
-def get_user_input() -> List[int | str | Book]:
+def get_user_input() -> List[int | float | str | Book]:
+    """Функция, отвечающая за обработку пользовательского ввода данных для сортировки
+
+    Returns:
+        List[int | float | str | Book]: Список данных для сортировки
+    """
     print("Выберите тип данных для сортировки: ")
     print("===================================")
     print("1 - Целые числа")
@@ -73,6 +81,9 @@ def get_user_input() -> List[int | str | Book]:
                 print("Неверный выбор пункта. Пвторите попытку")
         
 def menu() -> None:
+    """
+    Функция, отвечающая за отображение меню программы для пользователя и обработку его действий
+    """
     data = get_user_input()
     
     while True:
