@@ -17,5 +17,14 @@ class Vertex(Generic[T]):
     def degree(self) -> int:
         return self.count_prev
     
+    def __eq__(self, other) -> bool:
+        return self.value == other.value
+    
+    def __gt__(self, other) -> bool:
+        return self.value > other.value
+    
+    def __lt__(self, other) -> bool:
+        return self.value < other.value
+    
     def __repr__(self) -> str:
         return f"Vertex(value={self.value})"
