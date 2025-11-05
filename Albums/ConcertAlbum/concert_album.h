@@ -77,7 +77,7 @@ public:
      *  \return Строка с описанием типа альбома
      *  \details Возвращает тип альбома, соответствующий значению AlbumType::ConcertAlbum.
      */
-    std::string GetAlbumType() const;
+    std::string GetAlbumType() const override;
 
 private:
     std::string title_; /*!< Название концертного альбома */

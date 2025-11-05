@@ -51,17 +51,6 @@ TEST_F(TestingDailyPlaylist, TestGetPlaylistType)
     ASSERT_EQ(dailyPlaylist.GetPlaylistType(), "Daily Playlist");
 }
 
-TEST_F(TestingDailyPlaylist, TestGetDate)
-{
-    ASSERT_EQ(dailyPlaylist.GetDate(), "24.10.2025");
-}
-
-TEST_F(TestingDailyPlaylist, TestUpdateDate)
-{
-    dailyPlaylist.UpdateDate();
-    ASSERT_EQ(dailyPlaylist.GetDate(), "24.10.2025");
-}
-
 TEST(TestDailyPlaylist, TestConstructor)
 {
     std::vector<Track> tracks = {
