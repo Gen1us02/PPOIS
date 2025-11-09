@@ -15,3 +15,7 @@ class BaseIterator(Generic[T], ABC):
     @abstractmethod
     def previous(self):
         pass
+    
+    @abstractmethod
+    def current(self):
+        pass
