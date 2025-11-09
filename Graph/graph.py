@@ -2,17 +2,41 @@ from typing import Optional, TypeVar, List, Tuple, Generic
 from Graph.vertex import Vertex
 from Graph.edge import Edge
 from Exceptions.exceptions import *
-from Iterators.edgeiterators import BiDirectionalEdgeIterator
-from Iterators.vertexiterators import BiDirectionalVertexIterator
+from Iterators.edgeiterators import *
+from Iterators.vertexiterators import *
+import logging
+import copy
+
 
 T = TypeVar("T")
 
 class Graph(Generic[T]):
-    def __init__(self):
+    __log = logging.getLogger(__name__)
+    logging.basicConfig(filename="graph_log.log", level=logging.INFO)
+    
+    def __init__(self) -> None:
         self._head: Optional[Vertex[T]] = None
         self._tail: Optional[Vertex[T]] = None
         self._vertices: List[Vertex[T]] = []
         self._edges: List[Tuple[Vertex[T], Vertex[T]]] = []
+        
+    def __del__(self) -> None:
+        Graph.__log.debug("Graph is delete")
+        
+    def __deepcopy__(self, memo: dict) -> 'Graph[T]':
+        new_graph: Graph[T] = Graph()
+        memo[id(self)] = new_graph
+        
+        for vertex in self._vertices:
+            new_graph.add_vertex(copy.deepcopy(vertex.value, memo))
+        
+        for v1, v2 in self._edges:
+            new_graph.add_edge(
+                copy.deepcopy(v1.value, memo), 
+                copy.deepcopy(v2.value, memo)
+            )
+        
+        return new_graph
         
     def _find_vertex(self, value: T) -> Optional[Vertex[T]]:
         current = self._head
@@ -27,19 +51,23 @@ class Graph(Generic[T]):
         incident_edges = []
         current = vertex.trail
         while current:
-            trail_edge = tuple(sorted(current.target_vertex, vertex))
+            trail_edge = tuple(sorted([current.target_vertex, vertex]))
             if trail_edge not in incident_edges:
                 incident_edges.append(trail_edge)
                 
+            current = current.next
+                
         current = vertex.pred
         while current:
-            pred_edge = tuple(sorted(current.target_vertex, pred_edge))
-            if trail_edge not in incident_edges:
+            pred_edge = tuple(sorted([current.target_vertex, vertex]))
+            if pred_edge not in incident_edges:
                 incident_edges.append(pred_edge)
+                
+            current = current.next
                 
         return incident_edges
     
-    def _get_adjancency_vertecies(self, vertex: Vertex[T]) -> List[Vertex[T]]:
+    def _get_adjacency_vertecies(self, vertex: Vertex[T]) -> List[Vertex[T]]:
         adjancy_vertecies = []
         current = vertex.trail
         while current:
@@ -47,11 +75,15 @@ class Graph(Generic[T]):
             if adjency_vertex not in adjancy_vertecies:
                 adjancy_vertecies.append(adjency_vertex)
                 
+            current = current.next
+                
         current = vertex.pred
         while current:
             adjency_vertex = current.target_vertex
             if adjency_vertex not in adjancy_vertecies:
                 adjancy_vertecies.append(adjency_vertex)
+                
+            current = current.next
                 
         return adjancy_vertecies
             
@@ -115,7 +147,7 @@ class Graph(Generic[T]):
         edges_to_remove = []
         for edge in self._edges:
             if edge[0] == vertex or edge[1] == vertex:
-                self._edges.remove(edge)
+                edges_to_remove.append(edge)
                 
         for edge in edges_to_remove:
             self._edges.remove(edge)
@@ -143,7 +175,20 @@ class Graph(Generic[T]):
                 current = current.next
                 
         self._vertices.remove(vertex)
+        
+    def empty(self) -> bool:
+        return self._head is None
+    
+    def clear(self) -> None:
+        current = self._head
+        while current:
+            vertex_to_del = current
+            current = current.next
+            self.delete_vertex(vertex_to_del.value)
             
+        self._head = self._tail = None
+        self._vertices = []
+        self._edges = []
 
     def has_vertex(self, value: T) -> bool:
         return self._find_vertex(value) is not None
@@ -155,7 +200,7 @@ class Graph(Generic[T]):
         if vertex_a is None or vertex_b is None:
             return False
         
-        edge = tuple(sorted(vertex_a, vertex_b))
+        edge = tuple(sorted([vertex_a, vertex_b]))
         
         return edge in self._edges
                     
@@ -213,7 +258,7 @@ class Graph(Generic[T]):
         if not vertex_a or not vertex_b:
             raise VertexError("One of the vertieces is not in graph")
         
-        edge = tuple(sorted(vertex_a, vertex_b))
+        edge = tuple(sorted([vertex_a, vertex_b]))
         
         if edge not in self._edges:
             raise EdgeError("Edge is not in graph")
@@ -225,27 +270,126 @@ class Graph(Generic[T]):
     def vertex_iterator(self) -> BiDirectionalVertexIterator[T]:
         return BiDirectionalVertexIterator(self._vertices)
     
-    def adjancy_vertex_iterator(self, vertex: Vertex[T]) -> BiDirectionalVertexIterator[T]:
-        adjancy_vertecies = self._get_adjancency_vertecies(vertex)
-        return BiDirectionalVertexIterator(adjancy_vertecies)
+    def adjacency_vertex_iterator(self, vertex_value: T) -> BiDirectionalVertexIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
+        adjacency_vertecies = self._get_adjacency_vertecies(vertex)
+        return BiDirectionalVertexIterator(adjacency_vertecies)
     
     def reverse_vertex_iterator(self) -> BiDirectionalVertexIterator[T]:
         return BiDirectionalVertexIterator(self._vertices, reverse=True)
     
-    def reverse_adjancy_vertex_iterator(self, vertex: Vertex[T]) -> BiDirectionalVertexIterator[T]:
-        adjancy_vertecies = self._get_adjancency_vertecies(vertex)
-        return BiDirectionalVertexIterator(adjancy_vertecies, reverse=True)
+    def reverse_adjacency_vertex_iterator(self, vertex_value: T) -> BiDirectionalVertexIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
+        adjacency_vertecies = self._get_adjacency_vertecies(vertex)
+        return BiDirectionalVertexIterator(adjacency_vertecies, reverse=True)
+    
+    def const_vertex_iterator(self) -> ConstBiDirectionalVertexIterator[T]:
+        return ConstBiDirectionalVertexIterator(self._vertices)
+    
+    def const_adjacency_vertex_iterator(self, vertex_value: T) -> ConstBiDirectionalVertexIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
+        adjacency_vertecies = self._get_adjacency_vertecies(vertex)
+        return ConstBiDirectionalVertexIterator(adjacency_vertecies)
+    
+    def const_reverse_vertex_iterator(self) -> ConstBiDirectionalVertexIterator[T]:
+        return ConstBiDirectionalVertexIterator(self._vertices, reverse=True)
+    
+    def const_reverse_adjacency_vertex_iterator(self, vertex_value: T) -> ConstBiDirectionalVertexIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
+        adjacency_vertecies = self._get_adjacency_vertecies(vertex)
+        return ConstBiDirectionalVertexIterator(adjacency_vertecies, reverse=True)
     
     def edge_iterator(self) -> BiDirectionalEdgeIterator[T]:
         return BiDirectionalEdgeIterator(self._edges)
     
-    def incident_edge_iterator(self, vertex: Vertex[T]) -> BiDirectionalEdgeIterator[T]:
+    def incident_edge_iterator(self, vertex_value: T) -> BiDirectionalEdgeIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
         incident_edges = self._get_incident_edges(vertex)
         return BiDirectionalEdgeIterator(incident_edges)
     
     def reverse_edge_iterator(self) -> BiDirectionalEdgeIterator[T]:
         return BiDirectionalEdgeIterator(self._edges, reverse=True)
     
-    def reverse_incident_edge_iterator(self, vertex: Vertex[T]) -> BiDirectionalEdgeIterator[T]:
+    def reverse_incident_edge_iterator(self, vertex_value: T) -> BiDirectionalEdgeIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
         incident_edges = self._get_incident_edges(vertex)
         return BiDirectionalEdgeIterator(incident_edges, reverse=True)
+    
+    def const_edge_iterator(self) -> ConstBiDirectionalEdgeIterator[T]:
+        return ConstBiDirectionalEdgeIterator(self._edges)
+    
+    def const_incident_edge_iterator(self, vertex_value: T) -> ConstBiDirectionalEdgeIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
+        incident_edges = self._get_incident_edges(vertex)
+        return ConstBiDirectionalEdgeIterator(incident_edges)
+    
+    def const_reverse_edge_iterator(self) -> ConstBiDirectionalEdgeIterator[T]:
+        return ConstBiDirectionalEdgeIterator(self._edges, reverse=True)
+    
+    def const_reverse_incident_edge_iterator(self, vertex_value: T) -> ConstBiDirectionalEdgeIterator[T]:
+        vertex = self._find_vertex(vertex_value)
+        if not vertex:
+            raise VertexError("Vetrex is not in graph")
+        
+        incident_edges = self._get_incident_edges(vertex)
+        return ConstBiDirectionalEdgeIterator(incident_edges, reverse=True)
+    
+    def remove_vertex_by_iterator(self, iterator: BiDirectionalVertexIterator[T]) -> None:
+        vertex_value = iterator.current().value()
+        self.delete_vertex(vertex_value)
+        
+    def remove_edge_by_iterator(self, iterator: BiDirectionalEdgeIterator[T]) -> None:
+        value_a, value_b = [vertex.value for vertex in iterator.current()]
+        self.delete_edge(value_a, value_b)
+        
+    def __eq__(self, other) -> bool:
+        self_vertices = {vertex.value for vertex in self._vertices}
+        other_vertices = {vertex.value for vertex in other._vertices}
+        
+        self_edges = {tuple(sorted([edge[0].value, edge[1].value])) for edge in self._edges}
+        other_edges = {tuple(sorted([edge[0].value, edge[1].value])) for edge in other._edges}
+        
+        return self_vertices == other_vertices and self_edges == other_edges
+    
+    def __ne__(self, other) -> bool:
+        return not self.__eq__(other)
+    
+    def __lt__(self, other) -> bool:
+        if self.vertex_count() != other.vertex_count():
+            return self.vertex_count() < other.vertex_count()
+        return self.edges_count() < self.other_count()
+    
+    def __gt__(self, other) -> bool:
+        return other < self
+    
+    def __le__(self, other) -> bool:
+        return self < other or self == other 
+    
+    def __ge__(self, other) -> bool:
+        return self > other or self == other
+    
+    def __str__(self) -> str:
+        graph_vertecies = ",".join([str(vertex.value) for vertex in self._vertices])
+        graph_edges = ",".join([f"{edge[0].value}->{edge[1].value}" for edge in self._edges])
+        return f"Graph(vertices={graph_vertecies}, edges={graph_edges})"
