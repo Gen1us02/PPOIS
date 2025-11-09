@@ -1,10 +1,42 @@
 class VertexError(Exception):
-    def __init__(self, message: str):
-        super.__init__(message)
+    """
+    Исключение, связанное с операциями над вершинами графа.
+    
+    Вызывается при попытке обращение к несуществующим вершинам графа.
+    
+    Attributes:
+        message: Сообщение об ошибке, описывающее причину исключения.
+    """
+    
+    def __init__(self, message: str) -> None:
+        """
+        Инициализирует исключение VertexError.
+        
+        Args:
+            message: Сообщение об ошибке, описывающее причину исключения.
+        """
+        super().__init__(message)
         self.message: str = message
         
         
 class EdgeError(Exception):
-    def __init__(self, message: str):
-        super.__init__(self)
+    """
+    Исключение, связанное с операциями над рёбрами графа.
+    
+    Вызывается при попытке выполнить некорректные операции с рёбрами,
+    таких как добавление дублирующих рёбер, создание петель, 
+    обращение к несуществующим рёбрам.
+    
+    Attributes:
+        message: Сообщение об ошибке, описывающее причину исключения.
+    """
+    
+    def __init__(self, message: str) -> None:
+        """
+        Инициализирует исключение EdgeError.
+        
+        Args:
+            message: Сообщение об ошибке, описывающее причину исключения.
+        """
+        super().__init__(message)
         self.message: str = message
