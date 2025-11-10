@@ -1,7 +1,7 @@
 """
     Модуль, реализующий итнраторы по вершинам графа
 """
-from baseiterator import BaseIterator
+from Graph.Iterators.baseiterator import BaseIterator
 from typing import TypeVar, List, Self, Any
 from Graph.vertex import Vertex
 
@@ -58,6 +58,14 @@ class BiDirectionalVertexIterator(BaseIterator[Vertex[T]]):
         """
         self._curr_index = new_index
         
+    def __set_curr_index(self, index) -> None:
+        """Изменяет _curr_index
+
+        Args:
+            index (int): Новый индекс
+        """
+        object.__setattr__(self, "_curr_index", index)
+        
     def __iter__(self) -> Self:
         """
         Возвращает сам итератор.
@@ -81,7 +89,8 @@ class BiDirectionalVertexIterator(BaseIterator[Vertex[T]]):
             raise StopIteration("Index out of range")
         
         current = self.current()
-        self._curr_index = self._curr_index + (1 if not self._reverse else -1)
+        new_index = self._curr_index + (1 if not self._reverse else -1)
+        self.__set_curr_index(new_index)
         return current
     
     def previous(self) -> Vertex[T]:
@@ -98,7 +107,8 @@ class BiDirectionalVertexIterator(BaseIterator[Vertex[T]]):
             raise StopIteration("Index out of range")
         
         current = self._collection[self._curr_index]
-        self._curr_index = self._curr_index + (-1 if not self._reverse else 1)
+        new_index = self._curr_index + (-1 if not self._reverse else 1)
+        self.__set_curr_index(new_index)
         return current
     
     def current(self) -> Vertex[T]:
@@ -141,7 +151,7 @@ class ConstBiDirectionalVertexIterator(BiDirectionalVertexIterator[T]):
         Returns:
             Новый ConstBiDirectionalVertexIterator с теми же параметрами.
         """
-        return ConstBiDirectionalVertexIterator(self._collection, self._reverse)
+        return ConstBiDirectionalVertexIterator[T](self._collection, self._reverse)
     
     def __setattr__(self, name: str, value: Any) -> None:
         """

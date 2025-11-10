@@ -4,9 +4,9 @@
 from typing import Optional, TypeVar, List, Tuple, Generic
 from Graph.vertex import Vertex
 from Graph.edge import Edge
-from Exceptions.exceptions import *
-from Iterators.edgeiterators import *
-from Iterators.vertexiterators import *
+from Graph.Exceptions.exceptions import *
+from Graph.Iterators.edgeiterators import *
+from Graph.Iterators.vertexiterators import *
 import logging
 import copy
 
@@ -461,7 +461,6 @@ class Graph(Generic[T]):
         self._remove_directed_edge(vertex_b, vertex_a)
         self._edges.remove(edge)
         
-    # Методы итераторов вершин
     
     def vertex_iterator(self) -> BiDirectionalVertexIterator[T]:
         """Возвращает итератор по всем вершинам графа."""
@@ -559,7 +558,6 @@ class Graph(Generic[T]):
         adjacency_vertecies = self._get_adjacency_vertecies(vertex)
         return ConstBiDirectionalVertexIterator(adjacency_vertecies, reverse=True)
     
-    # Методы итераторов ребер
     
     def edge_iterator(self) -> BiDirectionalEdgeIterator[T]:
         """Возвращает итератор по всем ребрам графа."""
@@ -664,7 +662,7 @@ class Graph(Generic[T]):
         Args:
             iterator: Итератор, указывающий на удаляемую вершину
         """
-        vertex_value = iterator.current().value()
+        vertex_value = iterator.current().value
         self.delete_vertex(vertex_value)
         
     def remove_edge_by_iterator(self, iterator: BiDirectionalEdgeIterator[T]) -> None:
@@ -770,6 +768,6 @@ class Graph(Generic[T]):
         Returns:
             Строка, содержащая информацию о вершинах и ребрах графа
         """
-        graph_vertecies = ",".join([str(vertex.value) for vertex in self._vertices])
-        graph_edges = ",".join([f"{edge[0].value}->{edge[1].value}" for edge in self._edges])
-        return f"Graph(vertices={graph_vertecies}, edges={graph_edges})"
+        graph_vertecies = ", ".join([str(vertex.value) for vertex in self._vertices])
+        graph_edges = ", ".join([f"{edge[0].value}->{edge[1].value}" for edge in self._edges])
+        return f"Graph(vertices = {graph_vertecies}; edges = {graph_edges})"

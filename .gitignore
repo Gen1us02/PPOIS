@@ -1,6 +1,9 @@
 Sorts/__pycache__
 Graph/__pycache__
+Graph/Exceptions/__pycache__
+Graph/Iterators/__pycache__
 Tests/__pycache__
 pytest.ini
 .pytest_cache
 Docs
+.coverage

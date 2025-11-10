@@ -1,7 +1,7 @@
 """
     Модуль, реализующий итераторы по ребрам
 """
-from baseiterator import BaseIterator
+from Graph.Iterators.baseiterator import BaseIterator
 from typing import List, TypeVar, Tuple, Self, Any
 from Graph.vertex import Vertex
 
@@ -67,6 +67,14 @@ class BiDirectionalEdgeIterator(BaseIterator[Tuple[Vertex[T], Vertex[T]]]):
         """
         return self
     
+    def __set_curr_index(self, index) -> None:
+        """Изменяет _curr_index
+
+        Args:
+            index (int): Новый индекс
+        """
+        object.__setattr__(self, "_curr_index", index)
+    
     def __next__(self) -> Tuple[Vertex[T], Vertex[T]]:
         """
         Возвращает следующий элемент и перемещает итератор вперёд.
@@ -81,7 +89,8 @@ class BiDirectionalEdgeIterator(BaseIterator[Tuple[Vertex[T], Vertex[T]]]):
             raise StopIteration("Index is out of range")
         
         value = self.current()
-        self._curr_index = self._curr_index + (1 if not self._reverse else -1)
+        new_index = self._curr_index + (1 if not self._reverse else -1)
+        self.__set_curr_index(new_index)
         return value
     
     def previous(self) -> Tuple[Vertex[T], Vertex[T]]:
@@ -98,7 +107,8 @@ class BiDirectionalEdgeIterator(BaseIterator[Tuple[Vertex[T], Vertex[T]]]):
             raise StopIteration("Index is out of range")
         
         value = self.current()
-        self._curr_index = self._curr_index + (-1 if not self._reverse else 1)
+        new_index = self._curr_index + (-1 if not self._reverse else 1)
+        self.__set_curr_index(new_index)
         return value
     
     def current(self) -> Tuple[Vertex[T], Vertex[T]]:
@@ -142,7 +152,7 @@ class ConstBiDirectionalEdgeIterator(BiDirectionalEdgeIterator[T]):
         Returns:
             Новый ConstBiDirectionalEdgeIterator с теми же параметрами.
         """
-        return ConstBiDirectionalEdgeIterator(self._collection, self._reverse)
+        return ConstBiDirectionalEdgeIterator[T](self._collection, self._reverse)
     
     def __setattr__(self, name: str, value: Any) -> None:
         """
