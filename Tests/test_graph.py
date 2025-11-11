@@ -50,6 +50,19 @@ def test_vertex_degree():
     with pytest.raises(VertexError):
         graph.vertex_degree(4)
         
+def test_edge_degree():
+    graph = create_graph()
+    graph.add_vertex(3)
+    graph.add_edge(1, 3)
+    graph.add_edge(3,2)
+    edge_degree = graph.edge_degree(1,3)
+    assert edge_degree == 4
+    graph.delete_edge(1,3)
+    with pytest.raises((VertexError, EdgeError)):
+        graph.edge_degree(1,1)
+        graph.edge_degree(6,7)
+        graph.edge_degree(1,3)
+        
 def test_add_vertex():
     graph = create_graph()
     graph.add_vertex(4)

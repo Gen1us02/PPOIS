@@ -369,6 +369,37 @@ class Graph(Generic[T]):
         
         return vertex.degree
     
+    def edge_degree(self, value_a: T, value_b: T) -> int:
+        """
+        Вычисляет степень ребра между двумя вершинами.
+        Степень ребра определяется как произведение степеней инцидентных ему вершин.
+        
+        Args:
+            value_a: Значение первой вершины
+            value_b: Значение второй вершины
+            
+        Returns:
+            Степень ребра
+            
+        Raises:
+            VertexError: Если одна или обе вершины отсутствуют в графе, или если это одна и та же вершина
+            EdgeError: Если между указанными вершинами нет ребра
+        """
+        vertex_a = self._find_vertex(value_a)
+        vertex_b = self._find_vertex(value_b)
+        
+        if vertex_a is None or vertex_b is None:
+            raise VertexError("One or both verticies are not in graph")
+        
+        if vertex_a == vertex_b:
+            raise VertexError("Same vertex")
+        
+        edge = tuple(sorted([vertex_a, vertex_b]))
+        if edge not in self._edges:
+            raise EdgeError("Edge not in graph")
+        
+        return vertex_a.degree * vertex_b.degree
+    
     def add_vertex(self, value: T) -> None:
         """
         Добавляет новую вершину в граф.
