@@ -1,14 +1,16 @@
-"""Модуль, реализующий класс плавной сортировки
-"""
+"""Модуль, реализующий класс плавной сортировки"""
+
 from typing import Generic, TypeVar, List, Tuple
 
 
 T = TypeVar("T")
 
+
 class SmoothSort(Generic[T]):
     """
     Класс SmoothSort, реализующий алгоритм плавной сортировки
     """
+
     @staticmethod
     def sort(lst: List[T]) -> None:
         """Статический метод, реализующий сам алгоритм плавной сортировки "на месте"
@@ -78,15 +80,16 @@ class SmoothSort(Generic[T]):
 
         while current > 0:
             j = i - leo_nums[k]
-            if (lst[j] > lst[i] and
-                (k < 2 or lst[j] > lst[i-1] and lst[j] > lst[i-2])):
+            if lst[j] > lst[i] and (
+                k < 2 or lst[j] > lst[i - 1] and lst[j] > lst[i - 2]
+            ):
                 lst[i], lst[j] = lst[j], lst[i]
                 i = j
                 current -= 1
                 k = heap[current]
             else:
                 break
-        
+
         while k >= 2:
             t_r, k_r, t_l, k_l = SmoothSort._get_child_trees(i, k, leo_nums)
             if lst[i] < lst[t_r] or lst[i] < lst[t_l]:
@@ -100,7 +103,9 @@ class SmoothSort(Generic[T]):
                 break
 
     @staticmethod
-    def _get_child_trees(i: int, k: int, leo_nums: List[int]) -> Tuple[int, int, int ,int]:
+    def _get_child_trees(
+        i: int, k: int, leo_nums: List[int]
+    ) -> Tuple[int, int, int, int]:
         """
         Статический метод, находящий индексы и размеры дочерних деревьев Леонардо.
 
@@ -118,5 +123,5 @@ class SmoothSort(Generic[T]):
         """
         t_r, k_r = i - 1, k - 2
         t_l, k_l = t_r - leo_nums[k_r], k - 1
-        
+
         return t_r, k_r, t_l, k_l

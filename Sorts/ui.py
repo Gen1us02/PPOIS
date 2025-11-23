@@ -1,6 +1,7 @@
 """
 Модуль реализующий функции для отображения интерфейса пользователю
 """
+
 from typing import List
 from Sorts.book import Book
 from Sorts.pancakesort import PancakeSort
@@ -18,25 +19,25 @@ def get_user_input() -> List[int | float | str | Book]:
     print("1 - Целые числа")
     print("2 - Вещественные числа")
     print("3 - Строки")
-    print("4 - Объекты класса \"Книга\" по цене")
-    
+    print('4 - Объекты класса "Книга" по цене')
+
     choice = input("Ваш выбор: ").strip()
-    
+
     while True:
         match choice:
             case "1":
                 print("Вводите целые числа через пробел:")
                 data = input().strip().split()
-                
+
                 try:
                     return [int(x) for x in data]
                 except ValueError:
                     print("Неверный ввод повторите попытку")
-                    
+
             case "2":
                 print("Вводите вещественные числа через пробел:")
                 data = input().strip().split()
-                
+
                 try:
                     return [float(x) for x in data]
                 except ValueError:
@@ -45,28 +46,30 @@ def get_user_input() -> List[int | float | str | Book]:
             case "3":
                 print("Вводите строки через пробел:")
                 data = input().strip().split()
-                
+
                 return data
             case "4":
                 books = []
-                print("Вводите данные о книге через пробел: Название Цена Количество страниц(введите stop, чтобы завершить ввод)")
-                
+                print(
+                    "Вводите данные о книге через пробел: Название Цена Количество страниц(введите stop, чтобы завершить ввод)"
+                )
+
                 while True:
                     book_data = input().strip()
-                    
+
                     if book_data.lower() == "stop":
                         break
-                    
+
                     book_data = book_data.split()
-                    
+
                     if not book_data:
                         print("Введены пустые данные. Повторите попытку")
                         continue
-                    
+
                     if len(book_data) != 3:
                         print("Ввод данных осуществляется через пробел!")
                         continue
-                    
+
                     try:
                         title = book_data[0]
                         price = book_data[1]
@@ -74,18 +77,19 @@ def get_user_input() -> List[int | float | str | Book]:
                         books.append(Book(title, price, pages))
                     except ValueError:
                         print("Цена и количество страниц должны быть числами!")
-                
+
                 return books
-            
+
             case _:
                 print("Неверный выбор пункта. Пвторите попытку")
-        
+
+
 def menu() -> None:
     """
     Функция, отвечающая за отображение меню программы для пользователя и обработку его действий
     """
     data = get_user_input()
-    
+
     while True:
         print("Меню программы")
         print("=====================")
@@ -93,9 +97,9 @@ def menu() -> None:
         print("2 - Smooth Sort")
         print("3 - Выход из программы")
         print("=====================")
-        
+
         choice = input("Ваш выбор:").strip()
-        
+
         match choice:
             case "1":
                 print(f"Массив до сортировки: {data}")
@@ -111,4 +115,4 @@ def menu() -> None:
                 print("Программа завершена")
                 return
             case _:
-                print("Неверный ввод, повторите попытку")        
+                print("Неверный ввод, повторите попытку")
